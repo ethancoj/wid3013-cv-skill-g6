@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Restoration Dashboard - {{ doc_id }}</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f4f1eb; color: #2c2c2a; }
+  .header { background: #2c2c2a; color: #f4f1eb; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .header-left h1 { font-size: 1.2rem; font-weight: 500; }
+  .header-left p { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
+  .health-badge { background: #1D9E75; color: #fff; border-radius: 50%; width: 64px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
+  .health-badge span { font-size: 0.6rem; font-weight: 400; opacity: 0.85; }
+  .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+  .status-success { background: #E1F5EE; color: #0F6E56; }
+  .status-failed { background: #FCEBEB; color: #A32D2D; }
+  .status-processing { background: #FAEEDA; color: #854F0B; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .card { background: #fff; border-radius: 12px; border: 0.5px solid #d3d1c7; padding: 1.25rem; }
+  .card-full { grid-column: 1 / -1; }
+  .card h2 { font-size: 0.85rem; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .meta-item { background: #f4f1eb; border-radius: 8px; padding: 0.75rem 1rem; }
+  .meta-item .label { font-size: 0.72rem; color: #888780; margin-bottom: 4px; }
+  .meta-item .value { font-size: 0.95rem; font-weight: 500; color: #2c2c2a; }
+  .slider-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f4f1eb; cursor: col-resize; user-select: none; }
+  .slider-before { position: absolute; inset: 0; }
+  .slider-before img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-after { position: absolute; inset: 0; overflow: hidden; }
+  .slider-after img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
+  .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .slider-label { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,0.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
+  .slider-label.left { left: 10px; }
+  .slider-label.right { right: 10px; }
+  .placeholder-img { width: 100%; aspect-ratio: 4/3; background: #f4f1eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888780; font-size: 0.85rem; border: 1px dashed #d3d1c7; }
+  .conf-bar-wrap { margin-bottom: 1rem; }
+  .conf-bar-wrap .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
+  .conf-bar-bg { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
+
+  /* FIX 1 — width driven by CSS custom property --bar set inline.
+     VS Code's CSS linter never sees Jinja2 syntax; it only sees valid CSS
+     (width: var(--bar, 0%)) so the "identifier expected" errors disappear. */
+  .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; width: var(--bar, 0%); }
+
+  .chart-wrap { height: 180px; position: relative; }
+  .extracted-text { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: #f4f1eb; padding: 8px 12px; text-align: left; font-weight: 500; font-size: 0.75rem; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 8px 12px; border-bottom: 0.5px solid #f4f1eb; color: #2c2c2a; }
+  tr:last-child td { border-bottom: none; }
+  .audit-list { list-style: none; }
+  .audit-item { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 0.5px solid #f4f1eb; }
+  .audit-item:last-child { border-bottom: none; }
+  .audit-dot { width: 10px; height: 10px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 5px; }
+  .audit-item-body .audit-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 2px; }
+  .audit-item-body .audit-desc { font-size: 0.78rem; color: #5f5e5a; line-height: 1.5; }
+  @media (max-width: 640px) {
+    .container { grid-template-columns: 1fr; }
+    .card-full { grid-column: 1; }
+    .meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>{{ filename }}</h1>
+    <p>ID: {{ doc_id }} &nbsp;·&nbsp; Processed: {{ timestamp }}</p>
+    <p style="margin-top:8px">
+      <span class="status-badge status-{{ status }}">{{ status }}</span>
+    </p>
+  </div>
+  <div class="health-badge">
+    {{ health_score }}<span>health</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Before / After</h2>
+    {% if img_before and img_after %}
+    <div class="slider-wrap" id="slider">
+      <div class="slider-before">
+        <img src="{{ img_before }}" alt="Before restoration">
+        <span class="slider-label left">Before</span>
+      </div>
+      <div class="slider-after" id="sliderAfter" style="width:50%">
+        <img src="{{ img_after }}" alt="After restoration" style="min-width:100%">
+        <span class="slider-label right">After</span>
+      </div>
+      <div class="slider-line" id="sliderLine" style="left:50%">
+        <div class="slider-handle">&#8596;</div>
+      </div>
+    </div>
+    {% else %}
+    <div class="placeholder-img">No images available</div>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h2>Document metadata</h2>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="label">Filename</div><div class="value">{{ filename }}</div></div>
+      <div class="meta-item"><div class="label">Document ID</div><div class="value">{{ doc_id }}</div></div>
+      <div class="meta-item"><div class="label">Dimensions</div><div class="value">{{ width }} × {{ height }}px</div></div>
+      <div class="meta-item"><div class="label">Processing time</div><div class="value">{{ proc_time }}s</div></div>
+      <div class="meta-item"><div class="label">Health score</div><div class="value">{{ health_score }} / 100</div></div>
+      <div class="meta-item"><div class="label">Status</div><div class="value">{{ status }}</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Confidence analysis</h2>
+
+    <!-- FIX 1 applied here: --bar is a CSS custom property, not width:{{ }}.
+         The linter sees valid CSS; Jinja2 only touches the custom property value. -->
+    <div class="conf-bar-wrap">
+      <div class="conf-label"><span>Overall confidence</span><span>{{ overall_pct }}%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:{{ overall_pct }}%"></div></div>
+    </div>
+    <div class="conf-bar-wrap">
+      <div class="conf-label"><span>High confidence text</span><span>{{ high_conf_pct }}%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:{{ high_conf_pct }}%"></div></div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="confChart"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Extracted text</h2>
+    <div class="extracted-text">{{ extracted_text }}</div>
+  </div>
+
+  <div class="card card-full">
+    <h2>Structured data table</h2>
+    <table>
+      <thead>
+        <tr>
+          {% for header in table_headers %}
+          <th>{{ header }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in table_rows %}
+        <tr>
+          {% for cell in row %}
+          <td>{{ cell }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card card-full">
+    <h2>Processing audit trail</h2>
+    <ul class="audit-list">
+      {% for step in audit_steps %}
+      <li class="audit-item">
+        <div class="audit-dot"></div>
+        <div class="audit-item-body">
+          <div class="audit-name">{{ step.name }}</div>
+          <div class="audit-desc">{{ step.description }}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+<!-- FIX 2 — chart data lives in a JSON script tag, not inline JS.
+     VS Code's JS linter never touches type="application/json" blocks,
+     so {{ chart_data | tojson }} causes zero JS parse errors. -->
+<script type="application/json" id="chart-payload">{{ chart_data | tojson }}</script>
+
+<script>
+  /* Read the pre-serialised data the safe way */
+  const chartData = JSON.parse(document.getElementById('chart-payload').textContent);
+
+  const ctx = document.getElementById('confChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: chartData.map(d => d.label),
+      datasets: [{
+        data: chartData.map(d => d.value),
+        backgroundColor: ['#1D9E75', '#EF9F27', '#E24B4A'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } }
+      }
+    }
+  });
+
+  /* Before/After slider */
+  const slider      = document.getElementById('slider');
+  const sliderAfter = document.getElementById('sliderAfter');
+  const sliderLine  = document.getElementById('sliderLine');
+  let dragging = false;
+
+  function setSlider(x) {
+    const rect = slider.getBoundingClientRect();
+    const pct  = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
+    sliderAfter.style.width = (pct * 100) + '%';
+    sliderLine.style.left   = (pct * 100) + '%';
+  }
+
+  slider.addEventListener('mousedown',  e => { dragging = true;  setSlider(e.clientX); });
+  window.addEventListener('mousemove',  e => { if (dragging) setSlider(e.clientX); });
+  window.addEventListener('mouseup',    () => { dragging = false; });
+  slider.addEventListener('touchstart', e => { dragging = true;  setSlider(e.touches[0].clientX); });
+  window.addEventListener('touchmove',  e => { if (dragging) setSlider(e.touches[0].clientX); });
+  window.addEventListener('touchend',   () => { dragging = false; });
+</script>
+</body>
+</html>

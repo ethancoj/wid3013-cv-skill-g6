@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "doc_id": "DOC-2026-001",
+    "timestamp": "2026-06-05T10:30:00Z",
+    "filename": "malay_letter_1940.jpg",
+    "health_score": 82,
+    "width": 1240,
+    "height": 1754,
+    "processing_time_seconds": 3.47,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "samples/before.png",
+    "after_url": "samples/after.png",
+    "annotated_url": "samples/annotated.png",
+    "layout_url": "samples/layout.png"
+  },
+  "content": {
+    "extracted_text": "Kepada Tuan Pengarah,\n\nDengan hormatnya saya ingin memaklumkan bahawa dokumen ini telah dihantar pada tahun 1940 bagi tujuan rekod rasmi jabatan. Sila ambil perhatian bahawa semua maklumat di dalam surat ini adalah sulit dan hanya untuk kegunaan dalaman sahaja.\n\nSekian, terima kasih.\n\nHormat saya,\nEncik Ahmad bin Ismail",
+    "tables": [
+      {
+        "table_id": "table_001",
+        "headers": ["Field", "Value"],
+        "rows": [
+          ["Document Type", "Official Letter"],
+          ["Language", "Malay"],
+          ["Estimated Year", "1940"],
+          ["Author", "Encik Ahmad bin Ismail"],
+          ["Recipient", "Tuan Pengarah"]
+        ]
+      }
+    ]
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 82,
+      "high_confidence_pct": 75,
+      "distribution_chart_data": [
+        {"label": "High", "value": 75},
+        {"label": "Medium", "value": 18},
+        {"label": "Low", "value": 7}
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Grayscale Conversion",
+        "description": "Converted original colour image to grayscale to reduce noise and prepare for thresholding."
+      },
+      {
+        "name": "Denoising",
+        "description": "Applied Gaussian blur to remove salt-and-pepper noise caused by paper degradation."
+      },
+      {
+        "name": "Contrast Enhancement",
+        "description": "Applied CLAHE (Contrast Limited Adaptive Histogram Equalization) to improve text legibility."
+      },
+      {
+        "name": "Binarization",
+        "description": "Applied Otsu thresholding to separate text from background for cleaner OCR input."
+      },
+      {
+        "name": "OCR Extraction",
+        "description": "Ran Tesseract OCR on the enhanced image to extract machine-readable text."
+      },
+      {
+        "name": "Layout Analysis",
+        "description": "Detected bounding boxes for text regions, headers, and paragraphs using contour detection."
+      }
+    ]
+  }
+}
