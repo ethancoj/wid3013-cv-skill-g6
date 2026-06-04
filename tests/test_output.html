@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document Restoration Dashboard - {{ doc_id }}</title>
+<title>Document Restoration Dashboard - DOC-2026-001</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -68,14 +68,14 @@
 
 <div class="header">
   <div class="header-left">
-    <h1>{{ filename }}</h1>
-    <p>ID: {{ doc_id }} &nbsp;·&nbsp; Processed: {{ timestamp }}</p>
+    <h1>malay_letter_1940.jpg</h1>
+    <p>ID: DOC-2026-001 &nbsp;·&nbsp; Processed: 2026-06-05T10:30:00Z</p>
     <p style="margin-top:8px">
-      <span class="status-badge status-{{ status }}">{{ status }}</span>
+      <span class="status-badge status-success">success</span>
     </p>
   </div>
   <div class="health-badge">
-    {{ health_score }}<span>health</span>
+    82<span>health</span>
   </div>
 </div>
 
@@ -83,46 +83,44 @@
 
   <div class="card">
     <h2>Before / After</h2>
-    {% if img_before and img_after %}
+    
     <div class="slider-wrap" id="slider">
       <div class="slider-before">
-        <img src="{{ img_before }}" alt="Before restoration">
+        <img src="samples/before.png" alt="Before restoration">
         <span class="slider-label left">Before</span>
       </div>
       <div class="slider-after" id="sliderAfter" style="width:50%">
-        <img src="{{ img_after }}" alt="After restoration" style="min-width:100%">
+        <img src="samples/after.png" alt="After restoration" style="min-width:100%">
         <span class="slider-label right">After</span>
       </div>
       <div class="slider-line" id="sliderLine" style="left:50%">
         <div class="slider-handle">&#8596;</div>
       </div>
     </div>
-    {% else %}
-    <div class="placeholder-img">No images available</div>
-    {% endif %}
+    
   </div>
 
   <div class="card">
     <h2>Document metadata</h2>
     <div class="meta-grid">
-      <div class="meta-item"><div class="label">Filename</div><div class="value">{{ filename }}</div></div>
-      <div class="meta-item"><div class="label">Document ID</div><div class="value">{{ doc_id }}</div></div>
-      <div class="meta-item"><div class="label">Dimensions</div><div class="value">{{ width }} × {{ height }}px</div></div>
-      <div class="meta-item"><div class="label">Processing time</div><div class="value">{{ proc_time }}s</div></div>
-      <div class="meta-item"><div class="label">Health score</div><div class="value">{{ health_score }} / 100</div></div>
-      <div class="meta-item"><div class="label">Status</div><div class="value">{{ status }}</div></div>
+      <div class="meta-item"><div class="label">Filename</div><div class="value">malay_letter_1940.jpg</div></div>
+      <div class="meta-item"><div class="label">Document ID</div><div class="value">DOC-2026-001</div></div>
+      <div class="meta-item"><div class="label">Dimensions</div><div class="value">1240 × 1754px</div></div>
+      <div class="meta-item"><div class="label">Processing time</div><div class="value">3.47s</div></div>
+      <div class="meta-item"><div class="label">Health score</div><div class="value">82 / 100</div></div>
+      <div class="meta-item"><div class="label">Status</div><div class="value">success</div></div>
     </div>
   </div>
 
   <div class="card">
     <h2>Confidence analysis</h2>
     <div class="conf-bar-wrap">
-      <div class="conf-label"><span>Overall confidence</span><span>{{ overall_pct }}%</span></div>
-      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:{{ overall_pct }}%"></div></div>
+      <div class="conf-label"><span>Overall confidence</span><span>82%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:82%"></div></div>
     </div>
     <div class="conf-bar-wrap">
-      <div class="conf-label"><span>High confidence text</span><span>{{ high_conf_pct }}%</span></div>
-      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:{{ high_conf_pct }}%"></div></div>
+      <div class="conf-label"><span>High confidence text</span><span>75%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:75%"></div></div>
     </div>
 
     <div class="chart-wrap">
@@ -132,7 +130,14 @@
 
   <div class="card">
     <h2>Extracted text</h2>
-    <div class="extracted-text">{{ extracted_text }}</div>
+    <div class="extracted-text">Kepada Tuan Pengarah,
+
+Dengan hormatnya saya ingin memaklumkan bahawa dokumen ini telah dihantar pada tahun 1940 bagi tujuan rekod rasmi jabatan. Sila ambil perhatian bahawa semua maklumat di dalam surat ini adalah sulit dan hanya untuk kegunaan dalaman sahaja.
+
+Sekian, terima kasih.
+
+Hormat saya,
+Encik Ahmad bin Ismail</div>
   </div>
 
   <div class="card card-full">
@@ -140,19 +145,55 @@
     <table>
       <thead>
         <tr>
-          {% for header in table_headers %}
-          <th>{{ header }}</th>
-          {% endfor %}
+          
+          <th>Field</th>
+          
+          <th>Value</th>
+          
         </tr>
       </thead>
       <tbody>
-        {% for row in table_rows %}
+        
         <tr>
-          {% for cell in row %}
-          <td>{{ cell }}</td>
-          {% endfor %}
+          
+          <td>Document Type</td>
+          
+          <td>Official Letter</td>
+          
         </tr>
-        {% endfor %}
+        
+        <tr>
+          
+          <td>Language</td>
+          
+          <td>Malay</td>
+          
+        </tr>
+        
+        <tr>
+          
+          <td>Estimated Year</td>
+          
+          <td>1940</td>
+          
+        </tr>
+        
+        <tr>
+          
+          <td>Author</td>
+          
+          <td>Encik Ahmad bin Ismail</td>
+          
+        </tr>
+        
+        <tr>
+          
+          <td>Recipient</td>
+          
+          <td>Tuan Pengarah</td>
+          
+        </tr>
+        
       </tbody>
     </table>
   </div>
@@ -160,15 +201,55 @@
   <div class="card card-full">
     <h2>Processing audit trail</h2>
     <ul class="audit-list">
-      {% for step in audit_steps %}
+      
       <li class="audit-item">
         <div class="audit-dot"></div>
         <div class="audit-item-body">
-          <div class="audit-name">{{ step.name }}</div>
-          <div class="audit-desc">{{ step.description }}</div>
+          <div class="audit-name">Grayscale Conversion</div>
+          <div class="audit-desc">Converted original colour image to grayscale to reduce noise and prepare for thresholding.</div>
         </div>
       </li>
-      {% endfor %}
+      
+      <li class="audit-item">
+        <div class="audit-dot"></div>
+        <div class="audit-item-body">
+          <div class="audit-name">Denoising</div>
+          <div class="audit-desc">Applied Gaussian blur to remove salt-and-pepper noise caused by paper degradation.</div>
+        </div>
+      </li>
+      
+      <li class="audit-item">
+        <div class="audit-dot"></div>
+        <div class="audit-item-body">
+          <div class="audit-name">Contrast Enhancement</div>
+          <div class="audit-desc">Applied CLAHE (Contrast Limited Adaptive Histogram Equalization) to improve text legibility.</div>
+        </div>
+      </li>
+      
+      <li class="audit-item">
+        <div class="audit-dot"></div>
+        <div class="audit-item-body">
+          <div class="audit-name">Binarization</div>
+          <div class="audit-desc">Applied Otsu thresholding to separate text from background for cleaner OCR input.</div>
+        </div>
+      </li>
+      
+      <li class="audit-item">
+        <div class="audit-dot"></div>
+        <div class="audit-item-body">
+          <div class="audit-name">OCR Extraction</div>
+          <div class="audit-desc">Ran Tesseract OCR on the enhanced image to extract machine-readable text.</div>
+        </div>
+      </li>
+      
+      <li class="audit-item">
+        <div class="audit-dot"></div>
+        <div class="audit-item-body">
+          <div class="audit-name">Layout Analysis</div>
+          <div class="audit-desc">Detected bounding boxes for text regions, headers, and paragraphs using contour detection.</div>
+        </div>
+      </li>
+      
     </ul>
   </div>
 
@@ -176,8 +257,8 @@
 
 <!-- FIX 2 — chart data lives in a JSON script tag, not inline JS.
      VS Code's JS linter never touches type="application/json" blocks,
-     so {{ chart_data | tojson }} causes zero JS parse errors. -->
-<script type="application/json" id="chart-payload">{{ chart_data | tojson }}</script>
+     so [{"label": "High", "value": 75}, {"label": "Medium", "value": 18}, {"label": "Low", "value": 7}] causes zero JS parse errors. -->
+<script type="application/json" id="chart-payload">[{"label": "High", "value": 75}, {"label": "Medium", "value": 18}, {"label": "Low", "value": 7}]</script>
 
 <script>
   /* Read the pre-serialised data the safe way */
