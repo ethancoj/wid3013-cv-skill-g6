@@ -61,24 +61,30 @@ The Python CV engine should output a single, unified JSON object following this 
 
 ## 2. HTML Template Mapping
 
-The following table maps the JSON keys to the placeholders used in `dashboard_template.html`.
+The following table maps every JSON key to the placeholder used in `dashboard_template.html`.
 
 | JSON Path | HTML Template Placeholder | Purpose |
 | :--- | :--- | :--- |
-| `metadata.doc_id` | `{{ doc_id }}` | Unique ID in header |
-| `metadata.timestamp` | `{{ timestamp }}` | Time in header |
-| `metadata.health_score` | `{{ health_score }}` | Large green score in header |
-| `images.before_url` | `{{ img_before }}` | Bottom layer of the slider |
-| `images.after_url` | `{{ img_after }}` | Top layer of the slider |
-| `content.extracted_text` | `{{ extracted_text }}` | Main text block |
-| `content.tables[0].headers` | `{% for header in table_headers %}` | Table column titles |
-| `content.tables[0].rows` | `{% for row in table_rows %}` | Table body content |
-| `insights.confidence.high_confidence_pct`| `{{ high_conf_pct }}` | Confidence progress bar |
-| `insights.confidence.distribution_chart_data`| `[Chart Data Placeholder]` | To be injected into a Chart.js script |
-| `insights.audit_trail[i].name` | `{{ step.name }}` | Audit timeline item |
-| `insights.audit_trail[i].description`| `{{ step.description }}` | Audit timeline detail |
-| `metadata.width` / `height` | `{{ width }} / {{ height }}` | Technical metadata card |
-| `metadata.processing_time_seconds` | `{{ proc_time }}` | Technical metadata card |
+| `metadata.doc_id` | `{{ doc_id }}` | Unique ID in header and metadata card |
+| `metadata.timestamp` | `{{ timestamp }}` | Processed-at time in header |
+| `metadata.filename` | `{{ filename }}` | Filename in header `<h1>` and metadata card |
+| `metadata.health_score` | `{{ health_score }}` | Large circular badge in header |
+| `metadata.width` | `{{ width }}` | Dimensions field in metadata card |
+| `metadata.height` | `{{ height }}` | Dimensions field in metadata card |
+| `metadata.processing_time_seconds` | `{{ proc_time }}` | Processing time field in metadata card |
+| `metadata.status` | `{{ status }}` | Status badge colour class and label in header |
+| `images.before_url` | `{{ img_before }}` | Bottom (before) layer of the Before/After slider |
+| `images.after_url` | `{{ img_after }}` | Top (after) layer of the Before/After slider |
+| `images.layout_url` | `{{ layout_url }}` | Layout Map image card (Row 2 left) |
+| `images.annotated_url` | `{{ annotated_url }}` | Annotated Image card (Row 2 right) |
+| `content.extracted_text` | `{{ extracted_text }}` | Extracted text block (Row 3 right) |
+| `content.tables[0].headers` | `{% for header in table_headers %}` | Structured data table column titles |
+| `content.tables[0].rows` | `{% for row in table_rows %}` | Structured data table body rows |
+| `insights.confidence.overall_pct` | `{{ overall_pct }}` | Overall confidence progress bar |
+| `insights.confidence.high_confidence_pct` | `{{ high_conf_pct }}` | High-confidence text progress bar |
+| `insights.confidence.distribution_chart_data` | `{{ chart_data \| tojson }}` | Injected into the Chart.js doughnut via a JSON `<script>` tag |
+| `insights.audit_trail[i].name` | `{{ step.name }}` | Audit trail item title |
+| `insights.audit_trail[i].description` | `{{ step.description }}` | Audit trail item detail |
 
 ---
 
@@ -98,22 +104,33 @@ with open('payload.json', 'r') as f:
 with open('dashboard_template.html', 'r') as f:
     template_content = f.read()
 
-# 3. Render (Flattening the JSON for the template)
+# 3. Render — flatten every JSON key to a named template variable
 template = Template(template_content)
 html_output = template.render(
-    doc_id=data['metadata']['doc_id'],
-    timestamp=data['metadata']['timestamp'],
-    health_score=data['metadata']['health_score'],
-    img_before=data['images']['before_url'],
-    img_after=data['images']['after_url'],
-    extracted_text=data['content']['extracted_text'],
-    table_headers=data['content']['tables'][0]['headers'],
-    table_rows=data['content']['tables'][0]['rows'],
-    high_conf_pct=data['insights']['confidence']['high_confidence_pct'],
-    audit_steps=data['insights']['audit_trail'],
-    width=data['metadata']['width'],
-    height=data['metadata']['height'],
-    proc_time=data['metadata']['processing_time_seconds']
+    # metadata.*
+    doc_id      = data['metadata']['doc_id'],
+    timestamp   = data['metadata']['timestamp'],
+    filename    = data['metadata']['filename'],
+    health_score= data['metadata']['health_score'],
+    width       = data['metadata']['width'],
+    height      = data['metadata']['height'],
+    proc_time   = data['metadata']['processing_time_seconds'],
+    status      = data['metadata']['status'],
+    # images.*
+    img_before    = data['images']['before_url'],
+    img_after     = data['images']['after_url'],
+    layout_url    = data['images']['layout_url'],
+    annotated_url = data['images']['annotated_url'],
+    # content.*
+    extracted_text = data['content']['extracted_text'],
+    table_headers  = data['content']['tables'][0]['headers'],
+    table_rows     = data['content']['tables'][0]['rows'],
+    # insights.confidence.*
+    overall_pct  = data['insights']['confidence']['overall_pct'],
+    high_conf_pct= data['insights']['confidence']['high_confidence_pct'],
+    chart_data   = data['insights']['confidence']['distribution_chart_data'],
+    # insights.audit_trail
+    audit_steps  = data['insights']['audit_trail'],
 )
 
 # 4. Save the final HTML
