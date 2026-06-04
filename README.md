@@ -20,12 +20,12 @@ pip install -r requirements.txt
 ### 3. Environment variables
 Create a `.env` file in the root folder:
 GOOGLE_API_KEY=your_key_here
+im using gemini google/gemma-4-26b-a4b-it like amir
 
-Get your free Gemini API key from https://aistudio.google.com
+API key from https://aistudio.google.com
 
 ### 4. OpenClaw setup
 npm install -g openclaw
-openclaw plugins install @ytlailabs/ilmu-openclaw-plugin
 openclaw onboard
 
 When prompted, select Google as provider and paste your API key.
