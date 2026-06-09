@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "doc_id": "037f9923-adf6-4f3f-af69-457d70ae164b",
+    "timestamp": "2026-06-08T04:27:42.422774Z",
+    "filename": "old_newspaper.jpg",
+    "health_score": 88,
+    "width": 500,
+    "height": 246,
+    "processing_time_seconds": 0.66,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "data/old_newspaper.jpg",
+    "after_url": "output/script_2/old_newspaper\\restored_old_newspaper.jpg",
+    "annotated_url": "output/script_2/old_newspaper\\annotated_old_newspaper.jpg",
+    "layout_url": "output/script_2/old_newspaper\\layout_old_newspaper.jpg"
+  },
+  "content": {
+    "extracted_text": "PUL Her Visitors Are |\n\n1 q) Hridegrooms\nATS. CHANGE FROM A.A.\nWORK TO P-a-W ACCOUNTS\n\n} OPEN To-DAY\nim Wolters Ens",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 69,
+      "high_confidence_pct": 53,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 53
+        },
+        {
+          "label": "Medium",
+          "value": 13
+        },
+        {
+          "label": "Low",
+          "value": 33
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Color Space Conversion",
+        "description": "Converted the input BGR image to grayscale."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied bilateral filter to remove paper grain and compression artifacts while preserving edge sharpness."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Evened out lighting and boosted faint ink strokes using Contrast Limited Adaptive Histogram Equalization."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted enhanced image to crisp black-and-white to eliminate water stains and yellow aging gradients."
+      },
+      {
+        "name": "OCR Confidence Annotation",
+        "description": "Calculated spatial coordinates of each recognized word and color-coded bounding boxes by Tesseract accuracy ratings."
+      },
+      {
+        "name": "Morphological Layout Segmentation",
+        "description": "Dilated character boundaries using morphological spacing kernels to isolate paragraphs, tables, and structural sections."
+      }
+    ]
+  }
+}

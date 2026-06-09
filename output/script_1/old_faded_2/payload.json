@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "doc_id": "3bfeefaed057",
+    "timestamp": "2026-06-08T04:27:39+00:00",
+    "filename": "old_faded_2.jpg",
+    "health_score": 71,
+    "width": 2448,
+    "height": 3264,
+    "processing_time_seconds": 168.25,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "output/script_1/old_faded_2/old_faded_2_before.png",
+    "after_url": "output/script_1/old_faded_2/old_faded_2_after.png",
+    "annotated_url": "output/script_1/old_faded_2/old_faded_2_annotated.png",
+    "layout_url": "output/script_1/old_faded_2/old_faded_2_layout.png"
+  },
+  "content": {
+    "extracted_text": "ae\nae\npate\n_ ty\n= ry i ee\n| A.\neal\nx OR,\neee fii: |\nSee iY By ma 4 NY ere Be,\nHe | pa) 4\naes ry) ey tt i\n\u2018| aie }\nhe\nee ij uf 2:\nA Ihe as bois +\nTK Ge a\nat 2\nie BS as ree\nWh HERE\n|\nSes Le if eek\note =\nj\nee\nCOPIES\nE OF TWO ) the\nON Translations from\nCHEY, ELIZABETH. . d), 1856.\nRA . ed),\nine Bindings] ST Privately Prin 00\n45. [Fine Bin le Souyestre. N.p. $1250.\nEmile Sou cof\nFrench of Emile ver beveled-b elaborate to\ncoration, far too borders) are\ncrushed me a 4\nBas\nIs.,-sm. with gi es 0 _\n_ i\nibe. At the to EMORY*OFe lles, a.e.g, e. On the 87.\u201d oe ag\ndescribe, : TO*THE*MEM er gilt dentelles, Son 1 June 1887.\ninn ton any OR\nolume inscription, daughter f\nthe first -v is the inscrip eldest ug, chey o\nof lume one Is 810, the dward Stra cy es\nleaf of volum 4 February 1810, martied Edw issue on 11\nborn | She without ho did\nStrachey was Hall, Bedfor 1844 and dic laywright w\nElizabeth db , 27 August ovelist-playw: aimed at\ninson of Woo merset on a French n, deliberat y\nWilkinso Pensford, So 806-1854) was although he felt in harmo-\nn Court, estre a th Stage, id to have ot ;\nSutto Emile Souy for the stag He is sai he Bargeman\nil 1855. is novels than : ction. [He is sz clude The Shore\nApril 1 ith his nor f moral instru hich in The Sea- a\nwith chey\u2019s of gis works, Man, The Seas Old = a\nStrachey\u2019s Confess ily Memoirs an M. Souves\nth Mrs tto-Keeper, is, Family II from hom\nthe Loire The Lazare er in Paris, added to Vol. of her to a\noS the Loire, Attic Philosoph Edward Strachey add else, was ever =\ncaner, ters of w were p in them, asin\nq e chap olumes V d, int em,\nai Age (thre These. v bile her han, ee\nee unfinished wo hiefly due, \u201d inl done\nAre Ci rtainty\nthese of her husband. \u00a2 elaborate and other copy of the aS\n+ ne ies in it\njoined wi uld not be mo know of o 0 copies\nee : co . We e are n poe\nindings by Leighton rinted volumes collection (ther used again by\nThe bindings tivately p ivate London lates were ewhat\nexpressly for brass miths Poe Traveler ba a m, replac- =\n- ti tto x\nwork in id British or} of Oliver at the he also\nither 1868 e emori d achiey eplacing =e\nelt for an oved the Ty to try an the covers, r P\nLeighton ion (ze. he rem: ilt decoration \u2018al panel on are in FINE\ned fashion ines of gilt the centr: are bindings =\nalter them with two li hey\u2019s initials from se beautiful, and r,\ning d Elizabeth Strac element). T. \u20ac. pee =\nit with an uninspired\n; it wi f a : =\nCONDITION. 33 AS.\n\u2014\nne\n~\nrer\nent Me ee\naie\nae\nTee",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 42,
+      "high_confidence_pct": 25,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 25
+        },
+        {
+          "label": "Medium",
+          "value": 9
+        },
+        {
+          "label": "Low",
+          "value": 66
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Grayscale conversion",
+        "description": "Collapsed RGB to single channel to eliminate chromatic noise from paper aging."
+      },
+      {
+        "name": "Background normalization",
+        "description": "Estimated paper background via large morphological closing (kernel=35) then divided the image by it \u2014 removes uneven staining, vignette, and yellowing in one step."
+      },
+      {
+        "name": "CLAHE contrast enhancement",
+        "description": "Contrast Limited Adaptive Histogram Equalization with clipLimit=2.5 to recover faded ink without amplifying noise."
+      },
+      {
+        "name": "Non-local means denoising",
+        "description": "Removed residual speckle while preserving letter edges (h=10, 7x7 patches, 21x21 search window)."
+      },
+      {
+        "name": "Sauvola adaptive binarization",
+        "description": "Local-statistics thresholding (window=25, k=0.2). Handles non-uniform background better than Otsu."
+      },
+      {
+        "name": "Speckle removal",
+        "description": "Removed isolated dark blobs <15 px\u00b2 via connected-component analysis (85,393 noise pixels eliminated)."
+      },
+      {
+        "name": "Content-region crop",
+        "description": "Cropped to text-dense region 2448\u00d73264 px (offset 0, 0). Eliminates blank stained margins."
+      },
+      {
+        "name": "Deskew",
+        "description": "Estimated skew via minAreaRect of text pixels and rotated by -0.00\u00b0."
+      },
+      {
+        "name": "OCR (Tesseract LSTM)",
+        "description": "Extracted text with overall word confidence 42%. 25% of words classified high-conf (\u226580)."
+      },
+      {
+        "name": "Text-line layout analysis",
+        "description": "Grouped 96 text lines from OCR block/paragraph/line indices; boxes colour-coded by mean line confidence."
+      },
+      {
+        "name": "Metadata extraction",
+        "description": "Regex-based extraction found 9 date(s), 0 person(s), 3 place(s). Document type: unknown."
+      }
+    ]
+  },
+  "_extras": {
+    "extracted_entities": {
+      "dates": [
+        "1 June 1887",
+        "4 February 1810",
+        "1856",
+        "1887",
+        "1810",
+        "1844",
+        "1854",
+        "1855",
+        "1868"
+      ],
+      "persons": [],
+      "places": [
+        "The Sea",
+        "Paris",
+        "FINE"
+      ],
+      "doc_type": null,
+      "numeric_facts": [
+        "45. [Fine Bin le Souyestre. N.p. $1250.",
+        "describe, : TO*THE*MEM er gilt dentelles, Son 1 June 1887.",
+        "leaf of volum 4 February 1810, martied Edw issue on 11",
+        "Wilkinso Pensford, So 806-1854) was although he felt in harmo-"
+      ]
+    },
+    "skew_corrected_deg": -0.0,
+    "claude_vision_payload": {
+      "type": "image",
+      "media_type": "image/png",
+      "data_b64_truncated": "iVBORw0KGgoAAAANSUhEUgAACZAAAAzACAIAAADYRynpAAAgAElEQVR4AezB...",
+      "note": "Pass the full base64 of after_url to the LLM as a vision message; the model's OCR will outperform Tesseract on degraded text."
+    }
+  }
+}

@@ -1,0 +1,506 @@
+{
+  "metadata": {
+    "doc_id": "7cb872f1-726c-4194-a54c-2f51b911e5a2",
+    "timestamp": "2026-06-08T04:56:42.163862Z",
+    "filename": "old_faded.jpg",
+    "health_score": 75,
+    "width": 1926,
+    "height": 3001,
+    "processing_time_seconds": 3.906,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "output/script_3/old_faded\\old_faded_before.png",
+    "after_url": "output/script_3/old_faded\\old_faded_after.png",
+    "annotated_url": "output/script_3/old_faded\\old_faded_annotated.png",
+    "layout_url": "output/script_3/old_faded\\old_faded_layout.png"
+  },
+  "content": {
+    "extracted_text": "=\nWORKS PUBLISHE)) BY J, WOOD, 180 GEORGE ST., EDINBURGH. |\nMISS CATHERINE WORKS. be\n. ot . Moth:\nHousr Gd. 2s. Od. AND THE se\n.. « 2 0 1.6 | or\n. 2 0. 1 6\nAccoMPLISHMENTS Ion or Sm Joun - a .\nMoprns oe ot ge . ee\n6. | 01\nJang of. OF THE . : .\n4ND THE - BULB’.\n> . te 4 -\n. HOLIDAY HOUSE. |\n‘6 Wo have on more than one former occasion expressed our opinion of this\n-commendatory as it srould be possible .o employ, and, what ly more atid better, the public have\ntheirs in that troly practical manner which both authors and publishers\nafter all, to be the ‘an extensive and continuous gale of the work. Ferr books of . .\nthe kind hava in modem timcs been more successful, than Holiday Howse, and fer, shall wo wre\nnone ?—havo better deeerved it.” Oar duty, therefore, on th's occasion, ts as easy as itis plea- : f a\nsant. It almply to announce the appearance of a new edition, pictorially and\nbesntifully dono up. _A moro acceptable present for the menibers of the eemmunity fk pe\na conld not be to them,\"—London Horning Advertiser. .\noo VIEWS OF EDINBURGH AND SCOTTISH -LAKES, are \\ aa\na OF EDINBUECE PROM THE CALTON HL tt\nVIEW OF EDINBURGH FROM THE CASTLE. -\nOF THE OLD TOWN OF EDINBURGH FROM PRINCES STREET, aN\nPANORAMIC VIEW OF EDINBURGH FROM: CRAIGLECTH QUABRY - 0d.\na OF LOCH KATRINE AND,BENVENUB >\nOF LOCH ACHRY AND BEN WAN Te tes\nAll there Views being taken directly from Photographs, are not\n. |. pate, but highly artistic, and form pleasing Souvenirs of perhaps the most City sad\n. we wu rh >\nre! BH. THE LATE PRINCE CONSORT, . From the\nPhotograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy\nstp |. PUBLISHED OR SOLD /BY.JAMES WOOD. \\\n7 a “2 . ’\n| MANUAL OF ‘CHEMISTRY, Sixth Edition, |\nHELIOCHROMY; or, py Foolscap 8v0, with and ‘ame\nCover. Compiled by (of Ross od.\n|p little Hellochromy contains a large amount ‘of all\naud cannot fall to sdvance the Photographic art in that especial wei WE\n“ . : -\nBORNE AND GUIDE TO PHOTOGRAPHY. Price 1s. Soe Pe\nLIVERPOOL PHOTOGRAPHTO JOURNAL, on Ist and Price 4; by Post,\nLONDON JOURNAL, Monthly. Price 5d; by Post,\nPHOTOGRAPIUC NOTES, 1st and 15th. Price by\nTHE PHOTOGRAPHIC NEWS, Price by Post, 4d.\n‘THE PHOTOGRAPHIC TIMES, Prlcold. re\n4140, VARIOUS OTHER WORKE ON . 4\nkeeps in stock the and finest collection of Photographs in Scotland; ‘ |\nSides by\n_ DEFOT FOR GUIDE-BOOKS, MAPS. PLANS; SCOTTISH VIEWS, vA\n150, GEORGE STREET, EDINBURGH.",
+    "tables": [
+      {
+        "table_id": "T1_7654",
+        "headers": [
+          "ORKS",
+          "PUBLISHE))",
+          "BY",
+          "J,",
+          "WOOD,",
+          "180",
+          "GEORGE",
+          "ST.,",
+          "EDINBURGH.",
+          "|"
+        ],
+        "rows": [
+          [
+            "MISS",
+            "CATHERINE",
+            "‘SINCLAIR'S",
+            "WORKS.",
+            "an"
+          ],
+          [
+            ".",
+            ":",
+            "-",
+            "f",
+            "hay",
+            "‘Cloth.",
+            "Chex)",
+            "an"
+          ],
+          [
+            ":",
+            ".",
+            "Gut",
+            "Dilton.",
+            ".",
+            "es",
+            "Git",
+            "‘paltiea.",
+            "ann"
+          ],
+          [
+            "LIDAY",
+            "Hovsn",
+            ".«",
+            "Bs",
+            "Gd.",
+            "2s.",
+            "Od.",
+            "Wars",
+            "AND",
+            "THE",
+            "Wrist",
+            "+",
+            "eet",
+            "-"
+          ],
+          [
+            "ARLICSEYMOUR",
+            "..",
+            "+",
+            "2",
+            "0",
+            "1:6",
+            "Jounnzy",
+            "oy",
+            "lasr’",
+            "/.",
+            "ab",
+            ":"
+          ],
+          [
+            "ergormupCasans",
+            ".",
+            "2",
+            "0.",
+            "1.6",
+            "|",
+            "Monrnn",
+            "FLIRTATIONS",
+            "oe",
+            "."
+          ],
+          [
+            "DENN",
+            "ACCOMPLISHMENTS",
+            "‘",
+            "Tor",
+            "or",
+            "Sm",
+            "Joun",
+            "Srn--",
+            "a",
+            "."
+          ],
+          [
+            "ODERN",
+            "SOCIETY",
+            "+",
+            ".",
+            "CIA.",
+            "sot",
+            "ot",
+            "."
+          ],
+          [
+            "SATRICEs",
+            "w8o",
+            "oe.",
+            "8",
+            "8",
+            ".",
+            "|",
+            "Gansin’s",
+            "HoLrmay",
+            "«",
+            "s",
+            "ae",
+            "01"
+          ],
+          [
+            "wz",
+            "BovVeERrIe",
+            ".",
+            ".",
+            ".",
+            "or.",
+            "Mxrsroms",
+            "oF",
+            "THE",
+            "ENGLIsy",
+            ".",
+            ":"
+          ],
+          [
+            "-OTLAND",
+            "AND",
+            "THE",
+            "Sootcu",
+            "-",
+            "BIBLE’.",
+            "o",
+            ",",
+            "~10",
+            "«03",
+            "-"
+          ],
+          [
+            ",",
+            "“HOLIDAY",
+            "HOUSE:",
+            "|",
+            "Noe",
+            "."
+          ],
+          [
+            "‘",
+            "Woe",
+            "have",
+            "on",
+            "more",
+            "than",
+            "one",
+            "former",
+            "occasion",
+            "expressed",
+            "our",
+            "opinion",
+            "of",
+            "this",
+            "Work",
+            "io",
+            "terms",
+            "43",
+            "~"
+          ],
+          [
+            "mendatory",
+            "as",
+            "it",
+            "would",
+            "be",
+            "possible",
+            "0",
+            "employ,",
+            "and,",
+            "what",
+            "ly",
+            "more",
+            "atid",
+            "better,",
+            "the",
+            "public",
+            "have",
+            "."
+          ],
+          [
+            "rezacd",
+            "theirs",
+            "in",
+            "that",
+            "truly",
+            "practical",
+            "manner",
+            "which",
+            "both",
+            "authors",
+            "and",
+            "publishers",
+            "consider,",
+            "-"
+          ],
+          [
+            "r",
+            "all,",
+            "to",
+            "be",
+            "the",
+            "best—namely,",
+            "‘an",
+            "extensive",
+            "and",
+            "continuous",
+            "gale",
+            "of",
+            "the",
+            "work.",
+            "Ferr",
+            "books",
+            "of"
+          ],
+          [
+            "kind",
+            "have",
+            "in",
+            "modern",
+            "times",
+            "been",
+            "more",
+            "successful,",
+            "than",
+            "Holiday",
+            "Howse,",
+            "and",
+            "fer,",
+            "shall",
+            "wo",
+            "eay"
+          ],
+          [
+            "10",
+            "2—havo",
+            "better",
+            "deeerved",
+            "it.”",
+            "“",
+            "Oar",
+            "duty,",
+            "therefore,",
+            "on",
+            "th's",
+            "occasion,",
+            "is",
+            "as",
+            "easy",
+            "as",
+            "itis",
+            "plea-"
+          ],
+          [
+            "t.",
+            "It",
+            "is",
+            "simply",
+            "to",
+            "announce",
+            "the",
+            "appearance",
+            "of",
+            "a",
+            "new",
+            "edition,",
+            "pictorially",
+            "iluetrated,",
+            "and"
+          ],
+          [
+            "yutifully",
+            "done",
+            "up.",
+            "_A",
+            "moro",
+            "acceptable",
+            "present",
+            "for",
+            "the",
+            "juvenile",
+            "menibers",
+            "of",
+            "the",
+            "eemmunity"
+          ],
+          [
+            "ld",
+            "not",
+            "be",
+            "presented",
+            "to",
+            "them,\"—London",
+            "Morning",
+            "Advertiser.",
+            "a",
+            "7",
+            ":"
+          ],
+          [
+            ":",
+            ":",
+            "*{",
+            ".",
+            "ay",
+            ":"
+          ],
+          [
+            "VIEWS",
+            "OF",
+            "EDINBURGH",
+            "AND",
+            "SCOTTISH.LAKES,",
+            "&c.",
+            "Tote,",
+            "3",
+            "."
+          ],
+          [
+            "JEW",
+            "OF",
+            "EDINBUECH",
+            "FROM",
+            "THE",
+            "CALTON",
+            "HILL",
+            "-",
+            "+",
+            "+",
+            "°",
+            "Prico",
+            "103.",
+            "da."
+          ],
+          [
+            "TEW",
+            "OF",
+            "EDINBURGH",
+            "FROM",
+            "THE",
+            "CASTLE.",
+            ".",
+            "rr",
+            "10s.:",
+            "6d."
+          ],
+          [
+            "IEW",
+            "OF",
+            "THE",
+            "OLD",
+            "TOWN",
+            "OF",
+            "EDINEURGH",
+            "FROM",
+            "PRINCES",
+            "STREET,",
+            "Bye",
+            ":"
+          ],
+          [
+            "eee",
+            "cov",
+            "OF",
+            "EDINBURGH.",
+            "FROME",
+            "CRAIGLELTH",
+            "QUABRY",
+            "-",
+            "15s.",
+            "Od."
+          ],
+          [
+            "-_",
+            "<.*",
+            "ag",
+            "we"
+          ]
+        ]
+      }
+    ]
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 49,
+      "high_confidence_pct": 29,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 29
+        },
+        {
+          "label": "Medium",
+          "value": 17
+        },
+        {
+          "label": "Low",
+          "value": 54
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Greyscale Conversion",
+        "description": "Converted BGR input to single-channel greyscale. Colour is irrelevant for ink-on-paper OCR and removing it reduces processing cost by 3×."
+      },
+      {
+        "name": "Resolution Validation",
+        "description": "Resolution OK (1926×3001 px)."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied edge-aware bilateral filter (d=9, σColor=75, σSpace=75). Suppresses paper grain and scanner noise while preserving the sharp ink-stroke boundaries that OCR depends on."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Applied Contrast Limited Adaptive Histogram Equalization (clipLimit=2.0, tile=8×8) to recover faded ink strokes and compensate for lighting gradients across the document surface."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted to binary using local Gaussian-weighted thresholding (blockSize=15, C=10). Each pixel is compared to its 15×15 local neighbourhood average, isolating ink strokes from yellow staining and uneven lighting that would defeat global thresholding."
+      },
+      {
+        "name": "OCR — Tesseract LSTM (PSM 6, OEM 3)",
+        "description": "Recognised text at 49% mean confidence. 29% of tokens high-confidence (≥80%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise."
+      },
+      {
+        "name": "Metadata Extraction",
+        "description": "Regex entity extraction found 0 date(s), 3 person(s), 1 place(s). Document type: unrecognised."
+      },
+      {
+        "name": "Annotated Image",
+        "description": "Drew per-word bounding boxes colour-coded green/yellow/red by OCR confidence tier (≥80 / 50-79 / <50)."
+      },
+      {
+        "name": "Layout Map",
+        "description": "Morphological dilation (kernel 15×5, 2 iterations) merged characters into paragraph blobs; contours mark layout regions."
+      },
+      {
+        "name": "Table Detection",
+        "description": "Morphological line extraction + numeric-alignment heuristic. Found 1 table(s). Note: borderless tables require deep-learning models (future work)."
+      }
+    ]
+  },
+  "_extras": {
+    "extracted_entities": {
+      "dates": [],
+      "persons": [
+        "Holiday Howse",
+        "London Horning",
+        "Sixth Edition"
+      ],
+      "places": [
+        "Scotland"
+      ],
+      "doc_type": null,
+      "numeric_facts": [
+        ".. « 2 0 1.6 | or",
+        ". 2 0. 1 6",
+        "6. | 01",
+        "Photograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy",
+        "7 a “2 . ’",
+        "4140, VARIOUS OTHER WORKE ON . 4"
+      ]
+    },
+    "resolution_acceptable": true
+  }
+}

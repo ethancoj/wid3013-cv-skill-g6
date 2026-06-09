@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "doc_id": "f516a6345bc1",
+    "timestamp": "2026-06-08T04:26:33+00:00",
+    "filename": "old_cursive.jpg",
+    "health_score": 24,
+    "width": 4781,
+    "height": 5944,
+    "processing_time_seconds": 69.33,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "output/script_1/old_cursive/old_cursive_before.png",
+    "after_url": "output/script_1/old_cursive/old_cursive_after.png",
+    "annotated_url": "output/script_1/old_cursive/old_cursive_annotated.png",
+    "layout_url": "output/script_1/old_cursive/old_cursive_layout.png"
+  },
+  "content": {
+    "extracted_text": "Leo, 3) / Fo\neae bre & Cam\nbo Cam\nhi Bet. FERS",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 32,
+      "high_confidence_pct": 3,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 3
+        },
+        {
+          "label": "Medium",
+          "value": 22
+        },
+        {
+          "label": "Low",
+          "value": 75
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Grayscale conversion",
+        "description": "Collapsed RGB to single channel to eliminate chromatic noise from paper aging."
+      },
+      {
+        "name": "Background normalization",
+        "description": "Estimated paper background via large morphological closing (kernel=35) then divided the image by it \u2014 removes uneven staining, vignette, and yellowing in one step."
+      },
+      {
+        "name": "CLAHE contrast enhancement",
+        "description": "Contrast Limited Adaptive Histogram Equalization with clipLimit=2.5 to recover faded ink without amplifying noise."
+      },
+      {
+        "name": "Non-local means denoising",
+        "description": "Removed residual speckle while preserving letter edges (h=10, 7x7 patches, 21x21 search window)."
+      },
+      {
+        "name": "Sauvola adaptive binarization",
+        "description": "Local-statistics thresholding (window=25, k=0.2). Handles non-uniform background better than Otsu."
+      },
+      {
+        "name": "Speckle removal",
+        "description": "Removed isolated dark blobs <15 px\u00b2 via connected-component analysis (1,857 noise pixels eliminated)."
+      },
+      {
+        "name": "Content-region crop",
+        "description": "Cropped to text-dense region 4617\u00d75756 px (offset 164, 30). Eliminates blank stained margins."
+      },
+      {
+        "name": "Deskew",
+        "description": "Estimated skew via minAreaRect of text pixels and rotated by -0.00\u00b0."
+      },
+      {
+        "name": "OCR (Tesseract LSTM)",
+        "description": "Extracted text with overall word confidence 32%. 3% of words classified high-conf (\u226580)."
+      },
+      {
+        "name": "Text-line layout analysis",
+        "description": "Grouped 4 text lines from OCR block/paragraph/line indices; boxes colour-coded by mean line confidence."
+      },
+      {
+        "name": "Metadata extraction",
+        "description": "Regex-based extraction found 0 date(s), 0 person(s), 0 place(s). Document type: unknown."
+      }
+    ]
+  },
+  "_extras": {
+    "extracted_entities": {
+      "dates": [],
+      "persons": [],
+      "places": [],
+      "doc_type": null,
+      "numeric_facts": []
+    },
+    "skew_corrected_deg": -0.0,
+    "claude_vision_payload": {
+      "type": "image",
+      "media_type": "image/png",
+      "data_b64_truncated": "iVBORw0KGgoAAAANSUhEUgAAEgkAABZ8CAIAAADGiNnLAAAgAElEQVR4AezB...",
+      "note": "Pass the full base64 of after_url to the LLM as a vision message; the model's OCR will outperform Tesseract on degraded text."
+    }
+  }
+}

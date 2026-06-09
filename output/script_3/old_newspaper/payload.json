@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "doc_id": "777b4cad-7ef5-4fb4-a732-2a90c79f0666",
+    "timestamp": "2026-06-08T04:56:15.447214Z",
+    "filename": "old_newspaper.jpg",
+    "health_score": 70,
+    "width": 500,
+    "height": 246,
+    "processing_time_seconds": 0.347,
+    "status": "warning_low_resolution"
+  },
+  "images": {
+    "before_url": "output/script_3/old_newspaper\\old_newspaper_before.png",
+    "after_url": "output/script_3/old_newspaper\\old_newspaper_after.png",
+    "annotated_url": "output/script_3/old_newspaper\\old_newspaper_annotated.png",
+    "layout_url": "output/script_3/old_newspaper\\old_newspaper_layout.png"
+  },
+  "content": {
+    "extracted_text": "Her Visitors Are ||\nBridegrooms When ‘Ernie’\na TS. CHANGE FROM AA. 6)\nSoka maw accounts the\nChew Farmers\nBristol Will\nSpend tts Holiday",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 40,
+      "high_confidence_pct": 21,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 21
+        },
+        {
+          "label": "Medium",
+          "value": 12
+        },
+        {
+          "label": "Low",
+          "value": 67
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Greyscale Conversion",
+        "description": "Converted BGR input to single-channel greyscale. Colour is irrelevant for ink-on-paper OCR and removing it reduces processing cost by 3×."
+      },
+      {
+        "name": "Resolution Validation",
+        "description": "Low resolution (500×246 px, long edge = 500 px). Minimum recommended: 1500 px. OCR will proceed but accuracy will be reduced. Rescan at 300+ DPI for reliable results."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied edge-aware bilateral filter (d=9, σColor=75, σSpace=75). Suppresses paper grain and scanner noise while preserving the sharp ink-stroke boundaries that OCR depends on."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Applied Contrast Limited Adaptive Histogram Equalization (clipLimit=2.0, tile=8×8) to recover faded ink strokes and compensate for lighting gradients across the document surface."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted to binary using local Gaussian-weighted thresholding (blockSize=15, C=10). Each pixel is compared to its 15×15 local neighbourhood average, isolating ink strokes from yellow staining and uneven lighting that would defeat global thresholding."
+      },
+      {
+        "name": "OCR — Tesseract LSTM (PSM 6, OEM 3)",
+        "description": "Recognised text at 40% mean confidence. 21% of tokens high-confidence (≥80%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise."
+      },
+      {
+        "name": "Metadata Extraction",
+        "description": "Regex entity extraction found 0 date(s), 4 person(s), 0 place(s). Document type: unrecognised."
+      },
+      {
+        "name": "Annotated Image",
+        "description": "Drew per-word bounding boxes colour-coded green/yellow/red by OCR confidence tier (≥80 / 50-79 / <50)."
+      },
+      {
+        "name": "Layout Map",
+        "description": "Morphological dilation (kernel 15×5, 2 iterations) merged characters into paragraph blobs; contours mark layout regions."
+      },
+      {
+        "name": "Table Detection",
+        "description": "Morphological line extraction + numeric-alignment heuristic. Found 0 table(s). Note: borderless tables require deep-learning models (future work)."
+      }
+    ]
+  },
+  "_extras": {
+    "extracted_entities": {
+      "dates": [],
+      "persons": [
+        "Her Visitors",
+        "Bridegrooms When",
+        "Chew Farmers",
+        "Bristol Will"
+      ],
+      "places": [],
+      "doc_type": null,
+      "numeric_facts": []
+    },
+    "resolution_acceptable": false
+  }
+}

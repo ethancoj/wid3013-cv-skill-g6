@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "doc_id": "676a9063-ce2d-499d-a975-2a0528032c50",
+    "timestamp": "2026-06-08T04:29:07.442592Z",
+    "filename": "old_cursive.jpg",
+    "health_score": 20,
+    "width": 4781,
+    "height": 5944,
+    "processing_time_seconds": 8.432,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "data/old_cursive.jpg",
+    "after_url": "output/script_2/old_cursive\\restored_old_cursive.jpg",
+    "annotated_url": "output/script_2/old_cursive\\annotated_old_cursive.jpg",
+    "layout_url": "output/script_2/old_cursive\\layout_old_cursive.jpg"
+  },
+  "content": {
+    "extracted_text": "Y,\n\nler Ae \u201ctL ra GC pene. k Le ) ey) 7 \u201cot Es, LS IC JS ,\n\n//\nC 7 ALIA oteery oUt TD LZDvet- LCL Cv Con. Clete re (AA - a. ot C_ ___\n\nLuana FLEA) AF \u2014_\u2014\u2014 , A i Ao _\u2014 a\nLeaicDaatan Thats Care ee tre of y OLA. A Ao FED BarwrPen\noe Ae, Oe thle 7 off eee CQinck Labor leer ) Ord \u2014 7 dn\nQarytr139 Ma CotleelT Joe (VRLLZD ay AA Sf CL1a aioe\nfo F LOL we tees tory FX oe Canr- fo eteg dea etireoterep\nLtce afer. ole pg te Pte de Ant 2 Lee Pie Dra,\nFED poveiy, (Hie Ee flee Lieven, ote,\nYt have Oofesze ee ee Te a ae\n\naw B \u20182 Fo eek ws ety xO... Carr. Aa. Gat\u2014 ~\n. i) fo a\n\nBeen, pce pen fog , Crk\nTE fein. ot tears oF CAL Avtar tow oe. (FOF 6S AvPoe\n\nam, p Pot ,\naban oben ne igs\n\nLEAD ) bP at. Pow Aeeercto, pvieme, Oe efed,\nfe stand ver , A220 w alen bigs ooo Fae ote , Aen\n\na V4 9 pp De ayy\nam GE. Te ad, / pes bb ewe Ce lew. aa dot\nZoe on eb. ALO =e Art a a Vites <8 og. \u201cC Ler",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 30,
+      "high_confidence_pct": 1,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 1
+        },
+        {
+          "label": "Medium",
+          "value": 16
+        },
+        {
+          "label": "Low",
+          "value": 82
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Color Space Conversion",
+        "description": "Converted the input BGR image to grayscale."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied bilateral filter to remove paper grain and compression artifacts while preserving edge sharpness."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Evened out lighting and boosted faint ink strokes using Contrast Limited Adaptive Histogram Equalization."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted enhanced image to crisp black-and-white to eliminate water stains and yellow aging gradients."
+      },
+      {
+        "name": "OCR Confidence Annotation",
+        "description": "Calculated spatial coordinates of each recognized word and color-coded bounding boxes by Tesseract accuracy ratings."
+      },
+      {
+        "name": "Morphological Layout Segmentation",
+        "description": "Dilated character boundaries using morphological spacing kernels to isolate paragraphs, tables, and structural sections."
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "doc_id": "d314c0eb-8717-4a01-99ff-0359e292e997",
+    "timestamp": "2026-06-08T04:24:15.946893Z",
+    "filename": "old_faded_2.jpg",
+    "health_score": 100,
+    "width": 2448,
+    "height": 3264,
+    "processing_time_seconds": 7.612,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "data/old_faded_2.jpg",
+    "after_url": "output/script_2/old_faded_2\\restored_old_faded_2.jpg",
+    "annotated_url": "output/script_2/old_faded_2\\annotated_old_faded_2.jpg",
+    "layout_url": "output/script_2/old_faded_2\\layout_old_faded_2.jpg"
+  },
+  "content": {
+    "extracted_text": "woe weer eG ne\naihendaetanenien pete et\n\ntn tn\n\nrea\n\nQl erage.\nve aoa \u00b0\n\nSAS\n\n1 a \u2014\ntoy\n- oot \u201d\nie\nNoa\n! so \u00abft .\n: - A\n: \u2018 \u00a5\noe Cs\n\nONE OF TWO KNOWN COPIES Dawa Slodc.\n\n2.95\n\n45. [Fine Bindings] STRACHEY, ELIZABETH. Translations from the\n\nFrench of Emile Souvestre. N. p. (Privately Printed)\n\nTwo vols., sm. 4to., full dark blue crus\ncovers heavily ornamented with gilt an\ndescribe. At the top and bottom (\ntwo gilt lines: To*THE*MEMORYe\n\nANIMUM\u00ab Board edges gilt, inner gilt\nof the first volume is the binder\u2019s tick\nleaf of volume one is the inscription,\n\nElizabeth Strachey was born 14 Februa\n\nWilkinson of Woodbu\n\nHall, Bedfordshire. She\n\nSutton Court, Pensford, Somerset on\n\nApril 1855. Emile Souvestre (1 806-1854) was a French novelist\n\n\u00bb 1856.\n\n$1250.00 {oo\n\nhed- morocco-over beveled-boards;-spine-and-\u2014\u2014\nd blind relief decoration,\non the edges of\nOF*ELIZABETH ST\n\nfar too elaborate to\nthe outer gilt fillet borders) are\nRACHEY\u00ae and xCOELUM \u00ab NON +\n\ndentelles, a.c.g. On the inside tear aste-down\net of Leighton Son & Hod\n\n\u201cConstance Strachey from\n\n27 August 1844 and died\n\ne. On the front fly\n. 5S. 1 June 1887.\u201d\n\n1810, the eldest daughter of R. W.\nmarried Edward Strachey of\n\nwithout issue on 11\n\n-playwright who did\n\nmuch better with his novels than for the stage, although he deliberate y aimed at\ni instruction. He is said to have felt in harmo-\n\nmaking the novel an engine of moral\nny with Mrs. Strachey\u2019s translatio\n\nthe Loire, The Lazaretto-\n\nns of his works,\nKeeper, Confessions of\n\nwhich include The Bareeman of\n\na Working Man, The Sex Shore\n\nGleaner, An Attic Philosopher in Paris, Family Memoirs and The Widower\u2019s Old\nAge (three chapters of which Edward Strachey added to Vol. IT from M. Souvestre\u2019s\n\nthese translations are chiefly due, while he\n\njoined with that of her husband.\u201d\n\nThe bindings by Leighton could not be more elaborate and were certainly done\nexpressly for these privately printed volumes. We kn\n\nwork in identical\neither The British Libra\nLeighton for an 1868 edi\n\naltered fashion (i.e. he removed th\n\ning them with\n\nit with an uninspired design element).\n\nCONDITION.\n\nThese beautify\n\npublished: \u201cTo the memo\nr hand, in them, as in all thi\n\now of one other copy of the\nbindings in a private London collection (there are no copies in\nor NUC). The brass stamping plates were used again by\n\ntion of Oliver Goldsmith's \u20ac Traveler in a somewhat\n\n2 , te memorial lines at the top and bottom, replac-\ntwo lines of gilt decoration to try and achieve balance; h\n\nremoved Elizabeth Strachey\u2019s initials from the central panel on the covers, replacin\n\nand rare bindings are in FINE\n\nof her to whom\nngs else, was ever\n\ne also\n\nSe mee ee ee ee ene abe\n\nae)\n\naoe oy\nPinata tO thy Py Heart\n\ntd ome wae we lee SA eet,\n\n'\n'\n\na a oe\npepe\n\nay\n\ntogh\n\n:\n\nt\n\nn",
+    "tables": [
+      {
+        "table_id": "tbl_1_b60090",
+        "headers": [
+          "Detected Region Left",
+          "Detected Region Top",
+          "Width",
+          "Height"
+        ],
+        "rows": [
+          [
+            "1296",
+            "114",
+            "457",
+            "472"
+          ]
+        ]
+      }
+    ]
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 82,
+      "high_confidence_pct": 80,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 80
+        },
+        {
+          "label": "Medium",
+          "value": 5
+        },
+        {
+          "label": "Low",
+          "value": 14
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Color Space Conversion",
+        "description": "Converted the input BGR image to grayscale."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied bilateral filter to remove paper grain and compression artifacts while preserving edge sharpness."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Evened out lighting and boosted faint ink strokes using Contrast Limited Adaptive Histogram Equalization."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted enhanced image to crisp black-and-white to eliminate water stains and yellow aging gradients."
+      },
+      {
+        "name": "OCR Confidence Annotation",
+        "description": "Calculated spatial coordinates of each recognized word and color-coded bounding boxes by Tesseract accuracy ratings."
+      },
+      {
+        "name": "Morphological Layout Segmentation",
+        "description": "Dilated character boundaries using morphological spacing kernels to isolate paragraphs, tables, and structural sections."
+      }
+    ]
+  }
+}
