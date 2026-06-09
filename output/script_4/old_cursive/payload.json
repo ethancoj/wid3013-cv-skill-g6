@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "doc_id": "e136bfae-c162-413c-84e1-5ba283de6cd5",
+    "timestamp": "2026-06-09T08:07:55.589595Z",
+    "filename": "old_cursive.jpg",
+    "health_score": 22,
+    "width": 4781,
+    "height": 5944,
+    "processing_time_seconds": 4.723,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "output/script_4/old_cursive\\old_cursive_before.png",
+    "after_url": "output/script_4/old_cursive\\old_cursive_after.png",
+    "annotated_url": "output/script_4/old_cursive\\old_cursive_annotated.png",
+    "layout_url": "output/script_4/old_cursive\\old_cursive_layout.png"
+  },
+  "content": {
+    "extracted_text": "; | |\nLer LCLED (Aa cck .\n2\n40 Be ob,\nVi\nCae, Keo. fe cin A) An LOL\nC SUE Aw\na oe OG to of >\nVA thet G S Dao FFE\nPung SOD Ate WD, Pre fed,\nok) PUL hag\n|\nY pp\nOH , Qe tak\n2",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 28,
+      "high_confidence_pct": 2,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 2
+        },
+        {
+          "label": "Medium",
+          "value": 20
+        },
+        {
+          "label": "Low",
+          "value": 78
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Greyscale Conversion",
+        "description": "Converted BGR input to single-channel greyscale. Colour is irrelevant for ink-on-paper OCR and removing it reduces processing cost by 3×."
+      },
+      {
+        "name": "Resolution Validation",
+        "description": "Resolution OK (4781×5944 px)."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied edge-aware bilateral filter (d=9, σColor=75, σSpace=75). Suppresses paper grain and scanner noise while preserving the sharp ink-stroke boundaries that OCR depends on."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Applied Contrast Limited Adaptive Histogram Equalization (clipLimit=2.0, tile=8×8) to recover faded ink strokes and compensate for lighting gradients across the document surface."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted to binary using local Gaussian-weighted thresholding (blockSize=15, C=10). Each pixel is compared to its 15×15 local neighbourhood average, isolating ink strokes from yellow staining and uneven lighting that would defeat global thresholding."
+      },
+      {
+        "name": "OCR — Tesseract LSTM (PSM 6, OEM 3)",
+        "description": "Recognised text at 28% mean confidence. 2% of tokens high-confidence (≥80%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise."
+      },
+      {
+        "name": "Metadata Extraction",
+        "description": "Regex entity extraction found 0 date(s), 0 person(s), 0 place(s). Document type: unrecognised."
+      },
+      {
+        "name": "Annotated Image",
+        "description": "Drew per-word bounding boxes colour-coded green/yellow/red by OCR confidence tier (≥80 / 50-79 / <50)."
+      },
+      {
+        "name": "Layout Map",
+        "description": "Morphological dilation (kernel 15×5, 2 iterations) merged characters into paragraph blobs; contours mark layout regions."
+      },
+      {
+        "name": "Table Detection",
+        "description": "Morphological line extraction + numeric-alignment heuristic. Found 0 table(s). Note: borderless tables require deep-learning models (future work)."
+      }
+    ]
+  },
+  "_extras": {
+    "extracted_entities": {
+      "dates": [],
+      "persons": [],
+      "places": [],
+      "doc_type": null,
+      "numeric_facts": []
+    },
+    "resolution_acceptable": true
+  }
+}
