@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "doc_id": "87d2f509-b736-4d8d-9434-3aa3b67af8d5",
-    "timestamp": "2026-06-09T11:03:00.126431Z",
+    "doc_id": "238593e6-bf6a-4eb3-9232-85673351f06b",
+    "timestamp": "2026-06-09T10:58:12.833282Z",
     "filename": "old_faded.jpg",
     "health_score": 75,
     "width": 1926,
     "height": 3001,
-    "processing_time_seconds": 3.484,
+    "processing_time_seconds": 3.401,
     "status": "success"
   },
   "images": {
@@ -105,11 +105,8 @@
     "resolution_acceptable": true
   },
   "ai_analysis": {
-    "artifact_profile": "The document appears to be a printed publisher's catalog or advertisement page, likely composed of ink on paper. The OCR quality is inconsistent, showing significant character errors and symbols, which suggests a complex original layout or a worn physical state.",
-    "provenance": "This document originates from Edinburgh, Scotland, published by James Wood in the mid-to-late 19th century (indicated by references to the \"Late Prince Consort\" and early photographic processes). The genre is commercial/advertising.",
-    "anthropological_matrix": "The author occupies a commercial, middle-class position as a publisher, targeting a public audience of consumers and enthusiasts. The text reflects the power dynamics of Victorian capitalism and the rapid technological advancement of the photographic medium. Notable silences include the voices of the working-class laborers who produced these goods and the subjects of the landscapes who are treated as mere \"souvenirs.\"",
-    "taxonomy": "*   Locations: Edinburgh, Scotland, Calton Hill, Edinburgh Castle, Princes Street, Craigleith Quarry, Loch Katrine, Loch Achry, Liverpool, London.\n*   People: James Wood, The Late Prince Consort, Rejlander.\n*   Organizations: London Morning Advertiser, Liverpool Photographic Journal, London Journal, Photographic News, Photographic Times.\n*   Thematic Tags: Economics, Technology (photography/chemistry), Tourism, Media, Art.",
-    "validity_bias": "The document is a promotional tool with a high level of overt bias intended to encourage the purchase of books and prints. It is most valuable for understanding the consumer culture, technological interests, and media landscape of the Victorian era rather than the specific subjects it describes.",
-    "executive_summary": "This document is a 19th-century publisher's advertisement catalog from Edinburgh, listing various literary works, photographic views, and specialized journals. It serves as a primary source for researching the intersection of commercial capitalism, the rise of the tourism industry, and the emergence of photographic technology."
+    "artifact_profile": "The document appears to be a printed publisher's catalog or an advertisement page from a book. The substrate is likely paper with ink, though the OCR quality is poor, showing significant character errors and fragmentation.",
+    "provenance": "The document originates from Edinburgh, Scotland, published by James Wood (located at 150/180 George Street) during the mid-to-late 19th century. It is a commercial/advertising genre intended to promote various literary and photographic works.",
+    "anthropological_matrix": "The author is a commercial publisher acting as a middleman between creators and the consuming public. The intended audience includes tourists, photography enthusiasts, and the general reading public, reflecting a burgeoning Victorian consumer culture. Dominant dynamics include the rise of capitalism through mass"
   }
 }

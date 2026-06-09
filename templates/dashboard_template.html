@@ -11,62 +11,66 @@
 
   .header { background: #2c2c2a; color: #f4f1eb; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .header-left h1 { font-size: 1.2rem; font-weight: 500; }
-  .header-left p  { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
+  .header-left p { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
   .health-badge { background: #1D9E75; color: #fff; border-radius: 50%; width: 64px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
   .health-badge span { font-size: 0.6rem; font-weight: 400; opacity: 0.85; }
   .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
-  .status-success    { background: #E1F5EE; color: #0F6E56; }
-  .status-failed     { background: #FCEBEB; color: #A32D2D; }
+  .status-success { background: #E1F5EE; color: #0F6E56; }
+  .status-failed { background: #FCEBEB; color: #A32D2D; }
   .status-processing { background: #FAEEDA; color: #854F0B; }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .card      { background: #fff; border-radius: 12px; border: 0.5px solid #d3d1c7; padding: 1.25rem; }
+  .card { background: #fff; border-radius: 12px; border: 1px solid #d3d1c7; padding: 1.25rem; }
   .card-full { grid-column: 1 / -1; }
-  .card h2   { font-size: 0.85rem; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .card h2 { font-size: 0.85rem; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
 
   .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .meta-item { background: #f4f1eb; border-radius: 8px; padding: 0.75rem 1rem; }
   .meta-item .label { font-size: 0.72rem; color: #888780; margin-bottom: 4px; }
   .meta-item .value { font-size: 0.95rem; font-weight: 500; color: #2c2c2a; }
 
-  .slider-wrap   { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f4f1eb; cursor: col-resize; user-select: none; }
+  .slider-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f4f1eb; cursor: col-resize; user-select: none; }
   .slider-before { position: absolute; inset: 0; }
   .slider-before img { width: 100%; height: 100%; object-fit: cover; }
-  .slider-after  { position: absolute; inset: 0; overflow: hidden; }
-  .slider-after img  { width: 100%; height: 100%; object-fit: cover; }
-  .slider-line   { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
-  .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
-  .slider-label  { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
-  .slider-label.left  { left:  10px; }
-  .slider-label.right { right: 10px; }
+  .slider-after { position: absolute; inset: 0; overflow: hidden; }
+  .slider-after img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
+  .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .slider-label { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,0.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
+  .slider-label-left { left: 10px; }
+  .slider-label-right { right: 10px; }
 
-  .doc-img         { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
+  .doc-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
   .placeholder-img { width: 100%; aspect-ratio: 4/3; background: #f4f1eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888780; font-size: 0.85rem; border: 1px dashed #d3d1c7; }
 
   .conf-bar-wrap { margin-bottom: 1rem; }
-  .conf-bar-wrap .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
-  .conf-bar-bg   { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
-  .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; width: var(--bar, 0%); }
-  .chart-wrap    { height: 180px; position: relative; }
+  .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
+  .conf-bar-bg { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
+  .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; }
 
   .extracted-text { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+  .chart-wrap { height: 180px; position: relative; }
 
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th    { background: #f4f1eb; padding: 8px 12px; text-align: left; font-weight: 500; font-size: 0.75rem; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.04em; }
-  td    { padding: 8px 12px; border-bottom: 0.5px solid #f4f1eb; color: #2c2c2a; }
-  tr:last-child td { border-bottom: none; }
+  .section-divider { grid-column: 1 / -1; border-top: 1px solid #d3d1c7; padding-top: 1.5rem; margin-top: 0.5rem; text-align: center; }
+  .section-divider h2 { font-size: 1rem; font-weight: 600; color: #2c2c2a; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .module-icon { font-size: 1.1rem; margin-right: 6px; }
+  .module-content { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; }
+
+  .summary-box { background: #2c2c2a; color: #f4f1eb; border-radius: 8px; padding: 1.25rem; font-size: 0.9rem; line-height: 1.6; font-style: italic; }
 
   .audit-list { list-style: none; }
-  .audit-item { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 0.5px solid #f4f1eb; }
+  .audit-item { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f4f1eb; }
   .audit-item:last-child { border-bottom: none; }
-  .audit-dot  { width: 10px; height: 10px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 5px; }
-  .audit-item-body .audit-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 2px; }
-  .audit-item-body .audit-desc { font-size: 0.78rem; color: #5f5e5a; line-height: 1.5; }
+  .audit-dot { width: 10px; height: 10px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 5px; }
+  .audit-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 2px; }
+  .audit-desc { font-size: 0.78rem; color: #5f5e5a; line-height: 1.5; }
 
   @media (max-width: 640px) {
     .container { grid-template-columns: 1fr; }
-    .card-full  { grid-column: 1; }
-    .meta-grid  { grid-template-columns: 1fr; }
+    .card-full { grid-column: 1; }
+    .section-divider { grid-column: 1; }
+    .meta-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -75,7 +79,7 @@
 <div class="header">
   <div class="header-left">
     <h1>{{ filename }}</h1>
-    <p>ID: {{ doc_id }} &nbsp;·&nbsp; Processed: {{ timestamp }}</p>
+    <p>ID: {{ doc_id }} &nbsp;&middot;&nbsp; Processed: {{ timestamp }}</p>
     <p style="margin-top:8px">
       <span class="status-badge status-{{ status }}">{{ status }}</span>
     </p>
@@ -87,18 +91,18 @@
 
 <div class="container">
 
-  <!-- ROW 1: Before/After slider + Metadata -->
+  <!-- Before/After slider + Metadata -->
   <div class="card">
     <h2>Before / After</h2>
     {% if img_before and img_after %}
     <div class="slider-wrap" id="slider">
       <div class="slider-before">
         <img src="{{ img_before }}" alt="Before restoration">
-        <span class="slider-label left">Before</span>
+        <span class="slider-label slider-label-left">Before</span>
       </div>
       <div class="slider-after" id="sliderAfter" style="width:50%">
         <img src="{{ img_after }}" alt="After restoration" style="min-width:100%">
-        <span class="slider-label right">After</span>
+        <span class="slider-label slider-label-right">After</span>
       </div>
       <div class="slider-line" id="sliderLine" style="left:50%">
         <div class="slider-handle">&#8596;</div>
@@ -121,7 +125,7 @@
     </div>
   </div>
 
-  <!-- ROW 2: Layout Map + Annotated Image -->
+  <!-- Layout Map + Annotated Image -->
   <div class="card">
     <h2>Layout Map</h2>
     {% if layout_url %}
@@ -140,16 +144,16 @@
     {% endif %}
   </div>
 
-  <!-- ROW 3: Confidence analysis + Extracted text -->
+  <!-- Confidence analysis + Extracted text -->
   <div class="card">
     <h2>Confidence analysis</h2>
     <div class="conf-bar-wrap">
       <div class="conf-label"><span>Overall confidence</span><span>{{ overall_pct }}%</span></div>
-      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:{{ overall_pct }}%"></div></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="width: {{ overall_pct }}%"></div></div>
     </div>
     <div class="conf-bar-wrap">
       <div class="conf-label"><span>High confidence text</span><span>{{ high_conf_pct }}%</span></div>
-      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:{{ high_conf_pct }}%"></div></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="width: {{ high_conf_pct }}%"></div></div>
     </div>
     <div class="chart-wrap">
       <canvas id="confChart"></canvas>
@@ -161,21 +165,61 @@
     <div class="extracted-text">{{ extracted_text }}</div>
   </div>
 
-  {% if ai_insights %}
-<div class="card card-full">
-    <h2>AI Document Analysis</h2>
-    <div class="extracted-text" style="max-height:none">{{ ai_insights }}</div>
-</div>
-{% endif %}
+  <!-- Anthropological Analysis Modules -->
+  {% if ai_analysis %}
+  <div class="section-divider"><h2>Anthropological Analysis</h2></div>
 
-  <!-- ROW 5: Processing audit trail -->
+  {% if ai_analysis.artifact_profile %}
+  <div class="card">
+    <h2><span class="module-icon">&#127963;</span> Artifact Profile</h2>
+    <div class="module-content">{{ ai_analysis.artifact_profile }}</div>
+  </div>
+  {% endif %}
+
+  {% if ai_analysis.provenance %}
+  <div class="card">
+    <h2><span class="module-icon">&#128205;</span> Provenance &amp; Context</h2>
+    <div class="module-content">{{ ai_analysis.provenance }}</div>
+  </div>
+  {% endif %}
+
+  {% if ai_analysis.anthropological_matrix %}
+  <div class="card card-full">
+    <h2><span class="module-icon">&#129504;</span> Anthropological Matrix</h2>
+    <div class="module-content">{{ ai_analysis.anthropological_matrix }}</div>
+  </div>
+  {% endif %}
+
+  {% if ai_analysis.taxonomy %}
+  <div class="card">
+    <h2><span class="module-icon">&#127991;</span> Taxonomy &amp; Entities</h2>
+    <div class="module-content">{{ ai_analysis.taxonomy }}</div>
+  </div>
+  {% endif %}
+
+  {% if ai_analysis.validity_bias %}
+  <div class="card">
+    <h2><span class="module-icon">&#9878;</span> Validity &amp; Bias</h2>
+    <div class="module-content">{{ ai_analysis.validity_bias }}</div>
+  </div>
+  {% endif %}
+
+  {% if ai_analysis.executive_summary %}
+  <div class="card card-full">
+    <h2><span class="module-icon">&#128221;</span> Executive Summary</h2>
+    <div class="summary-box">{{ ai_analysis.executive_summary }}</div>
+  </div>
+  {% endif %}
+  {% endif %}
+
+  <!-- Processing audit trail -->
   <div class="card card-full">
     <h2>Processing audit trail</h2>
     <ul class="audit-list">
       {% for step in audit_steps %}
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">{{ step.name }}</div>
           <div class="audit-desc">{{ step.description }}</div>
         </div>
@@ -189,14 +233,14 @@
 <script type="application/json" id="chart-payload">{{ chart_data | tojson }}</script>
 
 <script>
-  const chartData = JSON.parse(document.getElementById('chart-payload').textContent);
-  const ctx = document.getElementById('confChart').getContext('2d');
+  var chartData = JSON.parse(document.getElementById('chart-payload').textContent);
+  var ctx = document.getElementById('confChart').getContext('2d');
   new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: chartData.map(d => d.label),
+      labels: chartData.map(function(d) { return d.label; }),
       datasets: [{
-        data: chartData.map(d => d.value),
+        data: chartData.map(function(d) { return d.value; }),
         backgroundColor: ['#1D9E75', '#EF9F27', '#E24B4A'],
         borderWidth: 0
       }]
@@ -210,25 +254,25 @@
     }
   });
 
-  const slider = document.getElementById('slider');
+  var slider = document.getElementById('slider');
   if (slider) {
-    const sliderAfter = document.getElementById('sliderAfter');
-    const sliderLine  = document.getElementById('sliderLine');
-    let dragging = false;
+    var sliderAfter = document.getElementById('sliderAfter');
+    var sliderLine = document.getElementById('sliderLine');
+    var dragging = false;
 
     function setSlider(x) {
-      const rect = slider.getBoundingClientRect();
-      const pct  = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
+      var rect = slider.getBoundingClientRect();
+      var pct = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
       sliderAfter.style.width = (pct * 100) + '%';
-      sliderLine.style.left   = (pct * 100) + '%';
+      sliderLine.style.left = (pct * 100) + '%';
     }
 
-    slider.addEventListener('mousedown',  e => { dragging = true;  setSlider(e.clientX); });
-    window.addEventListener('mousemove',  e => { if (dragging) setSlider(e.clientX); });
-    window.addEventListener('mouseup',    ()  => { dragging = false; });
-    slider.addEventListener('touchstart', e => { dragging = true;  setSlider(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchmove',  e => { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchend',   ()  => { dragging = false; });
+    slider.addEventListener('mousedown', function(e) { dragging = true; setSlider(e.clientX); });
+    window.addEventListener('mousemove', function(e) { if (dragging) setSlider(e.clientX); });
+    window.addEventListener('mouseup', function() { dragging = false; });
+    slider.addEventListener('touchstart', function(e) { dragging = true; setSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', function(e) { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', function() { dragging = false; });
   }
 </script>
 </body>

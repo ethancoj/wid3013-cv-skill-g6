@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document Restoration Dashboard - 74df33f6-625d-41b5-bb0e-a09db5385445</title>
+<title>Document Restoration Dashboard - 87d2f509-b736-4d8d-9434-3aa3b67af8d5</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,62 +11,66 @@
 
   .header { background: #2c2c2a; color: #f4f1eb; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .header-left h1 { font-size: 1.2rem; font-weight: 500; }
-  .header-left p  { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
+  .header-left p { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
   .health-badge { background: #1D9E75; color: #fff; border-radius: 50%; width: 64px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
   .health-badge span { font-size: 0.6rem; font-weight: 400; opacity: 0.85; }
   .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
-  .status-success    { background: #E1F5EE; color: #0F6E56; }
-  .status-failed     { background: #FCEBEB; color: #A32D2D; }
+  .status-success { background: #E1F5EE; color: #0F6E56; }
+  .status-failed { background: #FCEBEB; color: #A32D2D; }
   .status-processing { background: #FAEEDA; color: #854F0B; }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .card      { background: #fff; border-radius: 12px; border: 0.5px solid #d3d1c7; padding: 1.25rem; }
+  .card { background: #fff; border-radius: 12px; border: 1px solid #d3d1c7; padding: 1.25rem; }
   .card-full { grid-column: 1 / -1; }
-  .card h2   { font-size: 0.85rem; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .card h2 { font-size: 0.85rem; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
 
   .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .meta-item { background: #f4f1eb; border-radius: 8px; padding: 0.75rem 1rem; }
   .meta-item .label { font-size: 0.72rem; color: #888780; margin-bottom: 4px; }
   .meta-item .value { font-size: 0.95rem; font-weight: 500; color: #2c2c2a; }
 
-  .slider-wrap   { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f4f1eb; cursor: col-resize; user-select: none; }
+  .slider-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f4f1eb; cursor: col-resize; user-select: none; }
   .slider-before { position: absolute; inset: 0; }
   .slider-before img { width: 100%; height: 100%; object-fit: cover; }
-  .slider-after  { position: absolute; inset: 0; overflow: hidden; }
-  .slider-after img  { width: 100%; height: 100%; object-fit: cover; }
-  .slider-line   { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
-  .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
-  .slider-label  { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
-  .slider-label.left  { left:  10px; }
-  .slider-label.right { right: 10px; }
+  .slider-after { position: absolute; inset: 0; overflow: hidden; }
+  .slider-after img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
+  .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .slider-label { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,0.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
+  .slider-label-left { left: 10px; }
+  .slider-label-right { right: 10px; }
 
-  .doc-img         { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
+  .doc-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
   .placeholder-img { width: 100%; aspect-ratio: 4/3; background: #f4f1eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888780; font-size: 0.85rem; border: 1px dashed #d3d1c7; }
 
   .conf-bar-wrap { margin-bottom: 1rem; }
-  .conf-bar-wrap .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
-  .conf-bar-bg   { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
-  .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; width: var(--bar, 0%); }
-  .chart-wrap    { height: 180px; position: relative; }
+  .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
+  .conf-bar-bg { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
+  .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; }
 
   .extracted-text { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+  .chart-wrap { height: 180px; position: relative; }
 
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th    { background: #f4f1eb; padding: 8px 12px; text-align: left; font-weight: 500; font-size: 0.75rem; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.04em; }
-  td    { padding: 8px 12px; border-bottom: 0.5px solid #f4f1eb; color: #2c2c2a; }
-  tr:last-child td { border-bottom: none; }
+  .section-divider { grid-column: 1 / -1; border-top: 1px solid #d3d1c7; padding-top: 1.5rem; margin-top: 0.5rem; text-align: center; }
+  .section-divider h2 { font-size: 1rem; font-weight: 600; color: #2c2c2a; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .module-icon { font-size: 1.1rem; margin-right: 6px; }
+  .module-content { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; }
+
+  .summary-box { background: #2c2c2a; color: #f4f1eb; border-radius: 8px; padding: 1.25rem; font-size: 0.9rem; line-height: 1.6; font-style: italic; }
 
   .audit-list { list-style: none; }
-  .audit-item { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 0.5px solid #f4f1eb; }
+  .audit-item { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f4f1eb; }
   .audit-item:last-child { border-bottom: none; }
-  .audit-dot  { width: 10px; height: 10px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 5px; }
-  .audit-item-body .audit-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 2px; }
-  .audit-item-body .audit-desc { font-size: 0.78rem; color: #5f5e5a; line-height: 1.5; }
+  .audit-dot { width: 10px; height: 10px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 5px; }
+  .audit-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 2px; }
+  .audit-desc { font-size: 0.78rem; color: #5f5e5a; line-height: 1.5; }
 
   @media (max-width: 640px) {
     .container { grid-template-columns: 1fr; }
-    .card-full  { grid-column: 1; }
-    .meta-grid  { grid-template-columns: 1fr; }
+    .card-full { grid-column: 1; }
+    .section-divider { grid-column: 1; }
+    .meta-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -74,31 +78,31 @@
 
 <div class="header">
   <div class="header-left">
-    <h1>old_faded_2.jpg</h1>
-    <p>ID: 74df33f6-625d-41b5-bb0e-a09db5385445 &nbsp;·&nbsp; Processed: 2026-06-09T09:58:39.943508Z</p>
+    <h1>old_faded.jpg</h1>
+    <p>ID: 87d2f509-b736-4d8d-9434-3aa3b67af8d5 &nbsp;&middot;&nbsp; Processed: 2026-06-09T11:03:00.126431Z</p>
     <p style="margin-top:8px">
       <span class="status-badge status-success">success</span>
     </p>
   </div>
   <div class="health-badge">
-    88<span>health</span>
+    75<span>health</span>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- ROW 1: Before/After slider + Metadata -->
+  <!-- Before/After slider + Metadata -->
   <div class="card">
     <h2>Before / After</h2>
     
     <div class="slider-wrap" id="slider">
       <div class="slider-before">
-        <img src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_2_before.png" alt="Before restoration">
-        <span class="slider-label left">Before</span>
+        <img src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_before.png" alt="Before restoration">
+        <span class="slider-label slider-label-left">Before</span>
       </div>
       <div class="slider-after" id="sliderAfter" style="width:50%">
-        <img src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_2_after.png" alt="After restoration" style="min-width:100%">
-        <span class="slider-label right">After</span>
+        <img src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_after.png" alt="After restoration" style="min-width:100%">
+        <span class="slider-label slider-label-right">After</span>
       </div>
       <div class="slider-line" id="sliderLine" style="left:50%">
         <div class="slider-handle">&#8596;</div>
@@ -110,40 +114,40 @@
   <div class="card">
     <h2>Document metadata</h2>
     <div class="meta-grid">
-      <div class="meta-item"><div class="label">Filename</div><div class="value">old_faded_2.jpg</div></div>
-      <div class="meta-item"><div class="label">Document ID</div><div class="value">74df33f6-625d-41b5-bb0e-a09db5385445</div></div>
-      <div class="meta-item"><div class="label">Dimensions</div><div class="value">2448 x 3264px</div></div>
-      <div class="meta-item"><div class="label">Processing time</div><div class="value">2.77s</div></div>
-      <div class="meta-item"><div class="label">Health score</div><div class="value">88 / 100</div></div>
+      <div class="meta-item"><div class="label">Filename</div><div class="value">old_faded.jpg</div></div>
+      <div class="meta-item"><div class="label">Document ID</div><div class="value">87d2f509-b736-4d8d-9434-3aa3b67af8d5</div></div>
+      <div class="meta-item"><div class="label">Dimensions</div><div class="value">1926 x 3001px</div></div>
+      <div class="meta-item"><div class="label">Processing time</div><div class="value">3.484s</div></div>
+      <div class="meta-item"><div class="label">Health score</div><div class="value">75 / 100</div></div>
       <div class="meta-item"><div class="label">Status</div><div class="value">success</div></div>
     </div>
   </div>
 
-  <!-- ROW 2: Layout Map + Annotated Image -->
+  <!-- Layout Map + Annotated Image -->
   <div class="card">
     <h2>Layout Map</h2>
     
-    <img class="doc-img" src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_2_layout.png" alt="Document layout map">
+    <img class="doc-img" src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_layout.png" alt="Document layout map">
     
   </div>
 
   <div class="card">
     <h2>Annotated Image</h2>
     
-    <img class="doc-img" src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_2_annotated.png" alt="Annotated document">
+    <img class="doc-img" src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_annotated.png" alt="Annotated document">
     
   </div>
 
-  <!-- ROW 3: Confidence analysis + Extracted text -->
+  <!-- Confidence analysis + Extracted text -->
   <div class="card">
     <h2>Confidence analysis</h2>
     <div class="conf-bar-wrap">
-      <div class="conf-label"><span>Overall confidence</span><span>72%</span></div>
-      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:72%"></div></div>
+      <div class="conf-label"><span>Overall confidence</span><span>49%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="width: 49%"></div></div>
     </div>
     <div class="conf-bar-wrap">
-      <div class="conf-label"><span>High confidence text</span><span>67%</span></div>
-      <div class="conf-bar-bg"><div class="conf-bar-fill" style="--bar:67%"></div></div>
+      <div class="conf-label"><span>High confidence text</span><span>29%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="width: 29%"></div></div>
     </div>
     <div class="chart-wrap">
       <canvas id="confChart"></canvas>
@@ -152,99 +156,120 @@
 
   <div class="card">
     <h2>Extracted text</h2>
-    <div class="extracted-text">Vat et
-i,
-q 45. [Fine Bindings] STRACHEY, ELIZABETH. Translations from the MES
-French of Emile Souvestre. N.p. (Privately Printed), 1856.
-$1250.00
-Two vols., sm. 4to., full dark blue ctushed-morocco over
-covers heavily ornamented with gilt and blind relief decoration, far too elaborate to
-describe. At the top and bottom (on the edges of the outer gilt fillet borders) are
-two gilt lines: TOQ*THE*MEMORY*OF*ELIZABETH STRACHEY* and « NON «
-ANIMUM:. Board edges gilt, inner gilt dentelles, a.e.g. On the inside rear paste-down
-of the first volume is the binder’s ticket of Leighton Son & On the front fly
-leaf of volume one is the inscription, “Constance Strachey from E. S. 1 June 1887.”
-Elizabeth Strachey was born 14 February. 1810, the eldest daughter of R. W.
-| Wilkinson of Hall, Bedfordshire. She married Edward Strachey of
-Sutton Court, Pensford, Somerset on 27 August 1844 and died without issue on 11] et
-ASE April 1855. Emile Souvestre (1806-1854) was a French playwright who did
-much better with his novels than for the stage, although he deliberate y aimed at
-making the novel an engine of moral instruction. He is said to have harmo- a hs
-ny with Mrs. Strachey’s translations of his works, which include The Bargeman of
-the Loire, The Lazaretto-Keeper, Confessions of a Working Man, The Sea-Shore
-Gleaner, An Attic Philosopher in Paris, Family Memoirs and The Widower’s Old ON
-Age (three chapters of which Edward Strachey added to Vol. IT from M. Souvestre’s
-unfinished work). These volumes were published: “Jo the memory of her to whom
-these translations are chiefly due, while her hand, in them, as in all t ings else, was ever
-joined with that of her husband.”
-vA The bindings by Leighton could not be more elaborate and were certainly done
-expressly for these privately printed volumes. We know of one other copy of the
-work in identical bindings in a private London collection (there are no copies in
-either The British or NUC). The brass stamping plates were used again by
-| Leighton for an 1868 edition of Oliver Goldsmith's The Traveler in a somewhat
-j altered fashion (i.e. he removed the memorial lines at the top and bottom, replac- a
-ing two lines of gilt decoration to try and achieve balance; he also ORE
-4 removed Elizabeth Strachey’s initials from the central panel on the covers, replacing -
-it with an uninspired design element). These beautiful and rare bindings are in FINE A
-| CONDITION,</div>
+    <div class="extracted-text">=
+WORKS PUBLISHE)) BY J, WOOD, 180 GEORGE ST., EDINBURGH. |
+MISS CATHERINE WORKS. be
+. ot . Moth:
+Housr Gd. 2s. Od. AND THE se
+.. « 2 0 1.6 | or
+. 2 0. 1 6
+AccoMPLISHMENTS Ion or Sm Joun - a .
+Moprns oe ot ge . ee
+6. | 01
+Jang of. OF THE . : .
+4ND THE - BULB’.
+> . te 4 -
+. HOLIDAY HOUSE. |
+‘6 Wo have on more than one former occasion expressed our opinion of this
+-commendatory as it srould be possible .o employ, and, what ly more atid better, the public have
+theirs in that troly practical manner which both authors and publishers
+after all, to be the ‘an extensive and continuous gale of the work. Ferr books of . .
+the kind hava in modem timcs been more successful, than Holiday Howse, and fer, shall wo wre
+none ?—havo better deeerved it.” Oar duty, therefore, on th's occasion, ts as easy as itis plea- : f a
+sant. It almply to announce the appearance of a new edition, pictorially and
+besntifully dono up. _A moro acceptable present for the menibers of the eemmunity fk pe
+a conld not be to them,"—London Horning Advertiser. .
+oo VIEWS OF EDINBURGH AND SCOTTISH -LAKES, are \ aa
+a OF EDINBUECE PROM THE CALTON HL tt
+VIEW OF EDINBURGH FROM THE CASTLE. -
+OF THE OLD TOWN OF EDINBURGH FROM PRINCES STREET, aN
+PANORAMIC VIEW OF EDINBURGH FROM: CRAIGLECTH QUABRY - 0d.
+a OF LOCH KATRINE AND,BENVENUB >
+OF LOCH ACHRY AND BEN WAN Te tes
+All there Views being taken directly from Photographs, are not
+. |. pate, but highly artistic, and form pleasing Souvenirs of perhaps the most City sad
+. we wu rh >
+re! BH. THE LATE PRINCE CONSORT, . From the
+Photograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy
+stp |. PUBLISHED OR SOLD /BY.JAMES WOOD. \
+7 a “2 . ’
+| MANUAL OF ‘CHEMISTRY, Sixth Edition, |
+HELIOCHROMY; or, py Foolscap 8v0, with and ‘ame
+Cover. Compiled by (of Ross od.
+|p little Hellochromy contains a large amount ‘of all
+aud cannot fall to sdvance the Photographic art in that especial wei WE
+“ . : -
+BORNE AND GUIDE TO PHOTOGRAPHY. Price 1s. Soe Pe
+LIVERPOOL PHOTOGRAPHTO JOURNAL, on Ist and Price 4; by Post,
+LONDON JOURNAL, Monthly. Price 5d; by Post,
+PHOTOGRAPIUC NOTES, 1st and 15th. Price by
+THE PHOTOGRAPHIC NEWS, Price by Post, 4d.
+‘THE PHOTOGRAPHIC TIMES, Prlcold. re
+4140, VARIOUS OTHER WORKE ON . 4
+keeps in stock the and finest collection of Photographs in Scotland; ‘ |
+Sides by
+_ DEFOT FOR GUIDE-BOOKS, MAPS. PLANS; SCOTTISH VIEWS, vA
+150, GEORGE STREET, EDINBURGH.</div>
   </div>
 
+  <!-- Anthropological Analysis Modules -->
   
-<div class="card card-full">
-    <h2>AI Document Analysis</h2>
-    <div class="extracted-text" style="max-height:none">*   Role: Document analysis assistant for anthropology and social science students.
-*   Input: OCR-extracted text from a historical document.
-*   Output Requirements:
-    1.  Document Type (1-2 sentences).
-    2.  Estimated Era/Period (1-2 sentences).
-    3.  Key Entities (1-2 sentences).
-    4.  Historical Context (1-2 sentences).
-    5.  Research Value (1-2 sentences).
-*   Constraint: Be factual based *only* on the text. Keep sections brief.
+  <div class="section-divider"><h2>Anthropological Analysis</h2></div>
 
-    *   *Content:* Describes a set of books: "Translations from the MES French of Emile Souvestre" by Elizabeth Strachey. Mentions price ($1250.00), binding details (Leighton Son & Co.), inscriptions ("Constance Strachey from E. S. 1 June 1887"), biographical info on Elizabeth Strachey and Emile Souvestre, and rarity/condition details.
-    *   *Format:* It looks like a listing for a rare book sale or an auction catalog entry. It includes a price, physical description, provenance, and rarity notes.
+  
+  <div class="card">
+    <h2><span class="module-icon">&#127963;</span> Artifact Profile</h2>
+    <div class="module-content">The document appears to be a printed publisher's catalog or advertisement page, likely composed of ink on paper. The OCR quality is inconsistent, showing significant character errors and symbols, which suggests a complex original layout or a worn physical state.</div>
+  </div>
+  
 
-    *   *Document Type:* It is a catalog entry or a sales listing for a rare book/fine binding.
-    *   *Estimated Era/Period:* The text mentions dates like 1856 (publication), 1887 (inscription), and 1868 (other edition). The document itself seems modern (due to the price format "$1250.00" and the descriptive style), but it describes items from the mid-to-late 19th century. *Correction:* The prompt asks for the era of the *document*. The document is a modern antiquarian book catalog entry describing 19th-century items.
-    *   *Key Entities:* Elizabeth Strachey, Emile Souvestre, Edward Strachey, R. W. Wilkinson, Constance Strachey, Leighton Son & Co. (binder), Sutton Court (Somerset), Hall (Bedfordshire).
-    *   *Historical Context:* The text touches on 19th-century literary translation, the role of women in publishing/translation, and the social practice of private printing and elaborate bookbinding as status symbols.
-    *   *Research Value:* A student could use this to study 19th-century gender roles in literature, the history of bookbinding/material culture, or the social networks of the Victorian-era upper class through provenance and inscriptions.
+  
+  <div class="card">
+    <h2><span class="module-icon">&#128205;</span> Provenance &amp; Context</h2>
+    <div class="module-content">This document originates from Edinburgh, Scotland, published by James Wood in the mid-to-late 19th century (indicated by references to the "Late Prince Consort" and early photographic processes). The genre is commercial/advertising.</div>
+  </div>
+  
 
-    *   *Document Type:* This is a catalog entry or sales listing for a rare book and fine binding.
-    *   *Estimated Era/Period:* While describing 19th-century items, the document itself is a modern antiquarian book catalog.
-    *   *Key Entities:* Key figures include Elizabeth Strachey, Emile Souvestre, Edward Strachey, and the binder Leighton Son & Co.
-    *   *Historical Context:* The text reflects 19th-century literary culture, specifically regarding female translators and the practice of private printing for personal or memorial purposes.
-    *   *Research Value:* Students could use this to research material culture (bookbinding), the history of women in the literary sphere, or social history through personal inscriptions and provenance.
+  
+  <div class="card card-full">
+    <h2><span class="module-icon">&#129504;</span> Anthropological Matrix</h2>
+    <div class="module-content">The author occupies a commercial, middle-class position as a publisher, targeting a public audience of consumers and enthusiasts. The text reflects the power dynamics of Victorian capitalism and the rapid technological advancement of the photographic medium. Notable silences include the voices of the working-class laborers who produced these goods and the subjects of the landscapes who are treated as mere "souvenirs."</div>
+  </div>
+  
 
-    *   1-2 sentences per section? Yes.
-    *   Factual based only on text? Yes.
-    *   Anthropology/Social Science focus? Yes.
-**1. Document Type**
-This is a catalog entry or sales listing for a rare book and fine binding. It provides a detailed physical description, provenance, and pricing for a specific set of volumes.
+  
+  <div class="card">
+    <h2><span class="module-icon">&#127991;</span> Taxonomy &amp; Entities</h2>
+    <div class="module-content">*   Locations: Edinburgh, Scotland, Calton Hill, Edinburgh Castle, Princes Street, Craigleith Quarry, Loch Katrine, Loch Achry, Liverpool, London.
+*   People: James Wood, The Late Prince Consort, Rejlander.
+*   Organizations: London Morning Advertiser, Liverpool Photographic Journal, London Journal, Photographic News, Photographic Times.
+*   Thematic Tags: Economics, Technology (photography/chemistry), Tourism, Media, Art.</div>
+  </div>
+  
 
-**2. Estimated Era/Period**
-The document is a modern antiquarian book catalog describing items and biographical events from the mid-to-late 19th century.
+  
+  <div class="card">
+    <h2><span class="module-icon">&#9878;</span> Validity &amp; Bias</h2>
+    <div class="module-content">The document is a promotional tool with a high level of overt bias intended to encourage the purchase of books and prints. It is most valuable for understanding the consumer culture, technological interests, and media landscape of the Victorian era rather than the specific subjects it describes.</div>
+  </div>
+  
 
-**3. Key Entities**
-Key individuals mentioned include Elizabeth Strachey (translator), Emile Souvestre (French playwright), Edward Strachey, and the binder Leighton Son & Co. Notable locations include Hall, Bedfordshire, and Sutton Court, Somerset.
+  
+  <div class="card card-full">
+    <h2><span class="module-icon">&#128221;</span> Executive Summary</h2>
+    <div class="summary-box">This document is a 19th-century publisher's advertisement catalog from Edinburgh, listing various literary works, photographic views, and specialized journals. It serves as a primary source for researching the intersection of commercial capitalism, the rise of the tourism industry, and the emergence of photographic technology.</div>
+  </div>
+  
+  
 
-**4. Historical Context**
-The text reflects 19th-century literary and social practices, such as the role of women in translation, the use of private printing for memorial purposes, and the high value placed on elaborate bookbinding as a status symbol.
-
-**5. Research Value**
-A student could use this document to study material culture (specifically Victorian bookbinding), the history of women's contributions to literature, or social history through the study of personal inscriptions and provenance.</div>
-</div>
-
-
-  <!-- ROW 5: Processing audit trail -->
+  <!-- Processing audit trail -->
   <div class="card card-full">
     <h2>Processing audit trail</h2>
     <ul class="audit-list">
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Greyscale Conversion</div>
           <div class="audit-desc">Converted BGR input to single-channel greyscale. Colour is irrelevant for ink-on-paper OCR and removing it reduces processing cost by 3×.</div>
         </div>
@@ -252,15 +277,15 @@ A student could use this document to study material culture (specifically Victor
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Resolution Validation</div>
-          <div class="audit-desc">Resolution OK (2448×3264 px).</div>
+          <div class="audit-desc">Resolution OK (1926×3001 px).</div>
         </div>
       </li>
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Bilateral Denoising Filter</div>
           <div class="audit-desc">Applied edge-aware bilateral filter (d=9, σColor=75, σSpace=75). Suppresses paper grain and scanner noise while preserving the sharp ink-stroke boundaries that OCR depends on.</div>
         </div>
@@ -268,7 +293,7 @@ A student could use this document to study material culture (specifically Victor
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">CLAHE Contrast Enhancement</div>
           <div class="audit-desc">Applied Contrast Limited Adaptive Histogram Equalization (clipLimit=2.0, tile=8×8) to recover faded ink strokes and compensate for lighting gradients across the document surface.</div>
         </div>
@@ -276,7 +301,7 @@ A student could use this document to study material culture (specifically Victor
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Adaptive Gaussian Binarization</div>
           <div class="audit-desc">Converted to binary using local Gaussian-weighted thresholding (blockSize=15, C=10). Each pixel is compared to its 15×15 local neighbourhood average, isolating ink strokes from yellow staining and uneven lighting that would defeat global thresholding.</div>
         </div>
@@ -284,23 +309,23 @@ A student could use this document to study material culture (specifically Victor
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">OCR — Tesseract LSTM (PSM 6, OEM 3)</div>
-          <div class="audit-desc">Recognised text at 72% mean confidence. 67% of tokens high-confidence (≥80%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise.</div>
+          <div class="audit-desc">Recognised text at 49% mean confidence. 29% of tokens high-confidence (≥80%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise.</div>
         </div>
       </li>
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Metadata Extraction</div>
-          <div class="audit-desc">Regex entity extraction found 10 date(s), 17 person(s), 2 place(s). Document type: Book Catalogue Entry.</div>
+          <div class="audit-desc">Regex entity extraction found 0 date(s), 3 person(s), 1 place(s). Document type: unrecognised.</div>
         </div>
       </li>
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Annotated Image</div>
           <div class="audit-desc">Drew per-word bounding boxes colour-coded green/yellow/red by OCR confidence tier (≥80 / 50-79 / <50).</div>
         </div>
@@ -308,7 +333,7 @@ A student could use this document to study material culture (specifically Victor
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Layout Map</div>
           <div class="audit-desc">Morphological dilation (kernel 15×5, 2 iterations) merged characters into paragraph blobs; contours mark layout regions.</div>
         </div>
@@ -316,7 +341,7 @@ A student could use this document to study material culture (specifically Victor
       
       <li class="audit-item">
         <div class="audit-dot"></div>
-        <div class="audit-item-body">
+        <div>
           <div class="audit-name">Table Detection</div>
           <div class="audit-desc">Morphological line extraction + numeric-alignment heuristic. Found 1 table(s). Note: borderless tables require deep-learning models (future work).</div>
         </div>
@@ -327,17 +352,17 @@ A student could use this document to study material culture (specifically Victor
 
 </div>
 
-<script type="application/json" id="chart-payload">[{"label": "High", "value": 67}, {"label": "Medium", "value": 3}, {"label": "Low", "value": 30}]</script>
+<script type="application/json" id="chart-payload">[{"label": "High", "value": 29}, {"label": "Medium", "value": 17}, {"label": "Low", "value": 54}]</script>
 
 <script>
-  const chartData = JSON.parse(document.getElementById('chart-payload').textContent);
-  const ctx = document.getElementById('confChart').getContext('2d');
+  var chartData = JSON.parse(document.getElementById('chart-payload').textContent);
+  var ctx = document.getElementById('confChart').getContext('2d');
   new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: chartData.map(d => d.label),
+      labels: chartData.map(function(d) { return d.label; }),
       datasets: [{
-        data: chartData.map(d => d.value),
+        data: chartData.map(function(d) { return d.value; }),
         backgroundColor: ['#1D9E75', '#EF9F27', '#E24B4A'],
         borderWidth: 0
       }]
@@ -351,25 +376,25 @@ A student could use this document to study material culture (specifically Victor
     }
   });
 
-  const slider = document.getElementById('slider');
+  var slider = document.getElementById('slider');
   if (slider) {
-    const sliderAfter = document.getElementById('sliderAfter');
-    const sliderLine  = document.getElementById('sliderLine');
-    let dragging = false;
+    var sliderAfter = document.getElementById('sliderAfter');
+    var sliderLine = document.getElementById('sliderLine');
+    var dragging = false;
 
     function setSlider(x) {
-      const rect = slider.getBoundingClientRect();
-      const pct  = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
+      var rect = slider.getBoundingClientRect();
+      var pct = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
       sliderAfter.style.width = (pct * 100) + '%';
-      sliderLine.style.left   = (pct * 100) + '%';
+      sliderLine.style.left = (pct * 100) + '%';
     }
 
-    slider.addEventListener('mousedown',  e => { dragging = true;  setSlider(e.clientX); });
-    window.addEventListener('mousemove',  e => { if (dragging) setSlider(e.clientX); });
-    window.addEventListener('mouseup',    ()  => { dragging = false; });
-    slider.addEventListener('touchstart', e => { dragging = true;  setSlider(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchmove',  e => { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchend',   ()  => { dragging = false; });
+    slider.addEventListener('mousedown', function(e) { dragging = true; setSlider(e.clientX); });
+    window.addEventListener('mousemove', function(e) { if (dragging) setSlider(e.clientX); });
+    window.addEventListener('mouseup', function() { dragging = false; });
+    slider.addEventListener('touchstart', function(e) { dragging = true; setSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', function(e) { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', function() { dragging = false; });
   }
 </script>
 </body>
