@@ -1,10 +1,6 @@
-# Skill: Document Restoration Assistant
-**Version:** 1.0  
-**Author:** Group 6 — WID3013  
-**Channel:** Telegram  
-
 ---
-name: document-restoration
+name: skill
+description: Restores degraded historical documents with OCR, enhancement, and interactive dashboard output
 trigger:
   - image uploaded
   - restore this document
@@ -13,7 +9,10 @@ trigger:
 run: python run_skill.py {image_path} {category}
 ---
 
----
+# Skill: Document Restoration Assistant
+**Version:** 1.0  
+**Author:** Group 6 — WID3013  
+**Channel:** Telegram  
 
 ## 1. Role
 
