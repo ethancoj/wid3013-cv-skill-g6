@@ -6,7 +6,7 @@ trigger:
   - restore this document
   - process this document
   - extract text from this
-run: python run_skill.py {image_path} {category}
+run: C:\Users\User\Desktop\wid3013-cv-skill-g6\venv\Scripts\python.exe C:\Users\User\Desktop\wid3013-cv-skill-g6\run_skill.py {image_path} {category}
 ---
 
 # Skill: Document Restoration Assistant
@@ -56,7 +56,7 @@ Ask the user which category to save the document under. If they already provided
 *"Which category should I save this under? (e.g. Field Notes, Historical Letters, Invoices) — or type 'Skip' to leave it uncategorized."*
 
 **Step 3 — Process**
-Call `src/cv_processing.py` with the uploaded image path. This will:
+Call `src/cv_processing.py` with the uploaded image path. This will: 
 - Convert the image to grayscale
 - Apply denoising and contrast enhancement
 - Run OCR to extract text

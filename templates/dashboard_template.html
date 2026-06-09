@@ -161,28 +161,12 @@
     <div class="extracted-text">{{ extracted_text }}</div>
   </div>
 
-  <!-- ROW 4: Structured data table -->
-  <div class="card card-full">
-    <h2>Structured data table</h2>
-    <table>
-      <thead>
-        <tr>
-          {% for header in table_headers %}
-          <th>{{ header }}</th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in table_rows %}
-        <tr>
-          {% for cell in row %}
-          <td>{{ cell }}</td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+  {% if ai_insights %}
+<div class="card card-full">
+    <h2>AI Document Analysis</h2>
+    <div class="extracted-text" style="max-height:none">{{ ai_insights }}</div>
+</div>
+{% endif %}
 
   <!-- ROW 5: Processing audit trail -->
   <div class="card card-full">
