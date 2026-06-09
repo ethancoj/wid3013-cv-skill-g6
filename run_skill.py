@@ -54,7 +54,7 @@ Write each header on its own line prefixed with "##".
 Describe the physical format (bound book, loose letter, ledger, map, etc.), the likely substrate and medium (paper type, ink), and the apparent condition based on OCR quality. 1-2 sentences.
 
 ## PROVENANCE
-State the estimated time period, geographic origin, author or creator (if identifiable), and the document genre (administrative, personal, legal, financial, religious, correspondence). 1-2 sentences.
+State the estimated time period, geographic origin, author or creator (if identifiable), and the document genre (administrative, personal, legal, financial, religious, correspondence). Format this section as a strict bulleted list using dashes (-). Do not write paragraphs.
 
 ## ANTHROPOLOGICAL MATRIX
 Assess the author's positionality (outsider, insider, elite, marginalized), the intended audience (private, state, public, peers), and any dominant power dynamics visible in the text (colonialism, capitalism, religion, bureaucracy). Note any notable "silences" -- whose voices are absent. 2-4 sentences.
