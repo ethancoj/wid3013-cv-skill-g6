@@ -114,7 +114,7 @@ def main():
 
     # --- Load CV processing script (Script 3 is the final chosen script) ---
     try:
-        import cv_processing_3 as cv
+        from src.cv_processing_4 import process_document
     except ImportError:
         print("❌ Error: cv_processing_3.py not found in src/")
         print("Make sure your teammate has pushed their CV script.")
