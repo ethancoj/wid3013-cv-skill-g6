@@ -4,6 +4,16 @@
 **Channel:** Telegram  
 
 ---
+name: document-restoration
+trigger:
+  - image uploaded
+  - restore this document
+  - process this document
+  - extract text from this
+run: python run_skill.py {image_path} {category}
+---
+
+---
 
 ## 1. Role
 
