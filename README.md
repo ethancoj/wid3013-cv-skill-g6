@@ -100,7 +100,6 @@ Get your free API key from [aistudio.google.com](https://aistudio.google.com) â€
 
 ```bash
 npm install -g openclaw
-openclaw plugins install @ytlailabs/ilmu-openclaw-plugin
 openclaw onboard
 ```
 
