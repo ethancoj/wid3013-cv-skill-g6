@@ -238,18 +238,6 @@ The skill works best with:
 
 ---
 
-## Team
-
-| Member | Role |
-|--------|------|
-| Member 1 | Project Lead |
-| Member 2 | CV Processing Lead |
-| Member 3 | Design & Documentation |
-| Member 4 (Ethan) | Tool & Integration Developer |
-| Member 5 | Presentation Lead |
-
----
-
 ## License
 
 This project was developed as part of the WID3013 course at Universiti Malaya. For academic use only.
