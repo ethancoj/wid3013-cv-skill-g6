@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "doc_id": "58e2ca21-fde2-4d56-ae28-a67bb245d75d",
+    "timestamp": "2026-06-10T07:09:06.006227Z",
+    "filename": "old_faded.jpg",
+    "health_score": 75,
+    "width": 1926,
+    "height": 3001,
+    "processing_time_seconds": 4.02,
+    "status": "success"
+  },
+  "images": {
+    "before_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_before.png",
+    "after_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_after.png",
+    "annotated_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_annotated.png",
+    "layout_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_layout.png"
+  },
+  "content": {
+    "extracted_text": "=\nWORKS PUBLISHE)) BY J, WOOD, 180 GEORGE ST., EDINBURGH. |\nMISS CATHERINE WORKS. be\n. ot . Moth:\nHousr Gd. 2s. Od. AND THE se\n.. \u00ab 2 0 1.6 | or\n. 2 0. 1 6\nAccoMPLISHMENTS Ion or Sm Joun - a .\nMoprns oe ot ge . ee\n6. | 01\nJang of. OF THE . : .\n4ND THE - BULB\u2019.\n> . te 4 -\n. HOLIDAY HOUSE. |\n\u20186 Wo have on more than one former occasion expressed our opinion of this\n-commendatory as it srould be possible .o employ, and, what ly more atid better, the public have\ntheirs in that troly practical manner which both authors and publishers\nafter all, to be the \u2018an extensive and continuous gale of the work. Ferr books of . .\nthe kind hava in modem timcs been more successful, than Holiday Howse, and fer, shall wo wre\nnone ?\u2014havo better deeerved it.\u201d Oar duty, therefore, on th's occasion, ts as easy as itis plea- : f a\nsant. It almply to announce the appearance of a new edition, pictorially and\nbesntifully dono up. _A moro acceptable present for the menibers of the eemmunity fk pe\na conld not be to them,\"\u2014London Horning Advertiser. .\noo VIEWS OF EDINBURGH AND SCOTTISH -LAKES, are \\ aa\na OF EDINBUECE PROM THE CALTON HL tt\nVIEW OF EDINBURGH FROM THE CASTLE. -\nOF THE OLD TOWN OF EDINBURGH FROM PRINCES STREET, aN\nPANORAMIC VIEW OF EDINBURGH FROM: CRAIGLECTH QUABRY - 0d.\na OF LOCH KATRINE AND,BENVENUB >\nOF LOCH ACHRY AND BEN WAN Te tes\nAll there Views being taken directly from Photographs, are not\n. |. pate, but highly artistic, and form pleasing Souvenirs of perhaps the most City sad\n. we wu rh >\nre! BH. THE LATE PRINCE CONSORT, . From the\nPhotograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy\nstp |. PUBLISHED OR SOLD /BY.JAMES WOOD. \\\n7 a \u201c2 . \u2019\n| MANUAL OF \u2018CHEMISTRY, Sixth Edition, |\nHELIOCHROMY; or, py Foolscap 8v0, with and \u2018ame\nCover. Compiled by (of Ross od.\n|p little Hellochromy contains a large amount \u2018of all\naud cannot fall to sdvance the Photographic art in that especial wei WE\n\u201c . : -\nBORNE AND GUIDE TO PHOTOGRAPHY. Price 1s. Soe Pe\nLIVERPOOL PHOTOGRAPHTO JOURNAL, on Ist and Price 4; by Post,\nLONDON JOURNAL, Monthly. Price 5d; by Post,\nPHOTOGRAPIUC NOTES, 1st and 15th. Price by\nTHE PHOTOGRAPHIC NEWS, Price by Post, 4d.\n\u2018THE PHOTOGRAPHIC TIMES, Prlcold. re\n4140, VARIOUS OTHER WORKE ON . 4\nkeeps in stock the and finest collection of Photographs in Scotland; \u2018 |\nSides by\n_ DEFOT FOR GUIDE-BOOKS, MAPS. PLANS; SCOTTISH VIEWS, vA\n150, GEORGE STREET, EDINBURGH.",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 49,
+      "high_confidence_pct": 29,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 29
+        },
+        {
+          "label": "Medium",
+          "value": 17
+        },
+        {
+          "label": "Low",
+          "value": 54
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Greyscale Conversion",
+        "description": "Converted BGR input to single-channel greyscale. Colour is irrelevant for ink-on-paper OCR and removing it reduces processing cost by 3\u00d7."
+      },
+      {
+        "name": "Resolution Validation",
+        "description": "Resolution OK (1926\u00d73001 px)."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Applied edge-aware bilateral filter (d=9, \u03c3Color=75, \u03c3Space=75). Suppresses paper grain and scanner noise while preserving the sharp ink-stroke boundaries that OCR depends on."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Applied Contrast Limited Adaptive Histogram Equalization (clipLimit=2.0, tile=8\u00d78) to recover faded ink strokes and compensate for lighting gradients across the document surface."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Converted to binary using local Gaussian-weighted thresholding (blockSize=15, C=10). Each pixel is compared to its 15\u00d715 local neighbourhood average, isolating ink strokes from yellow staining and uneven lighting that would defeat global thresholding."
+      },
+      {
+        "name": "OCR \u2014 Tesseract LSTM (PSM 6, OEM 3)",
+        "description": "Recognised text at 49% mean confidence. 29% of tokens high-confidence (\u226580%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise."
+      },
+      {
+        "name": "Metadata Extraction",
+        "description": "Regex entity extraction found 0 date(s), 3 person(s), 1 place(s). Document type: unrecognised."
+      },
+      {
+        "name": "Annotated Image",
+        "description": "Drew per-word bounding boxes colour-coded green/yellow/red by OCR confidence tier (\u226580 / 50-79 / <50)."
+      },
+      {
+        "name": "Layout Map",
+        "description": "Morphological dilation (kernel 15\u00d75, 2 iterations) merged characters into paragraph blobs; contours mark layout regions."
+      },
+      {
+        "name": "Table Detection",
+        "description": "Morphological line extraction + numeric-alignment heuristic. Found 1 table(s). Note: borderless tables require deep-learning models (future work)."
+      }
+    ]
+  },
+  "_extras": {
+    "extracted_entities": {
+      "dates": [],
+      "persons": [
+        "Holiday Howse",
+        "London Horning",
+        "Sixth Edition"
+      ],
+      "places": [
+        "Scotland"
+      ],
+      "doc_type": null,
+      "numeric_facts": [
+        ".. \u00ab 2 0 1.6 | or",
+        ". 2 0. 1 6",
+        "6. | 01",
+        "Photograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy",
+        "7 a \u201c2 . \u2019",
+        "4140, VARIOUS OTHER WORKE ON . 4"
+      ]
+    },
+    "resolution_acceptable": true
+  },
+  "ai_analysis": {
+    "artifact_profile": "<div class=\"field-heading\">Physical Format</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Bound Book</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Loose Letter / Folio</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Ledger / Log</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Map / Diagram</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Publisher's advertisement/catalog page]</label>\n<div class=\"field-row\"><span class=\"field-key\">Materiality:</span> <span class=\"field-val\">Printed paper</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Condition:</span> <span class=\"field-val\">Poor OCR legibility; text is fragmented and contains numerous typographical errors, suggesting a low-quality scan or a worn original document.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Legibility Score (1-5):</span> <span class=\"field-val\">2</span></div>",
+    "provenance": "<div class=\"field-row\"><span class=\"field-key\">Temporal Origin:</span> <span class=\"field-val\">Mid-to-late 19th Century (indicated by the reference to \"The Late Prince Consort\")</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Geographic Origin:</span> <span class=\"field-val\">Edinburgh, Scotland</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Author:</span> <span class=\"field-val\">James Wood</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Role:</span> <span class=\"field-val\">Publisher</span></div>\n<div class=\"field-heading\">Document Genre</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Administrative</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Personal Diary</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Legal</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Financial / Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Religious</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Correspondence</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Publisher's Catalog]</label>",
+    "anthropological_matrix": "<div class=\"field-heading\">Positionality</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Complete Outsider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Assimilated Outsider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Elite Insider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Marginalized Insider</label>\n<div class=\"field-heading\">Intended Audience</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Self (Private)</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Superiors / The State</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Public / Published</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Peers / Colleagues</label>\n<div class=\"field-row\"><span class=\"field-key\">Dominant Power Dynamic:</span> <span class=\"field-val\">Commercial/Capitalist (the promotion and sale of intellectual and artistic goods)</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Notable Silences:</span> <span class=\"field-val\">The laborers/photographers (except Rejlander), the subjects of the landscape views, and the working-class population of Edinburgh.</span></div>",
+    "taxonomy": "<div class=\"field-row\"><span class=\"field-key\">Locations:</span> <span class=\"field-val\">Edinburgh; Calton Hill; Edinburgh Castle; Princes Street; Craigleith Quarry; Loch Katrine; Loch Achray; Liverpool; London.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Figures:</span> <span class=\"field-val\">James Wood; Rejlander; The Late Prince Consort.</span></div>\n<div class=\"field-heading\">Thematic Tags</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Kinship</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Ritual_Religion</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Economics_Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Warfare_Conflict</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Law_Justice</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Agriculture_Environment</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Medicine_Health (via Manual of Chemistry)</label>\n<div class=\"field-row\"><span class=\"field-key\">Indigenous Lexicon:</span> <span class=\"field-val\">None</span></div>",
+    "validity_bias": "<div class=\"field-heading\">Proximity</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> First-hand witness</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Second-hand account</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Hearsay</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Post-hoc summary</label>\n<div class=\"field-row\"><span class=\"field-key\">Bias Level (1-5):</span> <span class=\"field-val\">4 (Promotional/Commercial bias)</span></div>\n<div class=\"field-heading\">Primary Value</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Understanding Author's Culture</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Understanding Subject's Culture</label>",
+    "executive_summary": "<div class=\"field-row\"><span class=\"field-key\">Elevator Pitch:</span> <span class=\"field-val\">This document is a publisher's advertisement catalog from James Wood in Edinburgh, listing various available works including landscape photography, chemistry manuals, and photographic journals. It serves as a commercial directory for Victorian-era printed and photographic media.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Takeaway:</span> <span class=\"field-val\">The document illustrates the commercial intersection of photography, science, and tourism in 19th-century Scotland.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Next Steps:</span> <span class=\"field-val\">Research the specific publication dates of the \"Manual of Chemistry\" and the works of the photographer Rejlander to establish a precise chronology.</span></div>"
+  }
+}

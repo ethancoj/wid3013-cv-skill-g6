@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Restoration Dashboard - 58e2ca21-fde2-4d56-ae28-a67bb245d75d</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f4f1eb; color: #2c2c2a; }
+
+  .header { background: #2c2c2a; color: #f4f1eb; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .header-left h1 { font-size: 1.2rem; font-weight: 500; }
+  .header-left p { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
+  .health-badge { background: #1D9E75; color: #fff; border-radius: 50%; width: 64px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
+  .health-badge span { font-size: 0.6rem; font-weight: 400; opacity: 0.85; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .card { background: #fff; border-radius: 12px; border: 1px solid #d3d1c7; padding: 1.25rem; }
+  .card-full { grid-column: 1 / -1; }
+  .card h2 { font-size: 0.85rem; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .meta-item { background: #f4f1eb; border-radius: 8px; padding: 0.75rem 1rem; }
+  .meta-item .label { font-size: 0.72rem; color: #888780; margin-bottom: 4px; }
+  .meta-item .value { font-size: 0.95rem; font-weight: 500; color: #2c2c2a; }
+
+  .slider-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f4f1eb; cursor: col-resize; user-select: none; }
+  .slider-before { position: absolute; inset: 0; }
+  .slider-before img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-after { position: absolute; inset: 0; overflow: hidden; }
+  .slider-after img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
+  .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .slider-label { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,0.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
+  .slider-label-left { left: 10px; }
+  .slider-label-right { right: 10px; }
+
+  .doc-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
+  .placeholder-img { width: 100%; aspect-ratio: 4/3; background: #f4f1eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888780; font-size: 0.85rem; border: 1px dashed #d3d1c7; }
+
+  .conf-bar-wrap { margin-bottom: 1rem; }
+  .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
+  .conf-bar-bg { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
+  .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; }
+  .chart-wrap { height: 180px; position: relative; }
+
+  .extracted-text {
+    width: 100%; min-height: 160px; max-height: 240px;
+    background: #f4f1eb; border-radius: 8px; padding: 1rem;
+    font-family: inherit; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a;
+    resize: vertical; border: 1px solid transparent;
+  }
+  .extracted-text:focus { border-color: #2563EB; outline: none; background: #fff; }
+
+  .ocr-row { display: flex; gap: 0.5rem; align-items: flex-start; }
+  .ocr-row textarea { flex: 1; }
+  .action-btn {
+    background: #2563EB; color: #fff; border: none; border-radius: 8px;
+    padding: 0.5rem 1rem; font-family: inherit; font-size: 0.8rem;
+    font-weight: 500; cursor: pointer; white-space: nowrap;
+  }
+  .action-btn:hover { background: #1d4ed8; }
+  .action-btn:disabled { background: #93b4f5; cursor: not-allowed; }
+
+  .archival-input {
+    width: 100%; background: transparent; border: 1px solid transparent;
+    border-radius: 4px; padding: 4px 8px; font-family: inherit;
+    font-size: 0.85rem; color: #2c2c2a; resize: vertical;
+  }
+  .archival-input:focus { border-color: #2563EB; outline: none; background: #fff; }
+
+  .module-content { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.8; color: #2c2c2a; }
+  .module-content .cb { display: block; padding: 2px 0; cursor: default; }
+  .module-content .cb input { margin-right: 6px; vertical-align: middle; }
+  .module-content .field-row { padding: 2px 0; }
+  .module-content .field-key { font-weight: 600; color: #5f5e5a; }
+  .module-content .field-val { color: #2c2c2a; }
+  .module-content .field-heading { font-weight: 600; margin-top: 0.5rem; color: #5f5e5a; }
+  .module-content .field-item { padding: 1px 0 1px 8px; }
+  .module-content .field-text { padding: 2px 0; }
+
+  .summary-box { background: #2c2c2a; color: #f4f1eb; border-radius: 8px; padding: 1.25rem; font-size: 0.9rem; line-height: 1.6; }
+
+  .memo-input {
+    width: 100%; min-height: 120px; background: #fff8f0;
+    border: 1px solid #e8dcc8; border-radius: 8px; padding: 1rem;
+    font-family: inherit; font-size: 0.85rem; line-height: 1.7;
+    color: #2c2c2a; resize: vertical;
+  }
+  .memo-input:focus { border-color: #2563EB; outline: none; }
+
+  .section-divider { grid-column: 1 / -1; border-top: 1px solid #d3d1c7; padding-top: 1rem; text-align: center; }
+  .section-divider h2 { font-size: 1rem; font-weight: 600; color: #2c2c2a; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; }
+
+  @media (max-width: 640px) {
+    .container { grid-template-columns: 1fr; }
+    .card-full, .section-divider { grid-column: 1; }
+    .meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>old_faded.jpg</h1>
+    <p>ID: 58e2ca21-fde2-4d56-ae28-a67bb245d75d &nbsp;&middot;&nbsp; Processed: 2026-06-10T07:09:06.006227Z</p>
+  </div>
+  <div class="health-badge">
+    75<span>health</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Before/After slider -->
+  <div class="card">
+    <h2>Before / After</h2>
+    
+    <div class="slider-wrap" id="slider">
+      <div class="slider-before">
+        <img src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_before.png" alt="Before restoration">
+        <span class="slider-label slider-label-left">Before</span>
+      </div>
+      <div class="slider-after" id="sliderAfter" style="width:50%">
+        <img src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_after.png" alt="After restoration" style="min-width:100%">
+        <span class="slider-label slider-label-right">After</span>
+      </div>
+      <div class="slider-line" id="sliderLine" style="left:50%">
+        <div class="slider-handle">&#8596;</div>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Metadata (simplified) -->
+  <div class="card">
+    <h2>Document metadata</h2>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="label">Filename</div><div class="value">old_faded.jpg</div></div>
+      <div class="meta-item"><div class="label">Document ID</div><div class="value">58e2ca21-fde2-4d56-ae28-a67bb245d75d</div></div>
+      <div class="meta-item"><div class="label">Health score</div><div class="value">75 / 100</div></div>
+    </div>
+  </div>
+
+  <!-- Annotated Image -->
+  <div class="card">
+    <h2>Annotated Image</h2>
+    
+    <img class="doc-img" src="C:\Users\User\Desktop\wid3013-cv-skill-g6\samples\output\old_faded_annotated.png" alt="Annotated document">
+    
+  </div>
+
+  <!-- Archival Lineage -->
+  <div class="card">
+    <h2>Archival Lineage</h2>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">Collection Name</div>
+        <input type="text" id="archiveCollection" class="archival-input" placeholder="e.g. The Scottish Print Archive">
+      </div>
+      <div class="meta-item">
+        <div class="label">Box &amp; Folder Number</div>
+        <input type="text" id="archiveBox" class="archival-input" placeholder="e.g. Box 14, Folder 3A">
+      </div>
+      <div class="meta-item" style="grid-column: 1 / -1;">
+        <div class="label">Cross-References / Related Documents</div>
+        <textarea id="archiveCrossRef" class="archival-input" placeholder="e.g. See also Wood catalog 1889 (Doc ID: abc-123)"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editable OCR Text -->
+  <div class="card card-full">
+    <h2>Extracted Text</h2>
+    <div class="ocr-row">
+      <textarea id="ocrText" class="extracted-text" data-original-text="=
+WORKS PUBLISHE)) BY J, WOOD, 180 GEORGE ST., EDINBURGH. |
+MISS CATHERINE WORKS. be
+. ot . Moth:
+Housr Gd. 2s. Od. AND THE se
+.. « 2 0 1.6 | or
+. 2 0. 1 6
+AccoMPLISHMENTS Ion or Sm Joun - a .
+Moprns oe ot ge . ee
+6. | 01
+Jang of. OF THE . : .
+4ND THE - BULB’.
+> . te 4 -
+. HOLIDAY HOUSE. |
+‘6 Wo have on more than one former occasion expressed our opinion of this
+-commendatory as it srould be possible .o employ, and, what ly more atid better, the public have
+theirs in that troly practical manner which both authors and publishers
+after all, to be the ‘an extensive and continuous gale of the work. Ferr books of . .
+the kind hava in modem timcs been more successful, than Holiday Howse, and fer, shall wo wre
+none ?—havo better deeerved it.” Oar duty, therefore, on th's occasion, ts as easy as itis plea- : f a
+sant. It almply to announce the appearance of a new edition, pictorially and
+besntifully dono up. _A moro acceptable present for the menibers of the eemmunity fk pe
+a conld not be to them,"—London Horning Advertiser. .
+oo VIEWS OF EDINBURGH AND SCOTTISH -LAKES, are \ aa
+a OF EDINBUECE PROM THE CALTON HL tt
+VIEW OF EDINBURGH FROM THE CASTLE. -
+OF THE OLD TOWN OF EDINBURGH FROM PRINCES STREET, aN
+PANORAMIC VIEW OF EDINBURGH FROM: CRAIGLECTH QUABRY - 0d.
+a OF LOCH KATRINE AND,BENVENUB >
+OF LOCH ACHRY AND BEN WAN Te tes
+All there Views being taken directly from Photographs, are not
+. |. pate, but highly artistic, and form pleasing Souvenirs of perhaps the most City sad
+. we wu rh >
+re! BH. THE LATE PRINCE CONSORT, . From the
+Photograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy
+stp |. PUBLISHED OR SOLD /BY.JAMES WOOD. \
+7 a “2 . ’
+| MANUAL OF ‘CHEMISTRY, Sixth Edition, |
+HELIOCHROMY; or, py Foolscap 8v0, with and ‘ame
+Cover. Compiled by (of Ross od.
+|p little Hellochromy contains a large amount ‘of all
+aud cannot fall to sdvance the Photographic art in that especial wei WE
+“ . : -
+BORNE AND GUIDE TO PHOTOGRAPHY. Price 1s. Soe Pe
+LIVERPOOL PHOTOGRAPHTO JOURNAL, on Ist and Price 4; by Post,
+LONDON JOURNAL, Monthly. Price 5d; by Post,
+PHOTOGRAPIUC NOTES, 1st and 15th. Price by
+THE PHOTOGRAPHIC NEWS, Price by Post, 4d.
+‘THE PHOTOGRAPHIC TIMES, Prlcold. re
+4140, VARIOUS OTHER WORKE ON . 4
+keeps in stock the and finest collection of Photographs in Scotland; ‘ |
+Sides by
+_ DEFOT FOR GUIDE-BOOKS, MAPS. PLANS; SCOTTISH VIEWS, vA
+150, GEORGE STREET, EDINBURGH.">=
+WORKS PUBLISHE)) BY J, WOOD, 180 GEORGE ST., EDINBURGH. |
+MISS CATHERINE WORKS. be
+. ot . Moth:
+Housr Gd. 2s. Od. AND THE se
+.. « 2 0 1.6 | or
+. 2 0. 1 6
+AccoMPLISHMENTS Ion or Sm Joun - a .
+Moprns oe ot ge . ee
+6. | 01
+Jang of. OF THE . : .
+4ND THE - BULB’.
+> . te 4 -
+. HOLIDAY HOUSE. |
+‘6 Wo have on more than one former occasion expressed our opinion of this
+-commendatory as it srould be possible .o employ, and, what ly more atid better, the public have
+theirs in that troly practical manner which both authors and publishers
+after all, to be the ‘an extensive and continuous gale of the work. Ferr books of . .
+the kind hava in modem timcs been more successful, than Holiday Howse, and fer, shall wo wre
+none ?—havo better deeerved it.” Oar duty, therefore, on th's occasion, ts as easy as itis plea- : f a
+sant. It almply to announce the appearance of a new edition, pictorially and
+besntifully dono up. _A moro acceptable present for the menibers of the eemmunity fk pe
+a conld not be to them,"—London Horning Advertiser. .
+oo VIEWS OF EDINBURGH AND SCOTTISH -LAKES, are \ aa
+a OF EDINBUECE PROM THE CALTON HL tt
+VIEW OF EDINBURGH FROM THE CASTLE. -
+OF THE OLD TOWN OF EDINBURGH FROM PRINCES STREET, aN
+PANORAMIC VIEW OF EDINBURGH FROM: CRAIGLECTH QUABRY - 0d.
+a OF LOCH KATRINE AND,BENVENUB >
+OF LOCH ACHRY AND BEN WAN Te tes
+All there Views being taken directly from Photographs, are not
+. |. pate, but highly artistic, and form pleasing Souvenirs of perhaps the most City sad
+. we wu rh >
+re! BH. THE LATE PRINCE CONSORT, . From the
+Photograph by ReJLANDER. Proofs, Prints, 103. d. 4 sy
+stp |. PUBLISHED OR SOLD /BY.JAMES WOOD. \
+7 a “2 . ’
+| MANUAL OF ‘CHEMISTRY, Sixth Edition, |
+HELIOCHROMY; or, py Foolscap 8v0, with and ‘ame
+Cover. Compiled by (of Ross od.
+|p little Hellochromy contains a large amount ‘of all
+aud cannot fall to sdvance the Photographic art in that especial wei WE
+“ . : -
+BORNE AND GUIDE TO PHOTOGRAPHY. Price 1s. Soe Pe
+LIVERPOOL PHOTOGRAPHTO JOURNAL, on Ist and Price 4; by Post,
+LONDON JOURNAL, Monthly. Price 5d; by Post,
+PHOTOGRAPIUC NOTES, 1st and 15th. Price by
+THE PHOTOGRAPHIC NEWS, Price by Post, 4d.
+‘THE PHOTOGRAPHIC TIMES, Prlcold. re
+4140, VARIOUS OTHER WORKE ON . 4
+keeps in stock the and finest collection of Photographs in Scotland; ‘ |
+Sides by
+_ DEFOT FOR GUIDE-BOOKS, MAPS. PLANS; SCOTTISH VIEWS, vA
+150, GEORGE STREET, EDINBURGH.</textarea>
+    </div>
+  </div>
+
+  <!-- Confidence -->
+  <div class="card">
+    <h2>Confidence analysis</h2>
+    <div class="conf-bar-wrap">
+      <div class="conf-label"><span>Overall confidence</span><span>49%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="width: 49%"></div></div>
+    </div>
+    <div class="conf-bar-wrap">
+      <div class="conf-label"><span>High confidence text</span><span>29%</span></div>
+      <div class="conf-bar-bg"><div class="conf-bar-fill" style="width: 29%"></div></div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="confChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Executive Summary -->
+  
+  <div class="card" id="section-summary">
+    <h2>Executive Summary</h2>
+    <div class="summary-box"><div class="field-row"><span class="field-key">Elevator Pitch:</span> <span class="field-val">This document is a publisher's advertisement catalog from James Wood in Edinburgh, listing various available works including landscape photography, chemistry manuals, and photographic journals. It serves as a commercial directory for Victorian-era printed and photographic media.</span></div>
+<div class="field-row"><span class="field-key">Key Takeaway:</span> <span class="field-val">The document illustrates the commercial intersection of photography, science, and tourism in 19th-century Scotland.</span></div>
+<div class="field-row"><span class="field-key">Next Steps:</span> <span class="field-val">Research the specific publication dates of the "Manual of Chemistry" and the works of the photographer Rejlander to establish a precise chronology.</span></div></div>
+  </div>
+  
+
+  <!-- Anthropological Analysis -->
+  
+  <div class="section-divider" id="analysisDivider"><h2>Anthropological Analysis</h2></div>
+
+  
+  <div class="card" id="section-artifact">
+    <h2>Artifact Profile</h2>
+    <div class="module-content"><div class="field-heading">Physical Format</div>
+<label class="cb"><input type="checkbox" disabled> Bound Book</label>
+<label class="cb"><input type="checkbox" disabled> Loose Letter / Folio</label>
+<label class="cb"><input type="checkbox" disabled> Ledger / Log</label>
+<label class="cb"><input type="checkbox" disabled> Map / Diagram</label>
+<label class="cb"><input type="checkbox" checked disabled> Other: [Publisher's advertisement/catalog page]</label>
+<div class="field-row"><span class="field-key">Materiality:</span> <span class="field-val">Printed paper</span></div>
+<div class="field-row"><span class="field-key">Condition:</span> <span class="field-val">Poor OCR legibility; text is fragmented and contains numerous typographical errors, suggesting a low-quality scan or a worn original document.</span></div>
+<div class="field-row"><span class="field-key">Legibility Score (1-5):</span> <span class="field-val">2</span></div></div>
+  </div>
+  
+
+  
+  <div class="card" id="section-provenance">
+    <h2>Provenance &amp; Context</h2>
+    <div class="module-content"><div class="field-row"><span class="field-key">Temporal Origin:</span> <span class="field-val">Mid-to-late 19th Century (indicated by the reference to "The Late Prince Consort")</span></div>
+<div class="field-row"><span class="field-key">Geographic Origin:</span> <span class="field-val">Edinburgh, Scotland</span></div>
+<div class="field-row"><span class="field-key">Author:</span> <span class="field-val">James Wood</span></div>
+<div class="field-row"><span class="field-key">Role:</span> <span class="field-val">Publisher</span></div>
+<div class="field-heading">Document Genre</div>
+<label class="cb"><input type="checkbox" disabled> Administrative</label>
+<label class="cb"><input type="checkbox" disabled> Personal Diary</label>
+<label class="cb"><input type="checkbox" disabled> Legal</label>
+<label class="cb"><input type="checkbox" checked disabled> Financial / Trade</label>
+<label class="cb"><input type="checkbox" disabled> Religious</label>
+<label class="cb"><input type="checkbox" disabled> Correspondence</label>
+<label class="cb"><input type="checkbox" checked disabled> Other: [Publisher's Catalog]</label></div>
+  </div>
+  
+
+  
+  <div class="card card-full" id="section-matrix">
+    <h2>Anthropological Matrix</h2>
+    <div class="module-content"><div class="field-heading">Positionality</div>
+<label class="cb"><input type="checkbox" disabled> Complete Outsider</label>
+<label class="cb"><input type="checkbox" disabled> Assimilated Outsider</label>
+<label class="cb"><input type="checkbox" disabled> Elite Insider</label>
+<label class="cb"><input type="checkbox" disabled> Marginalized Insider</label>
+<div class="field-heading">Intended Audience</div>
+<label class="cb"><input type="checkbox" disabled> Self (Private)</label>
+<label class="cb"><input type="checkbox" disabled> Superiors / The State</label>
+<label class="cb"><input type="checkbox" checked disabled> Public / Published</label>
+<label class="cb"><input type="checkbox" disabled> Peers / Colleagues</label>
+<div class="field-row"><span class="field-key">Dominant Power Dynamic:</span> <span class="field-val">Commercial/Capitalist (the promotion and sale of intellectual and artistic goods)</span></div>
+<div class="field-row"><span class="field-key">Notable Silences:</span> <span class="field-val">The laborers/photographers (except Rejlander), the subjects of the landscape views, and the working-class population of Edinburgh.</span></div></div>
+  </div>
+  
+
+  
+  <div class="card" id="section-taxonomy">
+    <h2>Taxonomy &amp; Entities</h2>
+    <div class="module-content"><div class="field-row"><span class="field-key">Locations:</span> <span class="field-val">Edinburgh; Calton Hill; Edinburgh Castle; Princes Street; Craigleith Quarry; Loch Katrine; Loch Achray; Liverpool; London.</span></div>
+<div class="field-row"><span class="field-key">Key Figures:</span> <span class="field-val">James Wood; Rejlander; The Late Prince Consort.</span></div>
+<div class="field-heading">Thematic Tags</div>
+<label class="cb"><input type="checkbox" disabled> #Kinship</label>
+<label class="cb"><input type="checkbox" disabled> #Ritual_Religion</label>
+<label class="cb"><input type="checkbox" checked disabled> #Economics_Trade</label>
+<label class="cb"><input type="checkbox" disabled> #Warfare_Conflict</label>
+<label class="cb"><input type="checkbox" disabled> #Law_Justice</label>
+<label class="cb"><input type="checkbox" disabled> #Agriculture_Environment</label>
+<label class="cb"><input type="checkbox" checked disabled> #Medicine_Health (via Manual of Chemistry)</label>
+<div class="field-row"><span class="field-key">Indigenous Lexicon:</span> <span class="field-val">None</span></div></div>
+  </div>
+  
+
+  
+  <div class="card" id="section-validity">
+    <h2>Validity &amp; Bias</h2>
+    <div class="module-content"><div class="field-heading">Proximity</div>
+<label class="cb"><input type="checkbox" disabled> First-hand witness</label>
+<label class="cb"><input type="checkbox" disabled> Second-hand account</label>
+<label class="cb"><input type="checkbox" disabled> Hearsay</label>
+<label class="cb"><input type="checkbox" checked disabled> Post-hoc summary</label>
+<div class="field-row"><span class="field-key">Bias Level (1-5):</span> <span class="field-val">4 (Promotional/Commercial bias)</span></div>
+<div class="field-heading">Primary Value</div>
+<label class="cb"><input type="checkbox" checked disabled> Understanding Author's Culture</label>
+<label class="cb"><input type="checkbox" disabled> Understanding Subject's Culture</label></div>
+  </div>
+  
+  
+
+  <!-- Researcher's Memo -->
+  <div class="card card-full">
+    <h2>Researcher's Memo</h2>
+    <textarea id="researcherMemo" class="memo-input" placeholder="Record your observations, disagreements with the AI, links to thesis chapters, or gut reactions here..."></textarea>
+  </div>
+
+</div>
+
+<script type="application/json" id="chart-payload">[{"label": "High", "value": 29}, {"label": "Medium", "value": 17}, {"label": "Low", "value": 54}]</script>
+
+<script>
+  var chartData = JSON.parse(document.getElementById('chart-payload').textContent);
+  var ctx = document.getElementById('confChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: chartData.map(function(d) { return d.label; }),
+      datasets: [{
+        data: chartData.map(function(d) { return d.value; }),
+        backgroundColor: ['#1D9E75', '#EF9F27', '#E24B4A'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } }
+      }
+    }
+  });
+
+  // Slider
+  var slider = document.getElementById('slider');
+  if (slider) {
+    var sliderAfter = document.getElementById('sliderAfter');
+    var sliderLine = document.getElementById('sliderLine');
+    var dragging = false;
+    function setSlider(x) {
+      var rect = slider.getBoundingClientRect();
+      var pct = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
+      sliderAfter.style.width = (pct * 100) + '%';
+      sliderLine.style.left = (pct * 100) + '%';
+    }
+    slider.addEventListener('mousedown', function(e) { dragging = true; setSlider(e.clientX); });
+    window.addEventListener('mousemove', function(e) { if (dragging) setSlider(e.clientX); });
+    window.addEventListener('mouseup', function() { dragging = false; });
+    slider.addEventListener('touchstart', function(e) { dragging = true; setSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', function(e) { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', function() { dragging = false; });
+  }
+
+  // localStorage persistence
+  var docId = '58e2ca21-fde2-4d56-ae28-a67bb245d75d';
+
+  // Archival lineage fields
+  ['archiveCollection', 'archiveBox', 'archiveCrossRef'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var saved = localStorage.getItem(docId + '_' + id);
+    if (saved) el.value = saved;
+    el.addEventListener('input', function() {
+      localStorage.setItem(docId + '_' + id, el.value);
+    });
+  });
+
+  // Researcher memo
+  var memoEl = document.getElementById('researcherMemo');
+  if (memoEl) {
+    var savedMemo = localStorage.getItem(docId + '_memo');
+    if (savedMemo) memoEl.value = savedMemo;
+    memoEl.addEventListener('input', function() {
+      localStorage.setItem(docId + '_memo', memoEl.value);
+    });
+  }
+</script>
+</body>
+</html>

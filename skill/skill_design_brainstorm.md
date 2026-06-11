@@ -22,6 +22,8 @@ An output is considered insightful if it provides one of the following:
 | **Dashboard Image** | A composite "Summary Card" containing Title, Date, Preview, and a "Document Health Score." | **Efficiency:** Enables rapid skimming of large document batches. |
 | **Visual Audit Report** | A comprehensive PDF/Canvas report summarizing the entire pipeline from raw file to final data. | **Provenance:** Provides a formal paper trail for historical or legal verification. |
 
+## KEEP IN VIEW 
+
 ## 4. The "Golden Payload" (Technical Strategy)
 To enable these visuals, the CV engine should not just return an image, but a **Metadata Package (JSON)** containing:
 1. **Image Paths:** (Paths to Before, After, Annotated, and Layout versions).

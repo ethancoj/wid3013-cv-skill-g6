@@ -14,10 +14,6 @@
   .header-left p { font-size: 0.8rem; opacity: 0.6; margin-top: 4px; }
   .health-badge { background: #1D9E75; color: #fff; border-radius: 50%; width: 64px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
   .health-badge span { font-size: 0.6rem; font-weight: 400; opacity: 0.85; }
-  .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
-  .status-success { background: #E1F5EE; color: #0F6E56; }
-  .status-failed { background: #FCEBEB; color: #A32D2D; }
-  .status-processing { background: #FAEEDA; color: #854F0B; }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .card { background: #fff; border-radius: 12px; border: 1px solid #d3d1c7; padding: 1.25rem; }
@@ -33,7 +29,7 @@
   .slider-before { position: absolute; inset: 0; }
   .slider-before img { width: 100%; height: 100%; object-fit: cover; }
   .slider-after { position: absolute; inset: 0; overflow: hidden; }
-  .slider-after img { width: 100%; height: 100%; object-fit: cover; }
+  .slider-after img { height: 100%; object-fit: cover; }
   .slider-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; cursor: col-resize; z-index: 10; }
   .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
   .slider-label { position: absolute; bottom: 10px; font-size: 0.7rem; font-weight: 500; background: rgba(0,0,0,0.5); color: #fff; padding: 2px 8px; border-radius: 4px; }
@@ -47,29 +43,60 @@
   .conf-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #5f5e5a; }
   .conf-bar-bg { height: 8px; background: #f4f1eb; border-radius: 4px; overflow: hidden; }
   .conf-bar-fill { height: 8px; background: #1D9E75; border-radius: 4px; }
-
-  .extracted-text { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
   .chart-wrap { height: 180px; position: relative; }
 
-  .section-divider { grid-column: 1 / -1; border-top: 1px solid #d3d1c7; padding-top: 1.5rem; margin-top: 0.5rem; text-align: center; }
-  .section-divider h2 { font-size: 1rem; font-weight: 600; color: #2c2c2a; letter-spacing: 0.08em; text-transform: uppercase; }
+  .extracted-text {
+    width: 100%; min-height: 160px; max-height: 240px;
+    background: #f4f1eb; border-radius: 8px; padding: 1rem;
+    font-family: inherit; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a;
+    resize: vertical; border: 1px solid transparent;
+  }
+  .extracted-text:focus { border-color: #2563EB; outline: none; background: #fff; }
 
-  .module-icon { font-size: 1.1rem; margin-right: 6px; }
-  .module-content { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.7; color: #2c2c2a; white-space: pre-wrap; }
+  .ocr-row { display: flex; gap: 0.5rem; align-items: flex-start; }
+  .ocr-row textarea { flex: 1; }
+  .action-btn {
+    background: #2563EB; color: #fff; border: none; border-radius: 8px;
+    padding: 0.5rem 1rem; font-family: inherit; font-size: 0.8rem;
+    font-weight: 500; cursor: pointer; white-space: nowrap;
+  }
+  .action-btn:hover { background: #1d4ed8; }
+  .action-btn:disabled { background: #93b4f5; cursor: not-allowed; }
 
-  .summary-box { background: #2c2c2a; color: #f4f1eb; border-radius: 8px; padding: 1.25rem; font-size: 0.9rem; line-height: 1.6; font-style: italic; }
+  .archival-input {
+    width: 100%; background: transparent; border: 1px solid transparent;
+    border-radius: 4px; padding: 4px 8px; font-family: inherit;
+    font-size: 0.85rem; color: #2c2c2a; resize: vertical;
+  }
+  .archival-input:focus { border-color: #2563EB; outline: none; background: #fff; }
 
-  .audit-list { list-style: none; }
-  .audit-item { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f4f1eb; }
-  .audit-item:last-child { border-bottom: none; }
-  .audit-dot { width: 10px; height: 10px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 5px; }
-  .audit-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 2px; }
-  .audit-desc { font-size: 0.78rem; color: #5f5e5a; line-height: 1.5; }
+  .module-content { background: #f4f1eb; border-radius: 8px; padding: 1rem; font-size: 0.85rem; line-height: 1.8; color: #2c2c2a; }
+  .module-content .cb { display: block; padding: 2px 0; cursor: default; }
+  .module-content .cb input { margin-right: 6px; vertical-align: middle; }
+  .module-content .field-row { padding: 2px 0; }
+  .module-content .field-key { font-weight: 600; color: #5f5e5a; }
+  .module-content .field-val { color: #2c2c2a; }
+  .module-content .field-heading { font-weight: 600; margin-top: 0.5rem; color: #5f5e5a; }
+  .module-content .field-item { padding: 1px 0 1px 8px; }
+  .module-content .field-text { padding: 2px 0; }
+  .module-content .cb input[type="checkbox"] { accent-color: #1D9E75; width: 16px; height: 16px; }
+
+  .summary-box { background: #2c2c2a; color: #f4f1eb; border-radius: 8px; padding: 1.25rem; font-size: 0.9rem; line-height: 1.6; }
+
+  .memo-input {
+    width: 100%; min-height: 120px; background: #fff8f0;
+    border: 1px solid #e8dcc8; border-radius: 8px; padding: 1rem;
+    font-family: inherit; font-size: 0.85rem; line-height: 1.7;
+    color: #2c2c2a; resize: vertical;
+  }
+  .memo-input:focus { border-color: #2563EB; outline: none; }
+
+  .section-divider { grid-column: 1 / -1; border-top: 1px solid #d3d1c7; padding-top: 1rem; text-align: center; }
+  .section-divider h2 { font-size: 1rem; font-weight: 600; color: #2c2c2a; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; }
 
   @media (max-width: 640px) {
     .container { grid-template-columns: 1fr; }
-    .card-full { grid-column: 1; }
-    .section-divider { grid-column: 1; }
+    .card-full, .section-divider { grid-column: 1; }
     .meta-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -80,9 +107,6 @@
   <div class="header-left">
     <h1>{{ filename }}</h1>
     <p>ID: {{ doc_id }} &nbsp;&middot;&nbsp; Processed: {{ timestamp }}</p>
-    <p style="margin-top:8px">
-      <span class="status-badge status-{{ status }}">{{ status }}</span>
-    </p>
   </div>
   <div class="health-badge">
     {{ health_score }}<span>health</span>
@@ -91,7 +115,7 @@
 
 <div class="container">
 
-  <!-- Before/After slider + Metadata -->
+  <!-- Before/After slider -->
   <div class="card">
     <h2>Before / After</h2>
     {% if img_before and img_after %}
@@ -113,38 +137,54 @@
     {% endif %}
   </div>
 
+  <!-- Metadata (simplified) -->
   <div class="card">
     <h2>Document metadata</h2>
     <div class="meta-grid">
       <div class="meta-item"><div class="label">Filename</div><div class="value">{{ filename }}</div></div>
       <div class="meta-item"><div class="label">Document ID</div><div class="value">{{ doc_id }}</div></div>
-      <div class="meta-item"><div class="label">Dimensions</div><div class="value">{{ width }} x {{ height }}px</div></div>
-      <div class="meta-item"><div class="label">Processing time</div><div class="value">{{ proc_time }}s</div></div>
       <div class="meta-item"><div class="label">Health score</div><div class="value">{{ health_score }} / 100</div></div>
-      <div class="meta-item"><div class="label">Status</div><div class="value">{{ status }}</div></div>
     </div>
   </div>
-
-  <!-- Layout Map + Annotated Image -->
-  <div class="card">
-    <h2>Layout Map</h2>
-    {% if layout_url %}
-    <img class="doc-img" src="{{ layout_url }}" alt="Document layout map">
-    {% else %}
-    <div class="placeholder-img">Layout map not available</div>
-    {% endif %}
-  </div>
-
+    
+  <!-- Annotated Image -->
   <div class="card">
     <h2>Annotated Image</h2>
     {% if annotated_url %}
-    <img class="doc-img" src="{{ annotated_url }}" alt="Annotated document">
+    <img class="doc-img zoomable" src="{{ annotated_url }}" alt="Annotated document" onclick="this.classList.toggle('zoomed')">
     {% else %}
     <div class="placeholder-img">Annotated image not available</div>
     {% endif %}
   </div>
 
-  <!-- Confidence analysis + Extracted text -->
+  <!-- Archival Lineage -->
+  <div class="card">
+    <h2>Archival Lineage</h2>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">Collection Name</div>
+        <input type="text" id="archiveCollection" class="archival-input" placeholder="e.g. The Scottish Print Archive">
+      </div>
+      <div class="meta-item">
+        <div class="label">Box &amp; Folder Number</div>
+        <input type="text" id="archiveBox" class="archival-input" placeholder="e.g. Box 14, Folder 3A">
+      </div>
+      <div class="meta-item" style="grid-column: 1 / -1;">
+        <div class="label">Cross-References / Related Documents</div>
+        <textarea id="archiveCrossRef" class="archival-input" placeholder="e.g. See also Wood catalog 1889 (Doc ID: abc-123)"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editable OCR Text -->
+  <div class="card card-full">
+    <h2>Extracted Text</h2>
+    <div class="ocr-row">
+      <textarea id="ocrText" class="extracted-text" data-original-text="{{ extracted_text }}">{{ extracted_text }}</textarea>
+    </div>
+  </div>
+
+  <!-- Confidence -->
   <div class="card">
     <h2>Confidence analysis</h2>
     <div class="conf-bar-wrap">
@@ -160,72 +200,58 @@
     </div>
   </div>
 
-  <div class="card">
-    <h2>Extracted text</h2>
-    <div class="extracted-text">{{ extracted_text }}</div>
+  <!-- Executive Summary -->
+  {% if ai_analysis and ai_analysis.executive_summary %}
+  <div class="card" id="section-summary">
+    <h2>Executive Summary</h2>
+    <div class="summary-box">{{ ai_analysis.executive_summary | safe }}</div>
   </div>
+  {% endif %}
 
-  <!-- Anthropological Analysis Modules -->
+  <!-- Anthropological Analysis -->
   {% if ai_analysis %}
-  <div class="section-divider"><h2>Anthropological Analysis</h2></div>
+  <div class="section-divider" id="analysisDivider"><h2>Anthropological Analysis</h2></div>
 
   {% if ai_analysis.artifact_profile %}
-  <div class="card">
-    <h2><span class="module-icon">&#127963;</span> Artifact Profile</h2>
-    <div class="module-content">{{ ai_analysis.artifact_profile }}</div>
+  <div class="card" id="section-artifact">
+    <h2>Artifact Profile</h2>
+    <div class="module-content">{{ ai_analysis.artifact_profile | safe }}</div>
   </div>
   {% endif %}
 
   {% if ai_analysis.provenance %}
-  <div class="card">
-    <h2><span class="module-icon">&#128205;</span> Provenance &amp; Context</h2>
-    <div class="module-content">{{ ai_analysis.provenance }}</div>
+  <div class="card" id="section-provenance">
+    <h2>Provenance &amp; Context</h2>
+    <div class="module-content">{{ ai_analysis.provenance | safe }}</div>
   </div>
   {% endif %}
 
   {% if ai_analysis.anthropological_matrix %}
-  <div class="card card-full">
-    <h2><span class="module-icon">&#129504;</span> Anthropological Matrix</h2>
-    <div class="module-content">{{ ai_analysis.anthropological_matrix }}</div>
+  <div class="card card-full" id="section-matrix">
+    <h2>Anthropological Matrix</h2>
+    <div class="module-content">{{ ai_analysis.anthropological_matrix | safe }}</div>
   </div>
   {% endif %}
 
   {% if ai_analysis.taxonomy %}
-  <div class="card">
-    <h2><span class="module-icon">&#127991;</span> Taxonomy &amp; Entities</h2>
-    <div class="module-content">{{ ai_analysis.taxonomy }}</div>
+  <div class="card" id="section-taxonomy">
+    <h2>Taxonomy &amp; Entities</h2>
+    <div class="module-content">{{ ai_analysis.taxonomy | safe }}</div>
   </div>
   {% endif %}
 
   {% if ai_analysis.validity_bias %}
-  <div class="card">
-    <h2><span class="module-icon">&#9878;</span> Validity &amp; Bias</h2>
-    <div class="module-content">{{ ai_analysis.validity_bias }}</div>
-  </div>
-  {% endif %}
-
-  {% if ai_analysis.executive_summary %}
-  <div class="card card-full">
-    <h2><span class="module-icon">&#128221;</span> Executive Summary</h2>
-    <div class="summary-box">{{ ai_analysis.executive_summary }}</div>
+  <div class="card" id="section-validity">
+    <h2>Validity &amp; Bias</h2>
+    <div class="module-content">{{ ai_analysis.validity_bias | safe }}</div>
   </div>
   {% endif %}
   {% endif %}
 
-  <!-- Processing audit trail -->
+  <!-- Researcher's Memo -->
   <div class="card card-full">
-    <h2>Processing audit trail</h2>
-    <ul class="audit-list">
-      {% for step in audit_steps %}
-      <li class="audit-item">
-        <div class="audit-dot"></div>
-        <div>
-          <div class="audit-name">{{ step.name }}</div>
-          <div class="audit-desc">{{ step.description }}</div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
+    <h2>Researcher's Memo</h2>
+    <textarea id="researcherMemo" class="memo-input" placeholder="Record your observations, disagreements with the AI, links to thesis chapters, or gut reactions here..."></textarea>
   </div>
 
 </div>
@@ -254,25 +280,54 @@
     }
   });
 
+  // Slider
   var slider = document.getElementById('slider');
   if (slider) {
     var sliderAfter = document.getElementById('sliderAfter');
     var sliderLine = document.getElementById('sliderLine');
     var dragging = false;
-
     function setSlider(x) {
       var rect = slider.getBoundingClientRect();
       var pct = Math.min(Math.max((x - rect.left) / rect.width, 0), 1);
       sliderAfter.style.width = (pct * 100) + '%';
       sliderLine.style.left = (pct * 100) + '%';
+      var afterImg = sliderAfter.querySelector('img');
+      if (afterImg) afterImg.style.width = rect.width + 'px';
     }
-
+    // Init after image width on load
+    var initRect = slider.getBoundingClientRect();
+    var initImg = sliderAfter.querySelector('img');
+    if (initImg) initImg.style.width = initRect.width + 'px';
     slider.addEventListener('mousedown', function(e) { dragging = true; setSlider(e.clientX); });
     window.addEventListener('mousemove', function(e) { if (dragging) setSlider(e.clientX); });
     window.addEventListener('mouseup', function() { dragging = false; });
     slider.addEventListener('touchstart', function(e) { dragging = true; setSlider(e.touches[0].clientX); }, { passive: true });
     window.addEventListener('touchmove', function(e) { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
     window.addEventListener('touchend', function() { dragging = false; });
+  }
+
+  // localStorage persistence
+  var docId = '{{ doc_id }}';
+
+  // Archival lineage fields
+  ['archiveCollection', 'archiveBox', 'archiveCrossRef'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var saved = localStorage.getItem(docId + '_' + id);
+    if (saved) el.value = saved;
+    el.addEventListener('input', function() {
+      localStorage.setItem(docId + '_' + id, el.value);
+    });
+  });
+
+  // Researcher memo
+  var memoEl = document.getElementById('researcherMemo');
+  if (memoEl) {
+    var savedMemo = localStorage.getItem(docId + '_memo');
+    if (savedMemo) memoEl.value = savedMemo;
+    memoEl.addEventListener('input', function() {
+      localStorage.setItem(docId + '_memo', memoEl.value);
+    });
   }
 </script>
 </body>
