@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 import sys
+from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 import google.generativeai as genai
 
@@ -218,7 +219,7 @@ def format_telegram_response(payload, category):
         text_preview += "..."
     
     audit_steps = payload["insights"]["audit_trail"]
-    steps_text = "\n".join([f"  \u2022 {s['name']}" for s in audit_steps])
+    steps_text = "\n".join([f"  * {s['name']}" for s in audit_steps])
     
     vault_dir = os.path.join("workspace", "document_vault", category.replace(" ", "_"))
     doc_id = payload["metadata"]["doc_id"]
@@ -230,40 +231,40 @@ def format_telegram_response(payload, category):
     def strip_html(text):
         return re.sub(r'<[^>]+>', '', text).strip() if text else "Not available"
     
-    response = f"""\u2705 Document processed successfully
+    response = f"""[SUCCESS] Document processed successfully
 
-\U0001f4c4 File: {payload["metadata"]["filename"]}
-\U0001f3e5 Health Score: {payload["metadata"]["health_score"]}/100
-\U0001f50d Confidence: {payload["insights"]["confidence"]["overall_pct"]}%
+[INFO] File: {payload["metadata"]["filename"]}
+[INFO] Health Score: {payload["metadata"]["health_score"]}/100
+[INFO] Confidence: {payload["insights"]["confidence"]["overall_pct"]}%
 
-\U0001f4dd Extracted Text Preview:
+[INFO] Extracted Text Preview:
 {text_preview}
 
-\U0001f9e0 ANTHROPOLOGICAL ANALYSIS
+[INFO] ANTHROPOLOGICAL ANALYSIS
 
-\U0001f3db Artifact Profile:
+[INFO] Artifact Profile:
 {strip_html(ai.get("artifact_profile", ""))}
 
-\U0001f4cd Provenance:
+[INFO] Provenance:
 {strip_html(ai.get("provenance", ""))}
 
-\U0001f9e0 Anthropological Matrix:
+[INFO] Anthropological Matrix:
 {strip_html(ai.get("anthropological_matrix", ""))}
 
-\U0001f3f7 Taxonomy:
+[INFO] Taxonomy:
 {strip_html(ai.get("taxonomy", ""))}
 
-\u2696 Validity & Bias:
+[INFO] Validity & Bias:
 {strip_html(ai.get("validity_bias", ""))}
 
-\U0001f4dd Executive Summary:
+[INFO] Executive Summary:
 {strip_html(ai.get("executive_summary", ""))}
 
-\U0001f527 Processing steps:
+[INFO] Processing steps:
 {steps_text}
 
-\U0001f4c1 Saved under: {category}
-\U0001f4be {vault_dir}/{doc_id}_payload.json""".strip()
+[INFO] Saved under: {category}
+[INFO] {vault_dir}/{doc_id}_payload.json""".strip()
     return response
 
 
@@ -280,7 +281,7 @@ def main():
         sys.exit(1)
 
     try:
-        from src.cv_processing import process_document
+        from cv_processing import process_any as process_document
     except ImportError:
         print("Error: cv_processing.py not found in src/")
         sys.exit(1)
@@ -292,10 +293,37 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     payload = process_document(image_path, OUTPUT_DIR)
 
+    # Wrap the CV payload into the expected OpenClaw schema
+    wrapped_payload = {
+        "metadata": {
+            "doc_id": payload["filename"],
+            "timestamp": datetime.now().isoformat(),
+            "filename": payload["filename"],
+            "health_score": payload["image_metrics"]["health_score"]
+        },
+        "content": {
+            "extracted_text": payload["ocr"]["raw_text"],
+            "tables": []
+        },
+        "insights": {
+            "confidence": {
+                "overall_pct": payload["ocr"]["overall_confidence_pct"],
+                "high_confidence_pct": payload["ocr"]["high_confidence_pct"],
+                "distribution_chart_data": payload["ocr"]["distribution"]
+            },
+            "audit_trail": payload["audit_trail"]
+        },
+        "images": {
+            "before_url": payload["images"]["before_path"],
+            "after_url": payload["images"]["after_path"],
+            "annotated_url": payload["images"]["annotated_path"]
+        },
+        "ai_analysis": {}
+    }
+
     log("Generating anthropological analysis...")
-    ai_analysis = extract_anthropological_analysis(payload["content"]["extracted_text"])
-    payload["ai_analysis"] = ai_analysis
-    payload["content"]["tables"] = []
+    ai_analysis = extract_anthropological_analysis(wrapped_payload["content"]["extracted_text"])
+    wrapped_payload["ai_analysis"] = ai_analysis
 
     if ai_analysis:
         log(f"AI analysis complete - {len(ai_analysis)} modules populated")
@@ -304,20 +332,20 @@ def main():
 
     json_path = os.path.join(OUTPUT_DIR, "payload.json")
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
+        json.dump(wrapped_payload, f, indent=2)
 
-    render_dashboard(payload)
+    render_dashboard(wrapped_payload)
 
     # Auto-open dashboard in browser
     webbrowser.open(OUTPUT_HTML)
 
     vault_dir = os.path.join(BASE_DIR, "workspace", "document_vault", category.replace(" ", "_"))
     os.makedirs(vault_dir, exist_ok=True)
-    vault_json = os.path.join(vault_dir, f"{payload['metadata']['doc_id']}_payload.json")
+    vault_json = os.path.join(vault_dir, f"{wrapped_payload['metadata']['doc_id']}_payload.json")
     with open(vault_json, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
+        json.dump(wrapped_payload, f, indent=2)
 
-    response = format_telegram_response(payload, category)
+    response = format_telegram_response(wrapped_payload, category)
     print(response)
 
 

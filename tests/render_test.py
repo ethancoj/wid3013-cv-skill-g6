@@ -11,6 +11,8 @@ Examples:
 import json
 import os
 import sys
+import base64
+from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +21,6 @@ OUTPUT_PATH = os.path.join(BASE_DIR, "tests", "test_output.html")
 SRC_DIR = os.path.join(BASE_DIR, "src")
 sys.path.insert(0, SRC_DIR)
 
-import base64
 
 def img_to_data_uri(path):
     if not path or not os.path.exists(path):
@@ -70,7 +71,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     try:
-        from cv_processing import process_document
+        from cv_processing import process_any as process_document
     except ImportError:
         print("Error: cv_processing.py not found in src/")
         sys.exit(1)
@@ -79,7 +80,34 @@ if __name__ == "__main__":
     os.makedirs(output_dir, exist_ok=True)
 
     print(f"Processing: {image_path}")
-    payload = process_document(image_path, output_dir)
+    raw = process_document(image_path, output_dir)
+
+    payload = {
+        "metadata": {
+            "doc_id": raw["filename"],
+            "timestamp": datetime.now().isoformat(),
+            "filename": raw["filename"],
+            "health_score": raw["image_metrics"]["health_score"]
+        },
+        "content": {
+            "extracted_text": raw["ocr"]["raw_text"],
+            "tables": []
+        },
+        "insights": {
+            "confidence": {
+                "overall_pct": raw["ocr"]["overall_confidence_pct"],
+                "high_confidence_pct": raw["ocr"]["high_confidence_pct"],
+                "distribution_chart_data": raw["ocr"]["distribution"]
+            },
+            "audit_trail": raw["audit_trail"]
+        },
+        "images": {
+            "before_url": raw["images"]["before_path"],
+            "after_url": raw["images"]["after_path"],
+            "annotated_url": raw["images"]["annotated_path"]
+        },
+        "ai_analysis": {}
+    }
 
     # Save payload JSON
     json_path = os.path.join(output_dir, "payload.json")

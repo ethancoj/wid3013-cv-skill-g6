@@ -1,114 +1,83 @@
 {
   "metadata": {
-    "doc_id": "24888a93-d797-4dc4-972e-496bfba6380e",
-    "timestamp": "2026-06-11T09:49:54.139441Z",
-    "filename": "old_newspaper---78cb1ce4-3c6a-4ef8-975e-e9f8e2f92a27.jpg",
-    "health_score": 39,
-    "width": 2000,
-    "height": 984,
-    "processing_time_seconds": 2.51,
-    "status": "low_res_recovered_via_bicubic_4x"
-  },
-  "images": {
-    "before_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_newspaper---78cb1ce4-3c6a-4ef8-975e-e9f8e2f92a27_before.png",
-    "after_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_newspaper---78cb1ce4-3c6a-4ef8-975e-e9f8e2f92a27_after.png",
-    "annotated_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_newspaper---78cb1ce4-3c6a-4ef8-975e-e9f8e2f92a27_annotated.png",
-    "layout_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_newspaper---78cb1ce4-3c6a-4ef8-975e-e9f8e2f92a27_layout.png"
+    "doc_id": "unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3.jpg",
+    "timestamp": "2026-06-13T17:01:04.840738",
+    "filename": "unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3.jpg",
+    "health_score": 34
   },
   "content": {
-    "extracted_text": "i . \u2018Old \u201cPk se\n* Old \u201cp TU) eae\nad. t: \u201cja wt: | \u00a2 Teca\n. 4\n724 gen -[4- \u00b0 . .\ngs -_ 5 ae Pan\nCHANGE FROM. shook: the\nJ\n| ok ATRIA (SO who fo Oster) Orr nf Coren bee We\nfeb clethe ws cree Sie\ntay 3 ( LY.\nenh Loe ory .\nCOON Fl ow Bristol. i\nry LA eet . \u00a2 \u00a2\nMeer Pony FR \u2018 Ral . and Me} te\nSI tog\nhe a\nOra ATTRACTIONS CITY: try be\nSEA VIALS: thee wat hace\nAnes mine tre end the aver the Conk | ef\nTO-DAY ee wie tne\n21 za Le ahead aor Tears\nLor Walkers Only der] to uo ane Now\n} Me te 16): {Toe\n| Sea Wana olen & grate te an\nlo be | ST was ay teh\na Ue Jom wth oon aol NA? os Ute le Cnr\nan | Men Weated\nOh dea te coh SV dd Matte ha oe\nMa\n. | a | ac ated lhe",
+    "extracted_text": "\u00ab fo a\n: zz State of | LICENSE NUMBER\nNERY NESS AY\n#5 NERVOUSNESS.\n[3 THE COMMISSIONER AL\nri . THE MMISSION REAOY\nZz Bureau of HAS your NUMBER, out\nWC'VE ASSIGNEO THIS ONE 4\n3 NUISANCES | TO YOU\nNe UW : wwe\n\u00e9s BACK SHAT DRIVERS\nLd jo\n\\ =\n! ol tl 4:\n4 Py) if +\n= NAME 7 4\nme IN Jj\nry * . Z .\na.\n2 nn\nC4\nH < fod, \u201cONC STATE 3!\no\n= 98 ee\n=u SIGNATURE OF\n|e ve THIS IS TO CERTIFY THAT THE PERSON HEREIN NAMED\nHAS PASSED ALL TESTS FOR NERVOUSNESS AND HAS }\nBEEN LICENSED TO IBRITATE, ANNOY, CRITICIZE, ANDO |\nit LD OTHERWISE DISTURB THE OPERATOR OF THE CAR,\n4\nDATE ISSUED\n1 zu Feed 'SS 49 - 4\n7\nOR\nCMPIRUS WHEN | (LPH\n3 0 = REGULAR ORIVER'S | OF NERVOUS WRECKS\noO IS OF INTERIOR CONFUSION\n\u201c9. IMPAINT CO, 427 tek. AWE\nwe",
     "tables": []
   },
   "insights": {
     "confidence": {
-      "overall_pct": 25,
-      "high_confidence_pct": 3,
+      "overall_pct": 46,
+      "high_confidence_pct": 22,
       "distribution_chart_data": [
         {
           "label": "High",
-          "value": 3
+          "value": 22
         },
         {
           "label": "Medium",
-          "value": 13
+          "value": 19
         },
         {
           "label": "Low",
-          "value": 84
+          "value": 59
         }
       ]
     },
     "audit_trail": [
       {
         "name": "Greyscale Conversion",
-        "description": "Converted BGR input to single-channel greyscale. Colour is irrelevant for ink-on-paper OCR and removing it reduces processing cost by 3\u00d7."
+        "description": "Collapsed BGR to single-channel greyscale. Colour is irrelevant for OCR."
       },
       {
         "name": "Resolution Validation",
-        "description": "Low resolution (500\u00d7246 px, long edge = 500 px). Minimum recommended: 1500 px. OCR will proceed but accuracy will be reduced. Rescan at 300+ DPI for reliable results."
+        "description": "Low resolution (480x512 px). Minimum recommended: 1500 px. Attempting super-resolution recovery."
       },
       {
-        "name": "Super-Resolution Upscale (bicubic_4x)",
-        "description": "Input resolution was below the 1500px threshold. Applied bicubic_4x 4\u00d7 upscale using cv2.dnn_superres (ESPCN sub-pixel CNN). Image enlarged from original size to 2000\u00d7984px to give Tesseract sufficient pixel density per character. This recovered significantly more OCR content \u2014 tested on a 500\u00d7246 newspaper clip: 22 \u2192 242 words extracted."
+        "name": "Super-Resolution (bicubic_4x)",
+        "description": "Input below 1500px. Applied bicubic_4x 4x upscale to give Tesseract sufficient pixel density per character."
       },
       {
         "name": "Bilateral Denoising Filter",
-        "description": "Applied edge-aware bilateral filter (d=9, \u03c3Color=75, \u03c3Space=75). Suppresses paper grain and scanner noise while preserving the sharp ink-stroke boundaries that OCR depends on."
+        "description": "Edge-aware bilateral filter (d=9, sigmaColor=75, sigmaSpace=75). Removes paper grain and scanner noise while preserving sharp ink-stroke boundaries that OCR depends on."
       },
       {
         "name": "CLAHE Contrast Enhancement",
-        "description": "Applied Contrast Limited Adaptive Histogram Equalization (clipLimit=2.0, tile=8\u00d78) to recover faded ink strokes and compensate for lighting gradients across the document surface."
+        "description": "Contrast Limited Adaptive Histogram Equalisation (clipLimit=2.0, tile=8x8). Recovers faded ink strokes and compensates for uneven lighting across the document surface."
       },
       {
         "name": "Adaptive Gaussian Binarization",
-        "description": "Converted to binary using local Gaussian-weighted thresholding (blockSize=15, C=10). Each pixel is compared to its 15\u00d715 local neighbourhood average, isolating ink strokes from yellow staining and uneven lighting that would defeat global thresholding."
+        "description": "Local Gaussian-weighted threshold per 15x15 neighbourhood (C=10). Isolates ink strokes from yellow staining and background gradients that would defeat global thresholding."
       },
       {
         "name": "OCR \u2014 Tesseract LSTM (PSM 6, OEM 3)",
-        "description": "Recognised text at 25% mean confidence. 3% of tokens high-confidence (\u226580%). Tokens below 40% confidence dropped from extracted_text to eliminate scanner-border noise."
-      },
-      {
-        "name": "Metadata Extraction",
-        "description": "Regex entity extraction found 0 date(s), 5 person(s), 0 place(s). Document type: unrecognised."
+        "description": "46% mean word confidence. 22% of tokens high-confidence (>=80%). Tokens below 40% dropped. Noise lines stripped from top/bottom of output."
       },
       {
         "name": "Annotated Image",
-        "description": "Drew per-word bounding boxes colour-coded green/yellow/red by OCR confidence tier (\u226580 / 50-79 / <50)."
+        "description": "Per-word bounding boxes: green >=80%, yellow 50-79%, red <50%."
       },
       {
         "name": "Layout Map",
-        "description": "Morphological dilation (kernel 15\u00d75, 2 iterations) merged characters into paragraph blobs; contours mark layout regions."
-      },
-      {
-        "name": "Table Detection",
-        "description": "Morphological line extraction + numeric-alignment heuristic. Found 3 table(s). Note: borderless tables require deep-learning models (future work)."
+        "description": "Morphological dilation (kernel 15x5, 2 iterations) merged characters into paragraph blobs."
       }
     ]
   },
-  "_extras": {
-    "extracted_entities": {
-      "dates": [],
-      "persons": [
-        "Meer Pony",
-        "Tears\nLor",
-        "Walkers Only",
-        "Sea Wana",
-        "Men Weated"
-      ],
-      "places": [],
-      "doc_type": null,
-      "numeric_facts": [
-        "724 gen -[4- \u00b0 . ."
-      ]
-    },
-    "resolution_acceptable": false
+  "images": {
+    "before_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3_before.png",
+    "after_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3_after.png",
+    "annotated_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3_annotated.png"
   },
   "ai_analysis": {
-    "artifact_profile": "<div class=\"field-heading\">Physical Format</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Bound Book</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Loose Letter / Folio</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Ledger / Log</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Map / Diagram</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Printed fragment/Flyer]</label>\n<div class=\"field-row\"><span class=\"field-key\">Materiality:</span> <span class=\"field-val\">[Indeterminate; likely paper and ink based on text structure]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Condition:</span> <span class=\"field-val\">[Extremely poor; text is highly fragmented and contains significant OCR noise, suggesting a low-quality scan or a damaged original]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Legibility Score (1-5):</span> <span class=\"field-val\">[1]</span></div>",
-    "provenance": "<div class=\"field-row\"><span class=\"field-key\">Temporal Origin:</span> <span class=\"field-val\">[Undetermined]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Geographic Origin:</span> <span class=\"field-val\">[Bristol]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Author:</span> <span class=\"field-val\">[Anonymous]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Role:</span> <span class=\"field-val\">[Unknown]</span></div>\n<div class=\"field-heading\">Document Genre</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Administrative</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Personal Diary</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Legal</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Financial / Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Religious</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Correspondence</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Promotional / Informational]</label>",
-    "anthropological_matrix": "<div class=\"field-heading\">Positionality</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Complete Outsider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Assimilated Outsider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Elite Insider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Marginalized Insider</label>\n<div class=\"field-heading\">Intended Audience</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Self (Private)</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Superiors / The State</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Public / Published</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Peers / Colleagues</label>\n<div class=\"field-row\"><span class=\"field-key\">Dominant Power Dynamic:</span> <span class=\"field-val\">[Not explicitly stated; appears to be a commercial or civic communication]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Notable Silences:</span> <span class=\"field-val\">[The specific identity of the author and the specific details of the \"attractions\" are obscured by text degradation]</span></div>",
-    "taxonomy": "<div class=\"field-row\"><span class=\"field-key\">Locations:</span> <span class=\"field-val\">[Bristol]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Figures:</span> <span class=\"field-val\">[None mentioned]</span></div>\n<div class=\"field-heading\">Thematic Tags</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Kinship</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Ritual_Religion</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Economics_Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Warfare_Conflict</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Law_Justice</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Agriculture_Environment</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Medicine_Health</label>\n<div class=\"field-row\"><span class=\"field-key\">Indigenous Lexicon:</span> <span class=\"field-val\">[None]</span></div>",
-    "validity_bias": "<div class=\"field-heading\">Proximity</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> First-hand witness</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Second-hand account</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Hearsay</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Post-hoc summary</label>\n<div class=\"field-row\"><span class=\"field-key\">Bias Level (1-5):</span> <span class=\"field-val\">[3]</span></div>\n<div class=\"field-heading\">Primary Value</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Understanding Author's Culture</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Understanding Subject's Culture</label>",
-    "executive_summary": "<div class=\"field-row\"><span class=\"field-key\">Elevator Pitch:</span> <span class=\"field-val\">A highly degraded OCR fragment of a printed document, likely a tourist flyer or local notice. It contains references to \"Bristol,\" \"City Attractions,\" and \"Sea\" views for \"Walkers.\"</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Takeaway:</span> <span class=\"field-val\">The document is too illegible to provide specific historical data, but it points toward local tourism or public navigation in Bristol.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Next Steps:</span> <span class=\"field-val\">Conduct a high-resolution scan or physical inspection of the original artifact to recover lost text.</span></div>"
+    "artifact_profile": "<div class=\"field-heading\">Physical Format</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Bound Book</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Loose Letter / Folio</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Ledger / Log</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Map / Diagram</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Novelty License/Certificate]</label>\n<div class=\"field-row\"><span class=\"field-key\">Materiality:</span> <span class=\"field-val\">[Printed paper/cardstock]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Condition:</span> <span class=\"field-val\">[Poor OCR legibility; text is fragmented and contains significant character errors, suggesting a low-quality scan or heavily degraded source.]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Legibility Score (1-5):</span> <span class=\"field-val\">[2]</span></div>",
+    "provenance": "<div class=\"field-row\"><span class=\"field-key\">Temporal Origin:</span> <span class=\"field-val\">[Undated/Not clearly legible]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Geographic Origin:</span> <span class=\"field-val\">[Unspecified \"State of...\"]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Author:</span> <span class=\"field-val\">[The Commissioner of the Bureau of Nervousness]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Role:</span> <span class=\"field-val\">[Satirical Official]</span></div>\n<div class=\"field-heading\">Document Genre</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Administrative</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Personal Diary</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Legal</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Financial / Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Religious</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Correspondence</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Satirical/Novelty Certificate]</label>",
+    "anthropological_matrix": "<div class=\"field-heading\">Positionality</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Complete Outsider [The document mimics authority to subvert it through humor]</label>\n<div class=\"field-heading\">Intended Audience</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Self (Private)</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Superiors / The State</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Public / Published [Likely a novelty gift or gag item]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Peers / Colleagues</label>\n<div class=\"field-row\"><span class=\"field-key\">Dominant Power Dynamic:</span> <span class=\"field-val\">[Satirical subversion of state authority; mimics the power of a licensing bureau to grant \"permission\" for social nuisance.]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Notable Silences:</span> <span class=\"field-val\">[The perspective of the \"operator of the car\" who is being disturbed is absent.]</span></div>",
+    "taxonomy": "<div class=\"field-row\"><span class=\"field-key\">Locations:</span> <span class=\"field-val\">[Back seat of a car]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Figures:</span> <span class=\"field-val\">[The Commissioner, The Licensee (Person herein named), The Operator of the Car]</span></div>\n<div class=\"field-heading\">Thematic Tags</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Kinship</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Ritual_Religion</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Economics_Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Warfare_Conflict</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Law_Justice [Parody of legal licensing]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Agriculture_Environment</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Medicine_Health</label>\n<div class=\"field-row\"><span class=\"field-key\">Indigenous Lexicon:</span> <span class=\"field-val\">[None]</span></div>",
+    "validity_bias": "<div class=\"field-heading\">Proximity</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> First-hand witness</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Second-hand account [Manufactured novelty item]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Hearsay</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Post-hoc summary</label>\n<div class=\"field-row\"><span class=\"field-key\">Bias Level (1-5):</span> <span class=\"field-val\">[5] [Explicitly humorous/satirical intent]</span></div>\n<div class=\"field-heading\">Primary Value</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Understanding Author's Culture [Reflects social tropes regarding driving and interpersonal friction]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Understanding Subject's Culture</label>",
+    "executive_summary": "<div class=\"field-row\"><span class=\"field-key\">Elevator Pitch:</span> <span class=\"field-val\">A satirical novelty license issued by a fictional \"Bureau of Nervousness.\" It officially \"certifies\" a person to irritate, annoy, and criticize the driver of a vehicle.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Takeaway:</span> <span class=\"field-val\">The document serves as a humorous cultural artifact regarding the social phenomenon of \"back seat drivers.\"</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Next Steps:</span> <span class=\"field-val\">Investigate \"IMPAINT CO\" to determine the era of production and the commercial context of novelty printing.</span></div>"
   }
 }

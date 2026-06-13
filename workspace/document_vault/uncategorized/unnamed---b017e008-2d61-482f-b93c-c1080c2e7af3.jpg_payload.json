@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "doc_id": "unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3.jpg",
+    "timestamp": "2026-06-13T17:01:04.840738",
+    "filename": "unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3.jpg",
+    "health_score": 34
+  },
+  "content": {
+    "extracted_text": "\u00ab fo a\n: zz State of | LICENSE NUMBER\nNERY NESS AY\n#5 NERVOUSNESS.\n[3 THE COMMISSIONER AL\nri . THE MMISSION REAOY\nZz Bureau of HAS your NUMBER, out\nWC'VE ASSIGNEO THIS ONE 4\n3 NUISANCES | TO YOU\nNe UW : wwe\n\u00e9s BACK SHAT DRIVERS\nLd jo\n\\ =\n! ol tl 4:\n4 Py) if +\n= NAME 7 4\nme IN Jj\nry * . Z .\na.\n2 nn\nC4\nH < fod, \u201cONC STATE 3!\no\n= 98 ee\n=u SIGNATURE OF\n|e ve THIS IS TO CERTIFY THAT THE PERSON HEREIN NAMED\nHAS PASSED ALL TESTS FOR NERVOUSNESS AND HAS }\nBEEN LICENSED TO IBRITATE, ANNOY, CRITICIZE, ANDO |\nit LD OTHERWISE DISTURB THE OPERATOR OF THE CAR,\n4\nDATE ISSUED\n1 zu Feed 'SS 49 - 4\n7\nOR\nCMPIRUS WHEN | (LPH\n3 0 = REGULAR ORIVER'S | OF NERVOUS WRECKS\noO IS OF INTERIOR CONFUSION\n\u201c9. IMPAINT CO, 427 tek. AWE\nwe",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 46,
+      "high_confidence_pct": 22,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 22
+        },
+        {
+          "label": "Medium",
+          "value": 19
+        },
+        {
+          "label": "Low",
+          "value": 59
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Greyscale Conversion",
+        "description": "Collapsed BGR to single-channel greyscale. Colour is irrelevant for OCR."
+      },
+      {
+        "name": "Resolution Validation",
+        "description": "Low resolution (480x512 px). Minimum recommended: 1500 px. Attempting super-resolution recovery."
+      },
+      {
+        "name": "Super-Resolution (bicubic_4x)",
+        "description": "Input below 1500px. Applied bicubic_4x 4x upscale to give Tesseract sufficient pixel density per character."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Edge-aware bilateral filter (d=9, sigmaColor=75, sigmaSpace=75). Removes paper grain and scanner noise while preserving sharp ink-stroke boundaries that OCR depends on."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Contrast Limited Adaptive Histogram Equalisation (clipLimit=2.0, tile=8x8). Recovers faded ink strokes and compensates for uneven lighting across the document surface."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Local Gaussian-weighted threshold per 15x15 neighbourhood (C=10). Isolates ink strokes from yellow staining and background gradients that would defeat global thresholding."
+      },
+      {
+        "name": "OCR \u2014 Tesseract LSTM (PSM 6, OEM 3)",
+        "description": "46% mean word confidence. 22% of tokens high-confidence (>=80%). Tokens below 40% dropped. Noise lines stripped from top/bottom of output."
+      },
+      {
+        "name": "Annotated Image",
+        "description": "Per-word bounding boxes: green >=80%, yellow 50-79%, red <50%."
+      },
+      {
+        "name": "Layout Map",
+        "description": "Morphological dilation (kernel 15x5, 2 iterations) merged characters into paragraph blobs."
+      }
+    ]
+  },
+  "images": {
+    "before_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3_before.png",
+    "after_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3_after.png",
+    "annotated_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\unnamed---b017e008-2d61-482f-b93c-c1080c2e7af3_annotated.png"
+  },
+  "ai_analysis": {
+    "artifact_profile": "<div class=\"field-heading\">Physical Format</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Bound Book</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Loose Letter / Folio</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Ledger / Log</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Map / Diagram</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Novelty License/Certificate]</label>\n<div class=\"field-row\"><span class=\"field-key\">Materiality:</span> <span class=\"field-val\">[Printed paper/cardstock]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Condition:</span> <span class=\"field-val\">[Poor OCR legibility; text is fragmented and contains significant character errors, suggesting a low-quality scan or heavily degraded source.]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Legibility Score (1-5):</span> <span class=\"field-val\">[2]</span></div>",
+    "provenance": "<div class=\"field-row\"><span class=\"field-key\">Temporal Origin:</span> <span class=\"field-val\">[Undated/Not clearly legible]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Geographic Origin:</span> <span class=\"field-val\">[Unspecified \"State of...\"]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Author:</span> <span class=\"field-val\">[The Commissioner of the Bureau of Nervousness]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Role:</span> <span class=\"field-val\">[Satirical Official]</span></div>\n<div class=\"field-heading\">Document Genre</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Administrative</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Personal Diary</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Legal</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Financial / Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Religious</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Correspondence</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Satirical/Novelty Certificate]</label>",
+    "anthropological_matrix": "<div class=\"field-heading\">Positionality</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Complete Outsider [The document mimics authority to subvert it through humor]</label>\n<div class=\"field-heading\">Intended Audience</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Self (Private)</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Superiors / The State</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Public / Published [Likely a novelty gift or gag item]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Peers / Colleagues</label>\n<div class=\"field-row\"><span class=\"field-key\">Dominant Power Dynamic:</span> <span class=\"field-val\">[Satirical subversion of state authority; mimics the power of a licensing bureau to grant \"permission\" for social nuisance.]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Notable Silences:</span> <span class=\"field-val\">[The perspective of the \"operator of the car\" who is being disturbed is absent.]</span></div>",
+    "taxonomy": "<div class=\"field-row\"><span class=\"field-key\">Locations:</span> <span class=\"field-val\">[Back seat of a car]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Figures:</span> <span class=\"field-val\">[The Commissioner, The Licensee (Person herein named), The Operator of the Car]</span></div>\n<div class=\"field-heading\">Thematic Tags</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Kinship</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Ritual_Religion</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Economics_Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Warfare_Conflict</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Law_Justice [Parody of legal licensing]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Agriculture_Environment</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Medicine_Health</label>\n<div class=\"field-row\"><span class=\"field-key\">Indigenous Lexicon:</span> <span class=\"field-val\">[None]</span></div>",
+    "validity_bias": "<div class=\"field-heading\">Proximity</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> First-hand witness</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Second-hand account [Manufactured novelty item]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Hearsay</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Post-hoc summary</label>\n<div class=\"field-row\"><span class=\"field-key\">Bias Level (1-5):</span> <span class=\"field-val\">[5] [Explicitly humorous/satirical intent]</span></div>\n<div class=\"field-heading\">Primary Value</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Understanding Author's Culture [Reflects social tropes regarding driving and interpersonal friction]</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Understanding Subject's Culture</label>",
+    "executive_summary": "<div class=\"field-row\"><span class=\"field-key\">Elevator Pitch:</span> <span class=\"field-val\">A satirical novelty license issued by a fictional \"Bureau of Nervousness.\" It officially \"certifies\" a person to irritate, annoy, and criticize the driver of a vehicle.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Takeaway:</span> <span class=\"field-val\">The document serves as a humorous cultural artifact regarding the social phenomenon of \"back seat drivers.\"</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Next Steps:</span> <span class=\"field-val\">Investigate \"IMPAINT CO\" to determine the era of production and the commercial context of novelty printing.</span></div>"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "doc_id": "old_faded_2---510d96fe-ee36-447e-91e4-341015ce59fd.jpg",
+    "timestamp": "2026-06-13T16:54:39.911283",
+    "filename": "old_faded_2---510d96fe-ee36-447e-91e4-341015ce59fd.jpg",
+    "health_score": 88
+  },
+  "content": {
+    "extracted_text": "Vat et\ni,\nq 45. [Fine Bindings] STRACHEY, ELIZABETH. Translations from the MES\nFrench of Emile Souvestre. N.p. (Privately Printed), 1856.\n$1250.00\nTwo vols., sm. 4to., full dark blue ctushed-morocco over\ncovers heavily ornamented with gilt and blind relief decoration, far too elaborate to\ndescribe. At the top and bottom (on the edges of the outer gilt fillet borders) are\ntwo gilt lines: TOQ*THE*MEMORY*OF*ELIZABETH STRACHEY* and \u00ab NON \u00ab\nANIMUM:. Board edges gilt, inner gilt dentelles, a.e.g. On the inside rear paste-down\nof the first volume is the binder\u2019s ticket of Leighton Son & On the front fly\nleaf of volume one is the inscription, \u201cConstance Strachey from E. S. 1 June 1887.\u201d\nElizabeth Strachey was born 14 February. 1810, the eldest daughter of R. W.\n| Wilkinson of Hall, Bedfordshire. She married Edward Strachey of\nSutton Court, Pensford, Somerset on 27 August 1844 and died without issue on 11] et\nASE April 1855. Emile Souvestre (1806-1854) was a French playwright who did\nmuch better with his novels than for the stage, although he deliberate y aimed at\nmaking the novel an engine of moral instruction. He is said to have harmo- a hs\nny with Mrs. Strachey\u2019s translations of his works, which include The Bargeman of\nthe Loire, The Lazaretto-Keeper, Confessions of a Working Man, The Sea-Shore\nGleaner, An Attic Philosopher in Paris, Family Memoirs and The Widower\u2019s Old ON\nAge (three chapters of which Edward Strachey added to Vol. IT from M. Souvestre\u2019s\nunfinished work). These volumes were published: \u201cJo the memory of her to whom\nthese translations are chiefly due, while her hand, in them, as in all t ings else, was ever\njoined with that of her husband.\u201d\nvA The bindings by Leighton could not be more elaborate and were certainly done\nexpressly for these privately printed volumes. We know of one other copy of the\nwork in identical bindings in a private London collection (there are no copies in\neither The British or NUC). The brass stamping plates were used again by\n| Leighton for an 1868 edition of Oliver Goldsmith's The Traveler in a somewhat\nj altered fashion (i.e. he removed the memorial lines at the top and bottom, replac- a\ning two lines of gilt decoration to try and achieve balance; he also ORE\n4 removed Elizabeth Strachey\u2019s initials from the central panel on the covers, replacing -\nit with an uninspired design element). These beautiful and rare bindings are in FINE A\n| CONDITION,",
+    "tables": []
+  },
+  "insights": {
+    "confidence": {
+      "overall_pct": 72,
+      "high_confidence_pct": 67,
+      "distribution_chart_data": [
+        {
+          "label": "High",
+          "value": 67
+        },
+        {
+          "label": "Medium",
+          "value": 3
+        },
+        {
+          "label": "Low",
+          "value": 30
+        }
+      ]
+    },
+    "audit_trail": [
+      {
+        "name": "Greyscale Conversion",
+        "description": "Collapsed BGR to single-channel greyscale. Colour is irrelevant for OCR."
+      },
+      {
+        "name": "Resolution Validation",
+        "description": "Resolution OK (2448x3264 px)."
+      },
+      {
+        "name": "Bilateral Denoising Filter",
+        "description": "Edge-aware bilateral filter (d=9, sigmaColor=75, sigmaSpace=75). Removes paper grain and scanner noise while preserving sharp ink-stroke boundaries that OCR depends on."
+      },
+      {
+        "name": "CLAHE Contrast Enhancement",
+        "description": "Contrast Limited Adaptive Histogram Equalisation (clipLimit=2.0, tile=8x8). Recovers faded ink strokes and compensates for uneven lighting across the document surface."
+      },
+      {
+        "name": "Adaptive Gaussian Binarization",
+        "description": "Local Gaussian-weighted threshold per 15x15 neighbourhood (C=10). Isolates ink strokes from yellow staining and background gradients that would defeat global thresholding."
+      },
+      {
+        "name": "OCR \u2014 Tesseract LSTM (PSM 6, OEM 3)",
+        "description": "72% mean word confidence. 67% of tokens high-confidence (>=80%). Tokens below 40% dropped. Noise lines stripped from top/bottom of output."
+      },
+      {
+        "name": "Annotated Image",
+        "description": "Per-word bounding boxes: green >=80%, yellow 50-79%, red <50%."
+      },
+      {
+        "name": "Layout Map",
+        "description": "Morphological dilation (kernel 15x5, 2 iterations) merged characters into paragraph blobs."
+      }
+    ]
+  },
+  "images": {
+    "before_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_2---510d96fe-ee36-447e-91e4-341015ce59fd_before.png",
+    "after_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_2---510d96fe-ee36-447e-91e4-341015ce59fd_after.png",
+    "annotated_url": "C:\\Users\\User\\Desktop\\wid3013-cv-skill-g6\\samples\\output\\old_faded_2---510d96fe-ee36-447e-91e4-341015ce59fd_annotated.png"
+  },
+  "ai_analysis": {
+    "artifact_profile": "<div class=\"field-heading\">Physical Format</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Bound Book</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Loose Letter / Folio</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Ledger / Log</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Map / Diagram</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Other: [N/A]</label>\n<div class=\"field-row\"><span class=\"field-key\">Materiality:</span> <span class=\"field-val\">[Two volumes, small 4to; dark blue crushed-morocco over covers; gilt and blind relief decoration; brass stamping plates]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Condition:</span> <span class=\"field-val\">[Fine condition; described as beautiful and rare]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Legibility Score (1-5):</span> <span class=\"field-val\">[5]</span></div>",
+    "provenance": "<div class=\"field-row\"><span class=\"field-key\">Temporal Origin:</span> <span class=\"field-val\">[1856]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Geographic Origin:</span> <span class=\"field-val\">[N.p. (Privately Printed); mentions Bedfordshire and Somerset, England]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Author:</span> <span class=\"field-val\">[Elizabeth Strachey (Translator); Emile Souvestre (Original Author)]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Role:</span> <span class=\"field-val\">[Translator and Playwright]</span></div>\n<div class=\"field-heading\">Document Genre</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Administrative</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Personal Diary</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Legal</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Financial / Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Religious</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Correspondence</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Other: [Literary Translation / Private Printing]</label>",
+    "anthropological_matrix": "<div class=\"field-heading\">Positionality</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Elite Insider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Assimilated Outsider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Elite Insider</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Marginalized Insider</label>\n<div class=\"field-heading\">Intended Audience</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Self (Private)</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Superiors / The State</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Public / Published</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Peers / Colleagues</label>\n<div class=\"field-row\"><span class=\"field-key\">Dominant Power Dynamic:</span> <span class=\"field-val\">[Gendered literary collaboration; the text notes the translator's work was \"joined with that of her husband\" and he added chapters to her volume.]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Notable Silences:</span> <span class=\"field-val\">[The voices of the working-class subjects mentioned in the book titles (e.g., \"The Bargeman,\" \"Working Man\") are absent, as the text focuses on the elite owners and the physical luxury of the binding.]</span></div>",
+    "taxonomy": "<div class=\"field-row\"><span class=\"field-key\">Locations:</span> <span class=\"field-val\">[Hall, Bedfordshire; Sutton Court, Pensford, Somerset; London; Paris]</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Figures:</span> <span class=\"field-val\">[Elizabeth Strachey, Emile Souvestre, Edward Strachey, R. W. Wilkinson, Constance Strachey, Leighton (binder)]</span></div>\n<div class=\"field-heading\">Thematic Tags</div>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Kinship</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Ritual_Religion</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> #Economics_Trade</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Warfare_Conflict</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Law_Justice</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Agriculture_Environment</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> #Medicine_Health</label>\n<div class=\"field-row\"><span class=\"field-key\">Indigenous Lexicon:</span> <span class=\"field-val\">[None]</span></div>",
+    "validity_bias": "<div class=\"field-heading\">Proximity</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> First-hand witness</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Second-hand account</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Hearsay</label>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Post-hoc summary</label>\n<div class=\"field-row\"><span class=\"field-key\">Bias Level (1-5):</span> <span class=\"field-val\">[3] (The text is a descriptive catalog entry using laudatory language such as \"beautiful,\" \"rare,\" and \"too elaborate to describe.\")</span></div>\n<div class=\"field-heading\">Primary Value</div>\n<label class=\"cb\"><input type=\"checkbox\" disabled> Understanding Author's Culture</label>\n<label class=\"cb\"><input type=\"checkbox\" checked disabled> Understanding Subject's Culture</label>",
+    "executive_summary": "<div class=\"field-row\"><span class=\"field-key\">Elevator Pitch:</span> <span class=\"field-val\">A bibliographic description of a rare, privately printed 1856 two-volume set of Emile Souvestre's works, translated by Elizabeth Strachey. The volumes are characterized by highly elaborate, custom-made dark blue crushed-morocco bindings by Leighton.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Key Takeaway:</span> <span class=\"field-val\">The document illustrates 19th-century elite patterns of private book production, luxury craftsmanship, and gendered literary collaboration.</span></div>\n<div class=\"field-row\"><span class=\"field-key\">Next Steps:</span> <span class=\"field-val\">Investigate the Leighton binding workshop's output and the social/literary connections between the Strachey and Wilkinson families.</span></div>"
+  }
+}
