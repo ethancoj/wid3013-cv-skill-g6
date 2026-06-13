@@ -280,9 +280,9 @@ def main():
         sys.exit(1)
 
     try:
-        from src.cv_processing_4 import process_document
+        from src.cv_processing import process_document
     except ImportError:
-        print("Error: cv_processing_4.py not found in src/")
+        print("Error: cv_processing.py not found in src/")
         sys.exit(1)
 
     log(f"Processing image: {image_path}")
