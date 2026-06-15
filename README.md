@@ -107,6 +107,7 @@ During onboard:
 - Select **Google** as the AI provider
 - Paste your API key when prompted
 - Configure **Telegram** as the channel and paste your bot token
+- IMPORTANT: YOU CAN SKIP THE OTHER ONBOARD SETUPS if you are not sure of what they do
 
 ### 6. Register the skill with OpenClaw
 
@@ -132,7 +133,7 @@ openclaw tui
 
 1. Open your Telegram bot in DM
 2. Send a document image with the caption: **"restore this document"**
-3. Wait for processing (CV pipeline + AI analysis, ~30-60 seconds)
+3. Wait for processing (CV pipeline + AI analysis)
 4. The bot replies with a summary and a link to the dashboard
 5. Open the dashboard link in your browser
 
@@ -159,7 +160,7 @@ wid3013-cv-skill-g6/
 │   ├── document_vault_architecture.md
 │   └── ...                       ← Design documentation
 ├── src/
-│   └── cv_processing_4.py        ← CV processing script
+│   └── cv_processing.py        ← CV processing script
 ├── templates/
 │   └── dashboard_template.html   ← Jinja2 dashboard template
 ├── tests/
@@ -186,7 +187,7 @@ OpenClaw reads skill.md → detects trigger phrase
         ↓
 Calls: python run_skill.py <image_path> <category>
         ↓
-cv_processing_4.py runs:
+cv_processing.py runs:
   → Grayscale → Denoise → CLAHE → Binarize → OCR → Layout analysis
   → Outputs Golden Payload JSON
         ↓
